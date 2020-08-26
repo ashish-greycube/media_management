@@ -1,0 +1,101 @@
+{
+ "creation": "2020-08-26 10:37:54.019104",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "media_id",
+  "external_id",
+  "data_device_owner",
+  "type",
+  "dd_cb_1",
+  "capacity",
+  "brand",
+  "has_datacable",
+  "has_psu",
+  "has_box"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "media_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Media ID",
+   "options": "Media NS",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "external_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "External ID"
+  },
+  {
+   "columns": 1,
+   "fieldname": "type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "Data Device Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dd_cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "capacity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Capacity ",
+   "options": "Data Device Capacity"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Brand",
+   "options": "Brand"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_datacable",
+   "fieldtype": "Check",
+   "label": "Has DataCable"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_psu",
+   "fieldtype": "Check",
+   "label": "Has PSU"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_box",
+   "fieldtype": "Check",
+   "label": "Has BOX"
+  },
+  {
+   "columns": 2,
+   "fieldname": "data_device_owner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Owner",
+   "options": "Contact"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-08-26 10:46:48.671665",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Data Device Entry Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
