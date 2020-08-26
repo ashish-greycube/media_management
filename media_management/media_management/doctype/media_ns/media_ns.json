@@ -85,7 +85,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Media ID",
-   "options": "{media_abbreviation}.-",
+   "options": "{media_abbreviation}.#",
    "reqd": 1
   },
   {
@@ -275,7 +275,7 @@
    "reqd": 1
   }
  ],
- "modified": "2020-08-26 09:55:17.364810",
+ "modified": "2020-08-26 10:11:07.730650",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
