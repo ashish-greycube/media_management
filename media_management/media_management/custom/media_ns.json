@@ -1,0 +1,31 @@
+{
+ "custom_fields": [],
+ "custom_perms": [],
+ "doctype": "Media NS",
+ "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2020-08-27 09:53:20.967614",
+   "default_value": null,
+   "doc_type": "Media NS",
+   "docstatus": 0,
+   "doctype_or_field": "DocType",
+   "field_name": null,
+   "idx": 0,
+   "modified": "2020-08-27 09:53:20.967614",
+   "modified_by": "Administrator",
+   "name": "Media NS-default_print_format",
+   "owner": "Administrator",
+   "parent": null,
+   "parentfield": null,
+   "parenttype": null,
+   "property": "default_print_format",
+   "property_type": "Data",
+   "value": "Media Barcode"
+  }
+ ],
+ "sync_on_migrate": 1
+}
