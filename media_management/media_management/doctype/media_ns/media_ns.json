@@ -15,6 +15,7 @@
   "external_id",
   "media_owner",
   "title",
+  "media_barcode",
   "film_details_section",
   "film_reel_no",
   "film_gauge",
@@ -273,9 +274,14 @@
    "label": "Project",
    "options": "Project",
    "reqd": 1
+  },
+  {
+   "fieldname": "media_barcode",
+   "fieldtype": "Barcode",
+   "label": "Barcode"
   }
  ],
- "modified": "2020-08-26 10:11:07.730650",
+ "modified": "2020-08-27 09:35:41.681449",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",

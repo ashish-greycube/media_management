@@ -7,4 +7,6 @@ from __future__ import unicode_literals
 from frappe.model.document import Document
 
 class MediaNS(Document):
-	pass
+	
+	def validate(self):
+		self.media_barcode = self.name
