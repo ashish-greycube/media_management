@@ -9,4 +9,5 @@ from frappe.model.document import Document
 class MediaNS(Document):
 	
 	def validate(self):
-		self.media_barcode = self.name
+		pass
+		# self.media_barcode = self.name
