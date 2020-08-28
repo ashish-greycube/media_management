@@ -6,18 +6,18 @@ frappe.ui.form.on('Media Entry', {
 		let selected = frm.get_selected()
 		console.log(selected)		
 	},
-	create_and_print_barcode: function (frm) {
-		frm.set_df_property('no_of_films', 'read_only', 1)
-		frm.set_df_property('no_of_tapes', 'read_only', 1)
-		frm.set_df_property('no_of_data_device', 'read_only', 1)
-		frm.call({
-			doc: frm.doc,
-			method: 'create_and_print_barcode',
-			callback: function (r) {
-				if (!r.message) {}
-			}
-		})
-	}
+	// create_and_print_barcode: function (frm) {
+	// 	frm.set_df_property('no_of_films', 'read_only', 1)
+	// 	frm.set_df_property('no_of_tapes', 'read_only', 1)
+	// 	frm.set_df_property('no_of_data_device', 'read_only', 1)
+	// 	frm.call({
+	// 		doc: frm.doc,
+	// 		method: 'create_and_print_barcode',
+	// 		callback: function (r) {
+	// 			if (!r.message) {}
+	// 		}
+	// 	})
+	// }
 });
 
 frappe.ui.form.on('Media Entry Item', {
