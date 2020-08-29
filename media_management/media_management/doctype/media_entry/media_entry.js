@@ -4,7 +4,30 @@
 frappe.ui.form.on('Media Entry', {
 	print_barcodes: function (frm) {
 		let selected = frm.get_selected()
-		console.log(selected)		
+		console.log(selected)	
+		let data_devices = selected['data_devices']
+		let film_items=selected['film_items']
+		let tape_items=selected['tape_items']
+
+
+		for (const device in data_devices){
+			console.log(device,data_devices[device])
+			for (const i in frm.doc.data_devices){
+				let row=frm.doc.data_devices[i]
+				console.log(row,'t')
+				if (row.name==data_devices[device]) {
+					frappe.db.get_doc('Media NS', row.media_id)
+					.then(doc => {
+						console.log(doc)
+						doc.print_doc();
+					})					
+					
+				}
+			}
+		}
+
+
+
 	},
 	// create_and_print_barcode: function (frm) {
 	// 	frm.set_df_property('no_of_films', 'read_only', 1)
