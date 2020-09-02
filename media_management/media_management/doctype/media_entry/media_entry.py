@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 
 class MediaEntry(Document):
+
 	def create_and_print_barcode(self):
 		if hasattr(self, 'film_items') and (len(self.film_items) < self.no_of_films):
 			for file in range(self.no_of_films):
@@ -22,8 +23,9 @@ class MediaEntry(Document):
 			for file in range(self.no_of_data_device):
 				new_media_ns=self.create_Media_NS('Data Device')
 				row = self.append('data_devices', {})
-				row.media_id=new_media_ns		
-			
+				row.media_id=new_media_ns	
+		return 1
+		
 
 	def create_Media_NS(self,media_type):
 		doc = frappe.new_doc('Media NS')
@@ -31,6 +33,8 @@ class MediaEntry(Document):
 		doc.customer=self.customer
 		doc.project=self.project
 		doc.insert()
+		doc.reload()
+		doc.save()
 		return doc.name	
 
 @frappe.whitelist()

@@ -77,8 +77,7 @@
    "depends_on": "eval:(doc.customer && doc.project)",
    "fieldname": "create_and_print_barcode",
    "fieldtype": "Button",
-   "label": "Create and Print Barcodes",
-   "options": "create_and_print_barcode"
+   "label": "Create and Print Barcodes"
   },
   {
    "fieldname": "print_barcodes",
@@ -126,7 +125,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-08-28 05:57:33.633544",
+ "modified": "2020-09-02 13:59:58.854947",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Entry",

@@ -1,0 +1,55 @@
+{% block page_content %}
+<style>
+    /* it has no impact */
+	@media screen {
+		.print-format {
+			width: 1.10236in;
+			min-height: 2.00787in;
+			padding: 0in;
+			margin: auto;
+		}
+	
+	@media print {
+		.print-format p {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+	}
+
+</style>
+
+
+{% macro render_barcode(barcode) %}
+{% if barcode %}
+<img style="width:85px;height:42px;object-fit: contain;"
+    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=5&IsTextDrawn=0&IsBorderDrawn=0"
+    alt="{{barcode}}"></img>
+{% endif %}
+{% endmacro %}
+
+{% macro render_small_barcode(barcode) %}
+{% if barcode %}
+<img style="width:85px;height:21px;object-fit: contain;"
+    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=5&IsTextDrawn=0&IsBorderDrawn=0"
+    alt="{{barcode}}"></img>
+{% endif %}
+{% endmacro %}
+
+<!-- content -->
+<div>
+
+    {% for item in barcode_items.values() %}
+    <div style="page-break-before:always">
+    {{item}} {{ render_small_barcode(item)}}
+    <br>
+    <div style="font-size:8px;font-family:arial;font-weight: bold;align-content: center;">NULIGHT STUDIOS</div>
+    {{item}} {{ render_barcode(item)}}
+    </div>
+    {% endfor %}
+
+</div>
+
+<!-- end content -->
+
+
+{% endblock %}

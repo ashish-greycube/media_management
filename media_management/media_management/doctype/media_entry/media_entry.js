@@ -4,43 +4,99 @@
 frappe.ui.form.on('Media Entry', {
 	print_barcodes: function (frm) {
 		let selected = frm.get_selected()
-		console.log(selected)	
 		let data_devices = selected['data_devices']
-		let film_items=selected['film_items']
-		let tape_items=selected['tape_items']
-
-
-		for (const device in data_devices){
-			console.log(device,data_devices[device])
-			for (const i in frm.doc.data_devices){
-				let row=frm.doc.data_devices[i]
-				console.log(row,'t')
+		let film_items = selected['film_items']
+		let tape_items = selected['tape_items']
+		let selected_items = {};
+		let count=0;
+		for (const film in film_items) {
+			for (const i in frm.doc.film_items) {
+				let row = frm.doc.film_items[i]
+				if (row.name==film_items[film]) {
+				selected_items[count] = row.media_id
+				count=count+1;
+				}
+			}
+		}
+		for (const tape in tape_items) {
+			for (const i in frm.doc.tape_items) {
+				let row = frm.doc.tape_items[i]
+				if (row.name==tape_items[tape]) {
+				selected_items[count] = row.media_id
+				count=count+1;
+				}
+			}
+		}		
+		for (const device in data_devices) {
+			for (const i in frm.doc.data_devices) {
+				let row = frm.doc.data_devices[i]
 				if (row.name==data_devices[device]) {
-					frappe.db.get_doc('Media NS', row.media_id)
-					.then(doc => {
-						console.log(doc)
-						doc.print_doc();
-					})					
-					
+				selected_items[count] = row.media_id;
+				count=count+1;
 				}
 			}
 		}
 
+		let url = `/api/method/media_management.api.get_label_pdf`,
+        args = {
+			selected_items: selected_items,
+        };
+      open_url_post(url, args, true);
+
+		console.log(selected_items)
 
 
 	},
-	// create_and_print_barcode: function (frm) {
-	// 	frm.set_df_property('no_of_films', 'read_only', 1)
-	// 	frm.set_df_property('no_of_tapes', 'read_only', 1)
-	// 	frm.set_df_property('no_of_data_device', 'read_only', 1)
-	// 	frm.call({
-	// 		doc: frm.doc,
-	// 		method: 'create_and_print_barcode',
-	// 		callback: function (r) {
-	// 			if (!r.message) {}
-	// 		}
-	// 	})
-	// }
+	create_and_print_barcode: function (frm) {
+		
+		frm.set_df_property('no_of_films', 'read_only', 1)
+		frm.set_df_property('no_of_tapes', 'read_only', 1)
+		frm.set_df_property('no_of_data_device', 'read_only', 1)
+		frm.save()
+
+		setTimeout(function(){ 
+			frm.call({
+				doc: frm.doc,
+				method: 'create_and_print_barcode',
+				freeze: true,
+				callback: function (r) {
+					console.log(r)
+					if (r.message) {
+						frm.refresh()
+						frm.dirty()
+						// frm.save()
+						let selected_items = {};
+						console.log('selected_items',selected_items)
+						let count=0;
+						for (const i in frm.doc.film_items) {
+							let row = frm.doc.film_items[i]
+							selected_items[count] = row.media_id
+							count=count+1;
+						}	
+						for (const i in frm.doc.tape_items) {
+							let row = frm.doc.tape_items[i]
+							selected_items[count] = row.media_id
+							count=count+1;
+						}	
+						for (const i in frm.doc.data_devices) {
+							let row = frm.doc.data_devices[i]
+							selected_items[count] = row.media_id;
+							count=count+1;
+						}	
+						let url = `/api/method/media_management.api.get_label_pdf`,
+						args = {
+							selected_items: selected_items,
+						};
+						console.log('selected_items',selected_items)
+					  	open_url_post(url, args, true);																					
+
+					}
+				}
+			})			
+		
+		}, 700);
+
+	}
 });
 
 frappe.ui.form.on('Media Entry Item', {
