@@ -1,7 +1,7 @@
 {% block page_content %}
 <style>
     /* it has no impact */
-	@media screen {
+	/* @media screen {
 		.print-format {
 			width: 1.10236in;
 			min-height: 2.00787in;
@@ -14,7 +14,7 @@
 			margin-left: 0px;
 			margin-right: 0px;
 		}
-	}
+	} */
 
 </style>
 
@@ -36,19 +36,25 @@
 {% endmacro %}
 
 <!-- content -->
+<div id="header-html">
+  <!-- empty place holder to remove top-marging in pdf -->
+</div>
+
 <div>
 
     {% for item in barcode_items.values() %}
     <div style="page-break-before:always">
-    {{item}} {{ render_small_barcode(item)}}
-    <br>
-    <div style="font-size:8px;font-family:arial;font-weight: bold;align-content: center;">NULIGHT STUDIOS</div>
-    {{item}} {{ render_barcode(item)}}
+    <div style="font-size:11px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_small_barcode(item)}}</div>
+    <div style="font-size:12px;font-family:arial;font-weight: bold;align-content: center;">NULIGHT STUDIOS</div>
+    <div style="font-size:14px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_barcode(item)}}</div>
+    
     </div>
     {% endfor %}
 
 </div>
-
+<div id="footer-html">
+  <!-- empty place holder to remove bottom-marging in pdf -->
+</div>
 <!-- end content -->
 
 

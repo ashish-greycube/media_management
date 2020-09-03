@@ -11,13 +11,15 @@ def get_label_pdf(selected_items):
     docname='barcode'
     pdf_options = {
         # set margins
-        "margin-left":"1mm",
-        "margin-right":"1mm",
-        "margin-top": "1mm",
-        "margin-bottom":"1mm",
+        "margin-left":"6mm",
+        "margin-right":"4mm",
+        "margin-top": "3mm",
+        "margin-bottom":"0mm",
         # "orientation": "Portrait",
         "orientation":"Landscape",
-        "page-size":"A8"
+        "page-height" : "5.1cm",
+		"page-width" : "2.8cm",
+        "no-outline": None
     }
 
     template_path = "templates/media_barcode_print.html"
@@ -26,7 +28,7 @@ def get_label_pdf(selected_items):
     html = frappe.render_template(
         template_path, dict(barcode_items=barcode_items))
     pdf = get_pdf(html, pdf_options)
-
+    print('pdf',pdf)
     _file = frappe.get_doc({
         "doctype": "File",
         "file_name": "Manufacturing Order %s.pdf" % frappe.generate_hash()[:8],
