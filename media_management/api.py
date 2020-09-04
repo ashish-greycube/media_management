@@ -18,7 +18,7 @@ def get_label_pdf(selected_items):
         # "orientation": "Portrait",
         "orientation":"Landscape",
         "page-height" : "5.4cm",
-		"page-width" : "2.8cm",
+		"page-width" : "2.9cm",
         "no-outline": None
     }
 
