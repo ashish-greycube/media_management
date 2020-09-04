@@ -14,7 +14,7 @@ def get_label_pdf(selected_items):
         "margin-left":"6mm",
         "margin-right":"4mm",
         "margin-top": "3.1mm",
-        "margin-bottom":"0.2mm",
+        "margin-bottom":"0.1mm",
         # "orientation": "Portrait",
         "orientation":"Landscape",
         "page-height" : "5.4cm",
