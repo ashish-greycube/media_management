@@ -11,14 +11,14 @@ def get_label_pdf(selected_items):
     docname='barcode'
     pdf_options = {
         # set margins
-        "margin-left":"5mm",
+        "margin-left":"6mm",
         "margin-right":"4mm",
         "margin-top": "3.1mm",
         "margin-bottom":"0mm",
         # "orientation": "Portrait",
         "orientation":"Landscape",
         "page-height" : "5.4cm",
-		"page-width" : "3cm",
+		"page-width" : "2.9cm",
         "no-outline": None
     }
 
