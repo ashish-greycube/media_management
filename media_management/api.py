@@ -15,9 +15,9 @@ def get_label_pdf(selected_items):
         "margin-left": "0mm",
         "margin-right": "0mm",
         "margin-top": "0mm",
-        "margin-bottom": "0mm",
-        "page-height": "51mm",
-		"page-width": "30mm",
+        "margin-bottom": "0.1mm",
+        "page-height": "56mm",
+		"page-width": "32mm",
         "orientation":"Landscape"
     }
 # vr    
