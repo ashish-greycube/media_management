@@ -29,8 +29,8 @@
 
 {% macro render_small_barcode(barcode) %}
 {% if barcode %}
-<img style="width:100px;height:20px;object-fit: contain;"
-    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=5&IsTextDrawn=0&IsBorderDrawn=0"
+<img style="width:100px;height:17px;object-fit: contain;"
+    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=2&IsTextDrawn=0&IsBorderDrawn=0"
     alt="{{barcode}}"></img>
 {% endif %}
 {% endmacro %}
@@ -46,9 +46,9 @@
     <div style="page-break-before:always">
       <!-- 12.5 -->
     <div style="font-size:13px;font-family:arial;font-weight: bold;align-content: center;">NULIGHT STUDIOS</div>
-    <div style="font-size:16.5px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_barcode(item)}}</div>
+    <div style="font-size:17.5px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_barcode(item)}}</div>
     <!-- 11.4 -->
-    <div style="font-size:9.5px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_small_barcode(item)}}</div>
+    <div style="font-size:8px;font-family:arial;font-weight: bold;align-content: center;"> {{item}} {{ render_small_barcode(item)}}</div>
     </div>
     {% endfor %}
 
