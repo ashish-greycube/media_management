@@ -10,31 +10,31 @@ from frappe.utils import get_site_url
 def get_label_pdf(selected_items):
     docname='barcode'
 #vr
-    pdf_options = {
-        # set margins
-        "margin-left": "0mm",
-        "margin-right": "0mm",
-        "margin-top": "0mm",
-        "margin-bottom": "0.1mm",
-        "page-height": "56mm",
-		"page-width": "32mm",
-        "orientation":"Landscape"
-    }
-# vr    
     # pdf_options = {
     #     # set margins
-    #     "margin-left":"6mm",
-    #     "margin-right":"4mm",
-    #     "margin-top": "3.1mm",
-    #     "margin-bottom":"0.1mm",
-    #     # "orientation": "Portrait",
-    #     "orientation":"Landscape",
-    #     "page-height" : "5.4cm",
-	# 	"page-width" : "2.9cm",
-    #     "no-outline": None
+    #     "margin-left": "0mm",
+    #     "margin-right": "0mm",
+    #     "margin-top": "0mm",
+    #     "margin-bottom": "0.1mm",
+    #     "page-height": "56mm",
+	# 	"page-width": "32mm",
+    #     "orientation":"Landscape"
     # }
-    template_path = "templates/vr.html"
-    # template_path = "templates/media_barcode_print.html"
+# vr    
+    pdf_options = {
+        # set margins
+        "margin-left":"6mm",
+        "margin-right":"4mm",
+        "margin-top": "3.1mm",
+        "margin-bottom":"0.1mm",
+        # "orientation": "Portrait",
+        "orientation":"Landscape",
+        "page-height" : "5.4cm",
+		"page-width" : "2.9cm",
+        "no-outline": None
+    }
+    # template_path = "templates/vr.html"
+    template_path = "templates/media_barcode_print.html"
     barcode_items=frappe._dict(frappe.parse_json(selected_items))
     print('selected_items',selected_items)
     print('barcode_items----------------------------------------',barcode_items)
