@@ -21,8 +21,8 @@
 
 {% macro render_barcode(barcode) %}
 {% if barcode %}
-<img style="width:100px;height:40px;object-fit: contain;"
-    src="http://www.barcodes4.me/barcode/c128a/F11371.png?margin=3&IsTextDrawn=0&IsBorderDrawn=0"
+<img style="width:100px;height:42px;object-fit: contain;"
+    src="http://www.barcodes4.me/barcode/c128a/F11371.png?margin=5&IsTextDrawn=0&IsBorderDrawn=0"
     alt="{{barcode}}"></img>
 {% endif %}
 {% endmacro %}
@@ -46,9 +46,12 @@
     <div style="page-break-before:always">
       <!-- 12.5 -->
     <div style="font-size:13px;font-family:arial;font-weight: bold;align-content: center;">NULIGHT STUDIOS</div>
-    <div style="font-size:15.5px;font-family:arial;font-weight: bold;align-content: center;">F1137{{ render_barcode(item)}}</div>
-    <!-- 17.5 -->
-    <div style="font-size:8px;font-family:arial;font-weight: bold;align-content: center;vertical-align:top;"> F11371 {{ render_small_barcode(item)}}</div>
+    <div style="font-size:14px;font-family:arial;font-weight: bold;align-content: center;"> F11371
+    <span style="font-size:17.5px;font-family:arial;font-weight: bold;align-content: center;">{{render_barcode(item)}}</span></div>
+    <!-- 11.4 -->
+    <div style="font-size:10px;font-family:arial;font-weight: bold;align-content: center;vertical-align:top;">F11371
+     <span style="font-size:8px;font-family:arial;font-weight: bold;align-content: center;">{{render_small_barcode(item)}}</span>  
+      </div>
     </div>
     {% endfor %}
 
