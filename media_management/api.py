@@ -24,7 +24,7 @@ def get_label_pdf(selected_items):
     pdf_options = {
         # set margins
         "margin-left":"6mm",
-        "margin-right":"4mm",
+        "margin-right":"0.1mm",# from 4 
         "margin-top": "3.1mm",#3.1
         "margin-bottom":"0.1mm",
         # "orientation": "Portrait",
