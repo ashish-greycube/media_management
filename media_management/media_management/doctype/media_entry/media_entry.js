@@ -1,6 +1,5 @@
 // Copyright (c) 2020, GreyCube Technologies and contributors
 // For license information, please see license.txt
-
 frappe.ui.form.on('Media Entry', {
 	print_barcodes: function (frm) {
 		let selected = frm.get_selected()
@@ -36,16 +35,20 @@ frappe.ui.form.on('Media Entry', {
 				}
 			}
 		}
-
-		let url = `/api/method/media_management.api.get_label_pdf`,
-        args = {
-			selected_items: selected_items,
-        };
-      open_url_post(url, args, true);
-
-		console.log(selected_items)
-
-
+		frappe.call({
+			method: 'media_management.api.get_label_pdf',
+			args: {
+				'selected_items': selected_items,
+			},
+			async:false,
+			callback: (r) => {
+				console.log(r)
+				printJS(r.message)
+			},
+			error: (r) => {
+				// on error
+			}
+		})
 	},
 	create_and_print_barcode: function (frm) {
 		
