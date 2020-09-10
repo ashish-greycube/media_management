@@ -86,13 +86,26 @@ frappe.ui.form.on('Media Entry', {
 							selected_items[count] = row.media_id;
 							count=count+1;
 						}	
-						let url = `/api/method/media_management.api.get_label_pdf`,
-						args = {
-							selected_items: selected_items,
-						};
-						console.log('selected_items',selected_items)
-					  	open_url_post(url, args, true);																					
-
+						// let url = `/api/method/media_management.api.get_label_pdf`,
+						// args = {
+						// 	selected_items: selected_items,
+						// };
+						// console.log('selected_items',selected_items)
+					  	// open_url_post(url, args, true);																					
+						  frappe.call({
+							method: 'media_management.api.get_label_pdf',
+							args: {
+								'selected_items': selected_items,
+							},
+							async:false,
+							callback: (r) => {
+								console.log(r)
+								printJS(r.message)
+							},
+							error: (r) => {
+								// on error
+							}
+						})
 					}
 				}
 			})			
