@@ -30,6 +30,11 @@ def get_data():
         'name': 'Era',
         'label': 'Era',
         'description': 'Era',
+        },{
+        'type': 'doctype',
+        'name': 'Media Management Settings',
+        'label': 'Media Management Settings',
+        'description': 'Media Management Settings',
         }]}, {'label': _('Film'), 'items': [{
         'type': 'doctype',
         'name': 'Film Format',
