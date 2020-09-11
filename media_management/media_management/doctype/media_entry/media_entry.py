@@ -5,8 +5,75 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate, nowdate
 
 class MediaEntry(Document):
+
+	def on_submit(self):
+		media_movement_items=[]
+		for item in self.get('film_items'):
+			doc = frappe.get_doc('Media NS', item.media_id)
+			doc.update({
+				"customer":self.customer,
+				"project":self.project,
+				"external_id":item.external_id,
+				"media_owner":item.media_owner,
+				"title":item.title
+			})
+			doc.save(ignore_permissions = True)	
+			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.media_owner,"media_type":"Film"})	
+
+		for item in self.get('tape_items'):
+			doc = frappe.get_doc('Media NS', item.media_id)
+			doc.update({
+				"customer":self.customer,
+				"project":self.project,
+				"external_id":item.external_id,
+				"media_owner":item.media_owner,
+				"title":item.title
+			})
+			doc.save(ignore_permissions = True)	
+			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.media_owner,"media_type":"Tape"})	
+		
+		for item in self.get('data_devices'):
+			doc = frappe.get_doc('Media NS', item.media_id)
+			doc.update({
+				"customer":self.customer,
+				"project":self.project,
+				"external_id":item.external_id,
+				"media_owner":item.data_device_owner,
+				"data_device_type":item.type,
+				"data_device_capacity":item.capacity,
+				"data_device_brand":item.brand,
+				"has_datacable":item.has_datacable,
+				"has_psu":item.has_psu,
+				"has_box":item.has_box
+			})
+			doc.save(ignore_permissions = True)	
+			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.data_device_owner,"media_type":"Data Device"})				
+
+		# doc = frappe.new_doc('Media Movement')
+		# doc.movement_type = 'Inbound'
+		# doc.transit_method='By Hand'
+		# doc.transaction_date=getdate(nowdate())
+		# doc.remarks="Media Items received from customer: "+self.customer+" for/n"+"Project: "+self.project
+		# # doc.target=
+		# doc.media_items=media_movement_items
+		# doc.insert(ignore_permissions = True)
+
+		doc=frappe.get_doc({
+			'doctype': 'Media Movement',
+			'movement_type': 'Inbound',
+			'transit_method':'By Hand',
+			'transaction_date':getdate(nowdate()),
+			'remarks':"Media Items received from customer: "+self.customer+" for \n"+"Project: "+self.project,
+			'target':frappe.db.get_single_value('Media Management Settings', 'default_company_address'),
+			'media_items': media_movement_items
+		}).insert(ignore_permissions = True) 
+
+
+		self.media_movement=doc.name		
+
 
 	def create_and_print_barcode(self):
 		if hasattr(self, 'film_items') and (len(self.film_items) < self.no_of_films):

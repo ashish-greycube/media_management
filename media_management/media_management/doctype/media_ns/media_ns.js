@@ -6,7 +6,7 @@ frappe.ui.form.on('Media NS', {
 		if (frm.doc.media_barcode == undefined && frm.is_new()==undefined) {
 			frm.set_value('media_barcode', frm.doc.name)
 			frm.save()	
-			frm.print_preview.printit(false);
+			// frm.print_preview.printit(false);
 		}
 
 	}
