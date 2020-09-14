@@ -125,6 +125,7 @@
    "options": "Data Device Entry Item"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "media_movement",
    "fieldtype": "Link",
    "label": "Media Movement",
@@ -133,7 +134,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-11 14:39:02.238985",
+ "modified": "2020-09-14 04:44:12.439175",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Entry",

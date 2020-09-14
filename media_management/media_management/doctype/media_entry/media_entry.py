@@ -52,15 +52,6 @@ class MediaEntry(Document):
 			doc.save(ignore_permissions = True)	
 			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.data_device_owner,"media_type":"Data Device"})				
 
-		# doc = frappe.new_doc('Media Movement')
-		# doc.movement_type = 'Inbound'
-		# doc.transit_method='By Hand'
-		# doc.transaction_date=getdate(nowdate())
-		# doc.remarks="Media Items received from customer: "+self.customer+" for/n"+"Project: "+self.project
-		# # doc.target=
-		# doc.media_items=media_movement_items
-		# doc.insert(ignore_permissions = True)
-
 		doc=frappe.get_doc({
 			'doctype': 'Media Movement',
 			'movement_type': 'Inbound',
@@ -70,10 +61,8 @@ class MediaEntry(Document):
 			'target':frappe.db.get_single_value('Media Management Settings', 'default_company_address'),
 			'media_items': media_movement_items
 		}).insert(ignore_permissions = True) 
-
-
-		self.media_movement=doc.name		
-
+	
+		self.db_set("media_movement", doc.name)
 
 	def create_and_print_barcode(self):
 		if hasattr(self, 'film_items') and (len(self.film_items) < self.no_of_films):
