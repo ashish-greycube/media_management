@@ -15,6 +15,12 @@
   "target",
   "target_address_display",
   "remarks",
+  "filter_sb",
+  "customer",
+  "media_type",
+  "fs_cb_1",
+  "project",
+  "get_media",
   "section_break_11",
   "media_items",
   "amended_from"
@@ -107,10 +113,42 @@
    "options": "Media Movement",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "filter_sb",
+   "fieldtype": "Section Break",
+   "label": "Filter"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "media_type",
+   "fieldtype": "Link",
+   "label": "Media Type",
+   "options": "Media Type NS"
+  },
+  {
+   "fieldname": "fs_cb_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "get_media",
+   "fieldtype": "Button",
+   "label": "Get Media"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-08-26 11:10:10.592673",
+ "modified": "2020-09-16 04:59:49.268494",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",

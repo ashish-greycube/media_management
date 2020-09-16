@@ -27,7 +27,6 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "label": "Media Entry",
    "options": "ME-.YY.-.MM.-.#",
    "reqd": 1
@@ -63,6 +62,8 @@
   {
    "fieldname": "customer",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Customer",
    "options": "Customer",
    "reqd": 1
@@ -70,6 +71,8 @@
   {
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Project",
    "options": "Project",
    "reqd": 1
@@ -134,7 +137,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-14 04:44:12.439175",
+ "modified": "2020-09-14 11:18:13.925662",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Entry",
