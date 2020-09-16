@@ -39,7 +39,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Movement Type",
-   "options": "Inbound\nOutbound\nTransfer",
+   "options": "Inbound\nOutbound",
    "reqd": 1
   },
   {
@@ -148,7 +148,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-16 04:59:49.268494",
+ "modified": "2020-09-16 05:02:44.153006",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",
