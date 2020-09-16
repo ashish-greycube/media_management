@@ -35,6 +35,11 @@ def get_data():
         'name': 'Media Management Settings',
         'label': 'Media Management Settings',
         'description': 'Media Management Settings',
+        },{
+        'type': 'doctype',
+        'name': 'Media Naming Series',
+        'label': 'Media Naming Series',
+        'description': 'Media Naming Series',
         }]}, {'label': _('Film'), 'items': [{
         'type': 'doctype',
         'name': 'Film Format',
