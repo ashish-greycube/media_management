@@ -144,11 +144,12 @@
   {
    "fieldname": "get_media",
    "fieldtype": "Button",
-   "label": "Get Media"
+   "label": "Get Media",
+   "options": "get_media"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-16 05:02:44.153006",
+ "modified": "2020-09-16 08:08:38.235009",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",
