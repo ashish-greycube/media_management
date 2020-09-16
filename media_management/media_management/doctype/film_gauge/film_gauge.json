@@ -1,5 +1,6 @@
 {
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:film_gauge",
  "creation": "2020-08-26 08:57:35.644968",
  "doctype": "DocType",
@@ -18,7 +19,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-08-26 09:43:29.104033",
+ "modified": "2020-09-16 06:10:42.698591",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Gauge",

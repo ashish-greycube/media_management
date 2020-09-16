@@ -1,5 +1,6 @@
 {
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:film_format",
  "creation": "2020-08-26 09:32:20.465818",
  "doctype": "DocType",
@@ -18,7 +19,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-08-26 09:44:11.149932",
+ "modified": "2020-09-16 06:06:54.416676",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Format",

@@ -1,5 +1,6 @@
 {
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:film_sound",
  "creation": "2020-08-26 09:01:04.188781",
  "doctype": "DocType",
@@ -18,7 +19,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-08-26 09:43:40.126393",
+ "modified": "2020-09-16 06:10:06.887464",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Sound",

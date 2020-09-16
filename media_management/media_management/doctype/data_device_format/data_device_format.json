@@ -1,5 +1,6 @@
 {
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:data_device_format",
  "creation": "2020-08-26 09:23:22.987601",
  "doctype": "DocType",
@@ -18,7 +19,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-08-26 09:44:07.144656",
+ "modified": "2020-09-16 06:07:50.012142",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Data Device Format",

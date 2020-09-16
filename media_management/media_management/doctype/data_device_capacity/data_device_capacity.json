@@ -1,5 +1,6 @@
 {
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "field:data_device_capacity",
  "creation": "2020-08-26 09:07:55.431568",
  "doctype": "DocType",
@@ -18,7 +19,7 @@
    "unique": 1
   }
  ],
- "modified": "2020-08-26 09:44:02.887048",
+ "modified": "2020-09-16 06:09:19.686565",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Data Device Capacity",
