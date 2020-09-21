@@ -5,6 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from frappe import _
 
 class MediaMovement(Document):
 	def get_media(self):
@@ -15,6 +16,8 @@ class MediaMovement(Document):
 				filters.update({'project': self.project})
 			if self.media_type:
 				filters.update({'media_type': self.media_type})
+			if str(bool(filters))=='False':
+				frappe.throw(_('Please input at least one filter criteria from Customer , Project or Media Type.'))
 			media_ns_list=frappe.db.get_all('Media NS',filters=filters,
 									fields=['name', 'external_id','media_owner','media_type'],
 									order_by='media_type asc,creation asc'
@@ -29,4 +32,4 @@ class MediaMovement(Document):
 					row.media_owner=media.media_owner
 					row.media_type=media.media_type
 			else:
-				frappe.msgprint(frappe._('No matching Media Items found.'), indicator = 'yellow')
+				frappe.msgprint(_('No matching Media Items found.'), indicator = 'yellow')
