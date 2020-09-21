@@ -82,6 +82,13 @@ def get_data():
         'name': 'Data Device Type',
         'label': 'Data Device Type',
         'description': 'Data Device Type',
+        }]},{'label': _('Reports'), 'items': [{
+        'type': 'report',
+        'name': 'Trace Media',
+        'label': 'Trace Media',
+	"is_query_report": True,
+	'doctype':'Media Movement',
+        'description': 'Trace Media Items"',
         }]}]
 
     return config
