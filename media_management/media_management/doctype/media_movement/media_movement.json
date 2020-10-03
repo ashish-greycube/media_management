@@ -19,7 +19,7 @@
   "remarks",
   "filter_sb",
   "filter_customer",
-  "media_type",
+  "filter_media_type",
   "fs_cb_1",
   "filter_project",
   "get_media",
@@ -117,6 +117,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval: doc.movement_type=='Outbound'",
    "fieldname": "filter_sb",
    "fieldtype": "Section Break",
    "label": "Filter"
@@ -126,12 +127,6 @@
    "fieldtype": "Link",
    "label": "Customer",
    "options": "Customer"
-  },
-  {
-   "fieldname": "media_type",
-   "fieldtype": "Link",
-   "label": "Media Type",
-   "options": "Media Type NS"
   },
   {
    "fieldname": "fs_cb_1",
@@ -144,6 +139,7 @@
    "options": "Project"
   },
   {
+   "depends_on": "eval:(doc.filter_customer || doc.filter_project || doc.filter_media_type)",
    "fieldname": "get_media",
    "fieldtype": "Button",
    "label": "Get Media",
@@ -160,10 +156,16 @@
    "fieldtype": "Link",
    "label": "Project",
    "options": "Project"
+  },
+  {
+   "fieldname": "filter_media_type",
+   "fieldtype": "Link",
+   "label": "Media Type",
+   "options": "Media Type NS"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-10-03 07:15:46.102594",
+ "modified": "2020-10-03 12:45:38.302188",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",

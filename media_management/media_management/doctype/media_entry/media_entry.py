@@ -14,8 +14,6 @@ class MediaEntry(Document):
 		for item in self.get('film_items'):
 			doc = frappe.get_doc('Media NS', item.media_id)
 			doc.update({
-				"customer":self.customer,
-				"project":self.project,
 				"external_id":item.external_id,
 				"media_owner":item.media_owner,
 				"title":item.title
@@ -26,8 +24,6 @@ class MediaEntry(Document):
 		for item in self.get('tape_items'):
 			doc = frappe.get_doc('Media NS', item.media_id)
 			doc.update({
-				"customer":self.customer,
-				"project":self.project,
 				"external_id":item.external_id,
 				"media_owner":item.media_owner,
 				"title":item.title
@@ -38,8 +34,6 @@ class MediaEntry(Document):
 		for item in self.get('data_devices'):
 			doc = frappe.get_doc('Media NS', item.media_id)
 			doc.update({
-				"customer":self.customer,
-				"project":self.project,
 				"external_id":item.external_id,
 				"media_owner":item.data_device_owner,
 				"data_device_type":item.type,
@@ -57,7 +51,8 @@ class MediaEntry(Document):
 			'movement_type': 'Inbound',
 			'transit_method':'By Hand',
 			'transaction_date':getdate(nowdate()),
-			'remarks':"Media Items received from customer: "+self.customer+" for \n"+"Project: "+self.project,
+			"customer":self.customer,
+			"project":self.project,			
 			'target':frappe.db.get_single_value('Media Management Settings', 'default_company_address'),
 			'media_items': media_movement_items
 		}).insert(ignore_permissions = True) 
@@ -86,8 +81,6 @@ class MediaEntry(Document):
 	def create_Media_NS(self,media_type):
 		doc = frappe.new_doc('Media NS')
 		doc.media_type=media_type
-		doc.customer=self.customer
-		doc.project=self.project
 		doc.insert()
 		doc.reload()
 		doc.save()
