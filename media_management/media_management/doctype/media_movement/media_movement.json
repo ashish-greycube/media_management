@@ -11,15 +11,17 @@
   "delivered_by",
   "received_by",
   "cb_1",
+  "customer",
+  "project",
   "transaction_date",
   "target",
   "target_address_display",
   "remarks",
   "filter_sb",
-  "customer",
+  "filter_customer",
   "media_type",
   "fs_cb_1",
-  "project",
+  "filter_project",
   "get_media",
   "section_break_11",
   "media_items",
@@ -146,10 +148,22 @@
    "fieldtype": "Button",
    "label": "Get Media",
    "options": "get_media"
+  },
+  {
+   "fieldname": "filter_customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "filter_project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-16 08:08:38.235009",
+ "modified": "2020-10-03 07:15:46.102594",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",

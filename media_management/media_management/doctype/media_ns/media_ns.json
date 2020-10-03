@@ -8,8 +8,6 @@
  "field_order": [
   "media_type",
   "media_abbreviation",
-  "customer",
-  "project",
   "cb_1",
   "naming_series",
   "external_id",
@@ -258,30 +256,12 @@
    "label": "Notes"
   },
   {
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
-  },
-  {
-   "fieldname": "project",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Project",
-   "options": "Project",
-   "reqd": 1
-  },
-  {
    "fieldname": "media_barcode",
    "fieldtype": "Barcode",
    "label": "Barcode"
   }
  ],
- "modified": "2020-08-27 09:35:41.681449",
+ "modified": "2020-10-03 07:14:22.136671",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
