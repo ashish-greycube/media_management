@@ -8,6 +8,24 @@ from frappe.model.document import Document
 from frappe import _
 
 class MediaMovement(Document):
+	def unlink_media_entry(self):
+		media_entry_list=frappe.db.get_list('Media Entry',
+			filters={
+				'media_movement': self.name
+			},
+			fields=['name'],
+			as_list=False
+		)		
+		if len(media_entry_list)>0:
+			frappe.db.set_value('Media Entry', media_entry_list[0]['name'], 'media_movement', '')
+
+	def on_trash(self):
+		self.unlink_media_entry()
+	def on_cancel(self):
+		self.unlink_media_entry()
+
+
+
 	def get_media(self):
 			if not self.filter_customer and not self.filter_project and not self.filter_media_type:
 				frappe.throw(_('Please input at least one filter criteria from Customer , Project or Media Type.'))			
