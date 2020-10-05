@@ -261,7 +261,7 @@
    "label": "Barcode"
   }
  ],
- "modified": "2020-10-03 07:14:22.136671",
+ "modified": "2020-10-05 05:20:22.029042",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
@@ -303,7 +303,7 @@
    "share": 1
   }
  ],
- "search_fields": "media_type,title,naming_series,media_owner",
+ "search_fields": "media_type,title,media_owner",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
