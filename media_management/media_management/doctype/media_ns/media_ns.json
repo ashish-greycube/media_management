@@ -59,7 +59,8 @@
    "fieldname": "media_abbreviation",
    "fieldtype": "Data",
    "label": "Media Abbreviation",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "external_id",
@@ -74,7 +75,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Media Owner",
-   "options": "Contact"
+   "options": "Contact",
+   "reqd": 1
   },
   {
    "fieldname": "cb_1",
@@ -261,7 +263,7 @@
    "label": "Barcode"
   }
  ],
- "modified": "2020-10-05 05:20:22.029042",
+ "modified": "2020-10-05 05:43:32.554815",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
