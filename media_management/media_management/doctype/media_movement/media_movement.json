@@ -45,6 +45,7 @@
    "reqd": 1
   },
   {
+   "default": "By Hand",
    "fieldname": "transit_method",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -59,8 +60,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Delivered By",
-   "options": "Contact",
-   "reqd": 1
+   "options": "Contact"
   },
   {
    "fieldname": "received_by",
@@ -68,8 +68,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Received By",
-   "options": "Contact",
-   "reqd": 1
+   "options": "Contact"
   },
   {
    "fieldname": "cb_1",
@@ -175,7 +174,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-10-05 05:25:37.594303",
+ "modified": "2020-10-05 06:03:11.962661",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",
