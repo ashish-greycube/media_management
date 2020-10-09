@@ -42,9 +42,9 @@ def get_data():
         'description': 'Media Naming Series',
         }]}, {'label': _('Film'), 'items': [{
         'type': 'doctype',
-        'name': 'Film Format',
-        'label': 'Film Format',
-        'description': 'Film Format',
+        'name': 'Film Element',
+        'label': 'Film Element',
+        'description': 'Film Element',
         }, {
         'type': 'doctype',
         'name': 'Film Sound',
@@ -57,14 +57,14 @@ def get_data():
         'description': 'Film Colour',
         }, {
         'type': 'doctype',
-        'name': 'Film Gauge',
-        'label': 'Film Gauge',
-        'description': 'Film Gauge',
+        'name': 'Film Type',
+        'label': 'Film Type',
+        'description': 'Film Type',
         }]}, {'label': _('Tape'), 'items': [{
         'type': 'doctype',
-        'name': 'Tape Format',
-        'label': 'Tape Format',
-        'description': 'Tape Format',
+        'name': 'Tape Type',
+        'label': 'Tape Type',
+        'description': 'Tape Type',
         }, {'type': 'doctype', 'name': 'Tape Standard',
             'label': 'Tape Standard'}]}, {'label': _('Data Device'),
                 'items': [{
