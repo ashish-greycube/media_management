@@ -1,6 +1,24 @@
 // Copyright (c) 2020, GreyCube Technologies and contributors
 // For license information, please see license.txt
 frappe.ui.form.on('Media Entry', {
+	setup: function (frm) {
+		frm.set_query('project', () => {
+			return {
+				filters: {
+					customer: frm.doc.customer
+				}
+			}
+		})
+	},
+	project: function (frm) {
+		if (frm.doc.project && !frm.doc.customer) {
+			frappe.db.get_value('Project', frm.doc.project, 'customer')
+			.then(r => {
+				let customer=r.message.customer
+				frm.set_value('customer', customer)
+			})			
+		}
+	},
 	print_barcodes: function (frm) {
 		let selected = frm.get_selected()
 		let data_devices = selected['data_devices']
@@ -86,12 +104,6 @@ frappe.ui.form.on('Media Entry', {
 							selected_items[count] = row.media_id;
 							count=count+1;
 						}	
-						// let url = `/api/method/media_management.api.get_label_pdf`,
-						// args = {
-						// 	selected_items: selected_items,
-						// };
-						// console.log('selected_items',selected_items)
-					  	// open_url_post(url, args, true);																					
 						  frappe.call({
 							method: 'media_management.api.get_label_pdf',
 							args: {
@@ -99,10 +111,10 @@ frappe.ui.form.on('Media Entry', {
 							},
 							async:false,
 							callback: (r) => {
-								console.log(r)
 								printJS(r.message)
 							},
 							error: (r) => {
+								console.log(r)
 								// on error
 							}
 						})
@@ -133,19 +145,6 @@ frappe.ui.form.on('Media Entry Item', {
 		let row = locals[cdt][cdn];
 		frappe.db.delete_doc('Media NS', row.media_id)
 		frm.set_value('no_of_films', frm.doc.no_of_films - 1)
-		// frm.refresh_field("film_items")
-		// frappe.call({
-		//     method: "media_management.media_management.doctype.media_entry.media_entry.delete_Media_NS",
-		//     args: {
-		//         "media_id": row.media_id
-		//     },
-		//     // freeze: true,
-		//     callback: function (r) {
-		// 		if (r.message) {
-		// 			// frm.set_value('no_of_films', frm.doc.no_of_films-1)
-		// 		}
-		// 	}
-		// });		
 	},
 	tape_items_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
