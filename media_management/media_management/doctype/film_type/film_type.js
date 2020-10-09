@@ -1,7 +1,7 @@
 // Copyright (c) 2020, GreyCube Technologies and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Film Gauge', {
+frappe.ui.form.on('Film Type', {
 	// refresh: function(frm) {
 
 	// }

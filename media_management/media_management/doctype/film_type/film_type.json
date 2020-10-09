@@ -1,28 +1,29 @@
 {
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:film_format",
- "creation": "2020-08-26 09:32:20.465818",
+ "autoname": "field:film_type",
+ "creation": "2020-10-09 05:16:32.045096",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "film_format"
+  "film_type"
  ],
  "fields": [
   {
-   "fieldname": "film_format",
+   "fieldname": "film_type",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Film Format",
+   "in_standard_filter": 1,
+   "label": "Film Type",
    "reqd": 1,
    "unique": 1
   }
  ],
- "modified": "2020-09-16 06:06:54.416676",
+ "modified": "2020-10-09 05:17:32.776785",
  "modified_by": "Administrator",
  "module": "Media Management",
- "name": "Film Format",
+ "name": "Film Type",
  "owner": "Administrator",
  "permissions": [
   {
@@ -62,9 +63,9 @@
   }
  ],
  "quick_entry": 1,
- "search_fields": "film_format",
+ "search_fields": "film_type",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "film_format",
+ "title_field": "film_type",
  "track_changes": 1
 }

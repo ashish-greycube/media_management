@@ -1,28 +1,28 @@
 {
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:tape_format",
- "creation": "2020-08-26 09:02:09.668088",
+ "autoname": "field:tape_type",
+ "creation": "2020-10-09 05:18:21.483243",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tape_format"
+  "tape_type"
  ],
  "fields": [
   {
-   "fieldname": "tape_format",
+   "fieldname": "tape_type",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Tape Format",
+   "label": "Tape Type",
    "reqd": 1,
    "unique": 1
   }
  ],
- "modified": "2020-09-16 06:07:21.798254",
+ "modified": "2020-10-09 05:18:21.483243",
  "modified_by": "Administrator",
  "module": "Media Management",
- "name": "Tape Format",
+ "name": "Tape Type",
  "owner": "Administrator",
  "permissions": [
   {
@@ -62,9 +62,9 @@
   }
  ],
  "quick_entry": 1,
- "search_fields": "tape_format",
+ "search_fields": "tape_type",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "tape_format",
+ "title_field": "tape_type",
  "track_changes": 1
 }

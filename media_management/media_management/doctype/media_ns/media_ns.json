@@ -16,15 +16,15 @@
   "media_barcode",
   "film_details_section",
   "film_reel_no",
-  "film_gauge",
+  "film_type",
   "film_sound",
   "fs_cb_1",
   "film_colour",
-  "film_format",
+  "film_element",
   "film_approximate_length_feet",
   "is_checkerboard",
   "tape_section_section",
-  "tape_format",
+  "tape_type",
   "tape_standard",
   "tape_cb_1",
   "tape_manufacturer",
@@ -40,12 +40,14 @@
   "has_box",
   "general_information_section",
   "era",
-  "content_description",
   "gi_cb_1",
+  "content_description",
+  "more_information_section",
   "notes"
  ],
  "fields": [
   {
+   "default": "Film",
    "fieldname": "media_type",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -55,9 +57,11 @@
    "reqd": 1
   },
   {
+   "default": "F",
    "fetch_from": "media_type.abbreviation",
    "fieldname": "media_abbreviation",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Media Abbreviation",
    "read_only": 1,
    "reqd": 1
@@ -107,12 +111,6 @@
    "label": "Film Reel No"
   },
   {
-   "fieldname": "film_gauge",
-   "fieldtype": "Link",
-   "label": "Film Gauge",
-   "options": "Film Gauge"
-  },
-  {
    "fieldname": "film_sound",
    "fieldtype": "Link",
    "label": "Film Sound",
@@ -129,15 +127,9 @@
    "options": "Film Colour"
   },
   {
-   "fieldname": "film_format",
-   "fieldtype": "Link",
-   "label": "Film Format",
-   "options": "Film Format"
-  },
-  {
    "fieldname": "film_approximate_length_feet",
    "fieldtype": "Int",
-   "label": "Film Approximate Length Feet"
+   "label": "Film Length (approx ft)"
   },
   {
    "default": "0",
@@ -149,13 +141,7 @@
    "depends_on": "eval:doc.media_type==\"Tape\"",
    "fieldname": "tape_section_section",
    "fieldtype": "Section Break",
-   "label": "Tape Section"
-  },
-  {
-   "fieldname": "tape_format",
-   "fieldtype": "Link",
-   "label": "Tape Format",
-   "options": "Tape Format"
+   "label": "Tape Details"
   },
   {
    "fieldname": "tape_standard",
@@ -232,6 +218,7 @@
    "label": "Has BOX"
   },
   {
+   "depends_on": "eval:doc.media_type ==\"Film\" || doc.media_type == \"Tape\"",
    "fieldname": "general_information_section",
    "fieldtype": "Section Break",
    "label": "General Information"
@@ -260,9 +247,33 @@
    "fieldname": "media_barcode",
    "fieldtype": "Barcode",
    "label": "Barcode"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "more_information_section",
+   "fieldtype": "Section Break",
+   "label": "More Information"
+  },
+  {
+   "fieldname": "film_type",
+   "fieldtype": "Link",
+   "label": "Film Type",
+   "options": "Film Type"
+  },
+  {
+   "fieldname": "film_element",
+   "fieldtype": "Link",
+   "label": "Film Element",
+   "options": "Film Element"
+  },
+  {
+   "fieldname": "tape_type",
+   "fieldtype": "Link",
+   "label": "Tape Type",
+   "options": "Tape Type"
   }
  ],
- "modified": "2020-10-05 05:59:11.431113",
+ "modified": "2020-10-09 05:20:50.194244",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
@@ -307,5 +318,6 @@
  "search_fields": "media_type,title,media_owner",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "title_field": "media_type",
  "track_changes": 1
 }
