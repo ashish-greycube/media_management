@@ -2,6 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Media Movement', {
+	before_save : function(frm){
+		if (frm.doc.movement_type==='Outbound') {
+			if (!frm.doc.customer && frm.doc.filter_customer) {
+				frm.set_value('customer', frm.doc.filter_customer)
+			}
+			if (!frm.doc.project && frm.doc.filter_project) {
+				frm.set_value('project', frm.doc.filter_project)
+			}			
+		}
+	},
 	setup: function (frm) {
 		frm.set_query('project', () => {
 			return {
