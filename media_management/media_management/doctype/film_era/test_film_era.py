@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 # import frappe
 import unittest
 
-class Test FilmEra(unittest.TestCase):
+class TestFilmEra(unittest.TestCase):
 	pass
