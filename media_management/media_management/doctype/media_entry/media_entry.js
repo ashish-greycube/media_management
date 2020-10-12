@@ -1,6 +1,13 @@
 // Copyright (c) 2020, GreyCube Technologies and contributors
 // For license information, please see license.txt
 frappe.ui.form.on('Media Entry', {
+	onload: function (frm) {
+		if (frm.doc.no_of_films!=0 || frm.doc.no_of_tapes!=0 || frm.doc.no_of_data_device!=0) {
+			frm.set_df_property('no_of_films', 'read_only', 1)
+			frm.set_df_property('no_of_tapes', 'read_only', 1)
+			frm.set_df_property('no_of_data_device', 'read_only', 1)		
+		}
+	},
 	setup: function (frm) {
 		frm.set_query('project', () => {
 			return {
@@ -12,6 +19,29 @@ frappe.ui.form.on('Media Entry', {
 	},
 	refresh: function (frm) {
 		frm.toggle_display(['print_barcodes'], !(frm.is_new() === 1));
+	},
+	customer: function (frm) {
+		if (frm.doc.customer && frm.doc.project) {
+			frappe.db.get_list('Project', {
+				fields: ['name'],
+				filters: {
+					customer: frm.doc.customer
+				}
+			}).then(records => {
+				let found=false
+				records.forEach(element => {
+					if (frm.doc.project ==element.name) {
+						found = true
+					}
+				});
+				if (found==false){
+					frm.set_value('project', '')
+				}
+
+			})
+			
+			
+		}
 	},
 	project: function (frm) {
 		if (frm.doc.project && !frm.doc.customer) {
@@ -59,13 +89,24 @@ frappe.ui.form.on('Film Entry Item', {
 			row.media_id = doc.name
 			frm.refresh_field("film_items")
 			frm.set_value('no_of_films', frm.doc.no_of_films + 1)
+			frm.save()
 		})
 	},
 	before_film_items_remove(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		frappe.db.delete_doc('Media NS', row.media_id)
-		frm.set_value('no_of_films', frm.doc.no_of_films - 1)
-	}
+		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
+		set_film_items_to_remove(film_items)
+	},
+	film_items_remove(frm, cdt, cdn) {
+		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
+		if (film_items.length===0) {
+			if (frm.is_dirty()===1) {
+				frm.save().then(value=> {delete_selected_items_film(frm,get_film_items_to_remove())},reason=>{console.log(reason,'it failed')});
+			}else{
+				delete_selected_items_film(frm,get_film_items_to_remove())
+			}		
+		}
+
+	}	
 });
 
 frappe.ui.form.on('Tape Entry Item', {
@@ -80,13 +121,24 @@ frappe.ui.form.on('Tape Entry Item', {
 			row.media_id = doc.name
 			frm.refresh_field("tape_items")
 			frm.set_value('no_of_tapes', frm.doc.no_of_tapes + 1)
+			frm.save()
 		})
 	},
 	before_tape_items_remove(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		frappe.db.delete_doc('Media NS', row.media_id)
-		frm.set_value('no_of_tapes', frm.doc.no_of_tapes - 1)
-	}
+		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
+		set_tape_items_to_remove(tape_items)
+	},
+	tape_items_remove(frm, cdt, cdn) {
+		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
+		if (tape_items.length===0) {
+			if (frm.is_dirty()===1) {
+				frm.save().then(value=> {delete_selected_items_tape(frm,get_tape_items_to_remove())},reason=>{console.log(reason,'it failed')});
+			}else{
+				delete_selected_items_tape(frm,get_tape_items_to_remove())
+			}		
+		}
+
+	}	
 });
 
 frappe.ui.form.on('Data Device Entry Item', {
@@ -101,12 +153,23 @@ frappe.ui.form.on('Data Device Entry Item', {
 			row.media_id = doc.name
 			frm.refresh_field("data_devices")
 			frm.set_value('no_of_data_device', frm.doc.no_of_data_device + 1)
+			frm.save()
 		})
 	},
 	before_data_devices_remove(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		frappe.db.delete_doc('Media NS', row.media_id)
-		frm.set_value('no_of_data_device', frm.doc.no_of_data_device - 1)
+		let data_devices_items = frm.fields_dict.data_devices.grid.get_selected_children()
+		set_data_device_items_to_remove(data_devices_items)
+	},
+	data_devices_remove(frm, cdt, cdn) {
+		let data_devices_items = frm.fields_dict.data_devices.grid.get_selected_children()
+		if (data_devices_items.length===0) {
+			if (frm.is_dirty()===1) {
+				frm.save().then(value=> {delete_selected_items_data_devices(frm,get_data_device_items_to_remove())},reason=>{console.log(reason,'it failed')});
+			}else{
+				delete_selected_items_data_devices(frm,get_data_device_items_to_remove())
+			}		
+		}
+
 	}
 });
 
@@ -207,4 +270,67 @@ function print_selected_barcode(frm,film_items,tape_items,data_devices){
 		}
 	})
 }
+}
+
+var film_items_to_remove = 0;
+function set_film_items_to_remove(film_items) {
+	if (film_items_to_remove === 0) {
+		film_items_to_remove = film_items
+	}
+}
+function get_film_items_to_remove() {
+	return film_items_to_remove;
+}
+
+var tape_items_to_remove = 0;
+function set_tape_items_to_remove(tape_items) {
+	if (tape_items_to_remove === 0) {
+		tape_items_to_remove = tape_items
+	}
+}
+function get_tape_items_to_remove() {
+	return tape_items_to_remove;
+}
+
+var data_device_items_to_remove = 0;
+function set_data_device_items_to_remove(data_device_items) {
+	if (data_device_items_to_remove === 0) {
+		data_device_items_to_remove = data_device_items
+	}
+}
+function get_data_device_items_to_remove() {
+	return data_device_items_to_remove;
+}
+
+function delete_selected_items_film(frm, selected_items) {
+	for (const i in selected_items) {
+		let row = selected_items[i]
+		frappe.db.delete_doc('Media NS', row.media_id)
+		
+	}
+	frm.set_value('no_of_films', frm.doc.no_of_films - selected_items.length)
+	film_items_to_remove = 0;
+	frm.save();
+}
+
+function delete_selected_items_tape(frm,selected_items) {
+	for (const i in selected_items) {
+		let row = selected_items[i]
+		frappe.db.delete_doc('Media NS', row.media_id)
+		
+	}
+	frm.set_value('no_of_tapes', frm.doc.no_of_tapes - selected_items.length)
+	tape_items_to_remove = 0;
+	frm.save();
+}
+
+function delete_selected_items_data_devices(frm,selected_items) {
+	for (const i in selected_items) {
+		let row = selected_items[i]
+		frappe.db.delete_doc('Media NS', row.media_id)
+		
+	}
+	frm.set_value('no_of_data_device', frm.doc.no_of_data_device - selected_items.length)
+	data_device_items_to_remove = 0;
+	frm.save();
 }

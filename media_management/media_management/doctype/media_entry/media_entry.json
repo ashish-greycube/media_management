@@ -82,13 +82,13 @@
    "depends_on": "eval:(doc.customer && doc.project)",
    "fieldname": "create_and_print_barcode",
    "fieldtype": "Button",
-   "label": "Create and Print Barcodes"
+   "label": "Create and Print Labels"
   },
   {
    "fieldname": "print_barcodes",
    "fieldtype": "Button",
    "hidden": 1,
-   "label": "Print Barcodes"
+   "label": "Print Labels"
   },
   {
    "fieldname": "films_sb",
@@ -139,7 +139,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-10-12 07:34:32.897361",
+ "modified": "2020-10-12 13:31:54.905950",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Entry",

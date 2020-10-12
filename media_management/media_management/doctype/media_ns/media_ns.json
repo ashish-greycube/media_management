@@ -7,28 +7,33 @@
  "engine": "InnoDB",
  "field_order": [
   "media_type",
-  "media_abbreviation",
-  "cb_1",
-  "naming_series",
   "external_id",
   "media_owner",
-  "title",
+  "cb_1",
+  "media_abbreviation",
+  "naming_series",
   "media_barcode",
   "film_details_section",
   "film_reel_no",
   "film_type",
   "film_sound",
-  "fs_cb_1",
   "film_colour",
+  "film_era",
+  "fs_cb_1",
+  "film_title",
   "film_element",
   "film_approximate_length_feet",
   "is_checkerboard",
+  "film_content_description",
   "tape_section_section",
   "tape_type",
   "tape_standard",
+  "tape_era",
   "tape_cb_1",
+  "tape_title",
   "tape_manufacturer",
   "tape_run_time_mins",
+  "tape_content_description",
   "data_device_section_section",
   "data_device_type",
   "data_device_capacity",
@@ -38,10 +43,6 @@
   "has_datacable",
   "has_psu",
   "has_box",
-  "general_information_section",
-  "era",
-  "gi_cb_1",
-  "content_description",
   "more_information_section",
   "notes"
  ],
@@ -54,7 +55,8 @@
    "in_standard_filter": 1,
    "label": "Media Type",
    "options": "Media Type NS",
-   "reqd": 1
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "default": "F",
@@ -90,14 +92,8 @@
    "fieldtype": "Select",
    "label": "Media ID",
    "options": "{media_abbreviation}.#",
+   "read_only": 1,
    "reqd": 1
-  },
-  {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Title"
   },
   {
    "depends_on": "eval:doc.media_type==\"Film\"",
@@ -163,13 +159,13 @@
    "fieldname": "tape_run_time_mins",
    "fieldtype": "Select",
    "label": "Tape Run time Mins",
-   "options": "5\n10\n15\n20\n30\n45\n60\n90\n120\n180\n240"
+   "options": "\n5\n10\n15\n20\n30\n45\n60\n90\n120\n180\n240"
   },
   {
    "depends_on": "eval:doc.media_type==\"Data Device\"",
    "fieldname": "data_device_section_section",
    "fieldtype": "Section Break",
-   "label": "Data Device Section"
+   "label": "Data Device Details"
   },
   {
    "fieldname": "data_device_type",
@@ -218,30 +214,9 @@
    "label": "Has BOX"
   },
   {
-   "depends_on": "eval:doc.media_type ==\"Film\" || doc.media_type == \"Tape\"",
-   "fieldname": "general_information_section",
-   "fieldtype": "Section Break",
-   "label": "General Information"
-  },
-  {
-   "fieldname": "era",
-   "fieldtype": "Link",
-   "label": "Era",
-   "options": "Era"
-  },
-  {
-   "fieldname": "content_description",
-   "fieldtype": "Text Editor",
-   "label": "Content Description"
-  },
-  {
-   "fieldname": "gi_cb_1",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "notes",
    "fieldtype": "Text Editor",
-   "label": "Notes"
+   "label": "Remarks"
   },
   {
    "fieldname": "media_barcode",
@@ -254,7 +229,7 @@
    "collapsible": 1,
    "fieldname": "more_information_section",
    "fieldtype": "Section Break",
-   "label": "More Information"
+   "label": "General"
   },
   {
    "fieldname": "film_type",
@@ -273,9 +248,45 @@
    "fieldtype": "Link",
    "label": "Tape Type",
    "options": "Tape Type"
+  },
+  {
+   "fieldname": "film_era",
+   "fieldtype": "Link",
+   "label": "Film Era",
+   "options": "Film Era"
+  },
+  {
+   "fieldname": "tape_era",
+   "fieldtype": "Link",
+   "label": "Tape Era",
+   "options": "Tape Era"
+  },
+  {
+   "fieldname": "tape_content_description",
+   "fieldtype": "Small Text",
+   "label": "Content Description"
+  },
+  {
+   "fieldname": "film_content_description",
+   "fieldtype": "Small Text",
+   "label": "Content Description"
+  },
+  {
+   "fieldname": "film_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Film Title"
+  },
+  {
+   "fieldname": "tape_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tape Title"
   }
  ],
- "modified": "2020-10-09 14:15:36.137054",
+ "modified": "2020-10-12 14:39:56.388811",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media NS",
@@ -317,9 +328,8 @@
    "share": 1
   }
  ],
- "search_fields": "media_type,title,media_owner",
+ "search_fields": "media_type,film_title,media_owner",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "media_type",
  "track_changes": 1
 }

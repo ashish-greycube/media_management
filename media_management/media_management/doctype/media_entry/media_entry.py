@@ -50,7 +50,7 @@ class MediaEntry(Document):
 		doc=frappe.get_doc({
 			'doctype': 'Media Movement',
 			'movement_type': 'Inbound',
-			'transit_method':'By Hand',
+			'transit_method':'In Person',
 			'transaction_date':getdate(nowdate()),
 			"customer":self.customer,
 			"project":self.project,			

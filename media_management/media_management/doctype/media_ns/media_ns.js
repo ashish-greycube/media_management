@@ -9,7 +9,7 @@ frappe.ui.form.on('Media NS', {
 		// }
 
 		if (!frm.is_new()) {
-			frm.add_custom_button('Print Barcode', () => 
+			frm.add_custom_button('Print Label', () => 
 			{
 			console.log('Clicked custom button')
 			let selected_items = {};

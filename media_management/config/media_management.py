@@ -27,10 +27,16 @@ def get_data():
         'description': 'Media Type NS',
         }, {
         'type': 'doctype',
-        'name': 'Era',
-        'label': 'Era',
-        'description': 'Era',
+        'name': 'Film Era',
+        'label': 'Film Era',
+        'description': 'Film Era',
         },{
+        'type': 'doctype',
+        'name': 'Tape Era',
+        'label': 'Tape Era',
+        'description': 'Tape Era',
+        },
+        {
         'type': 'doctype',
         'name': 'Media Management Settings',
         'label': 'Media Management Settings',

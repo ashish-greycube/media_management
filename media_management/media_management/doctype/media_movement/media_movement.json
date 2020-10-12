@@ -8,12 +8,12 @@
   "naming_series",
   "movement_type",
   "transit_method",
+  "transaction_date",
   "delivered_by",
   "received_by",
   "cb_1",
   "customer",
   "project",
-  "transaction_date",
   "target",
   "target_address_display",
   "remarks",
@@ -47,13 +47,13 @@
    "reqd": 1
   },
   {
-   "default": "By Hand",
+   "default": "In Person",
    "fieldname": "transit_method",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Transit Method",
-   "options": "By Hand\nBy Courier\nBy Vehicle",
+   "options": "In Person\nShipped by Nulight\nShipped by Customer\nShuttle Service",
    "reqd": 1
   },
   {
@@ -178,7 +178,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-10-12 06:54:08.182259",
+ "modified": "2020-10-12 14:55:01.860432",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",
