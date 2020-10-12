@@ -33,6 +33,7 @@
    "fieldtype": "Select",
    "label": "Media Movement Entry",
    "options": "MMV-.YY.-.MM.-.#",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -84,7 +85,7 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:doc.movement_type == \"Outbound\"",
+   "depends_on": "eval:doc.movement_type === \"Outbound\"",
    "fieldname": "target",
    "fieldtype": "Link",
    "label": "Destination",
@@ -177,7 +178,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-10-09 13:58:19.902672",
+ "modified": "2020-10-12 06:54:08.182259",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Movement",

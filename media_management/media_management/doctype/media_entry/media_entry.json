@@ -29,6 +29,7 @@
    "fieldtype": "Select",
    "label": "Media Entry",
    "options": "ME-.YY.-.MM.-.#",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -86,6 +87,7 @@
   {
    "fieldname": "print_barcodes",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Print Barcodes"
   },
   {
@@ -109,13 +111,13 @@
    "fieldname": "film_items",
    "fieldtype": "Table",
    "label": "Films",
-   "options": "Media Entry Item"
+   "options": "Film Entry Item"
   },
   {
    "fieldname": "tape_items",
    "fieldtype": "Table",
    "label": "Tapes",
-   "options": "Media Entry Item"
+   "options": "Tape Entry Item"
   },
   {
    "fieldname": "dd_sb",
@@ -137,7 +139,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-09-14 11:18:13.925662",
+ "modified": "2020-10-12 07:34:32.897361",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Entry",

@@ -16,7 +16,8 @@ class MediaEntry(Document):
 			doc.update({
 				"external_id":item.external_id,
 				"media_owner":item.media_owner,
-				"title":item.title
+				"film_type":item.film_type,
+				"film_element":item.film_element
 			})
 			doc.save(ignore_permissions = True)	
 			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.media_owner,"media_type":"Film"})	
@@ -26,7 +27,7 @@ class MediaEntry(Document):
 			doc.update({
 				"external_id":item.external_id,
 				"media_owner":item.media_owner,
-				"title":item.title
+				"tape_type":item.tape_type
 			})
 			doc.save(ignore_permissions = True)	
 			media_movement_items.append({"media_id":item.media_id,"external_id":item.external_id,"media_owner":item.media_owner,"media_type":"Tape"})	

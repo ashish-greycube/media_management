@@ -10,6 +10,9 @@ frappe.ui.form.on('Media Entry', {
 			}
 		})
 	},
+	refresh: function (frm) {
+		frm.toggle_display(['print_barcodes'], !(frm.is_new() === 1));
+	},
 	project: function (frm) {
 		if (frm.doc.project && !frm.doc.customer) {
 			frappe.db.get_value('Project', frm.doc.project, 'customer')
@@ -20,114 +23,31 @@ frappe.ui.form.on('Media Entry', {
 		}
 	},
 	print_barcodes: function (frm) {
-		let selected = frm.get_selected()
-		let data_devices = selected['data_devices']
-		let film_items = selected['film_items']
-		let tape_items = selected['tape_items']
-		let selected_items = {};
-		let count=0;
-		for (const film in film_items) {
-			for (const i in frm.doc.film_items) {
-				let row = frm.doc.film_items[i]
-				if (row.name==film_items[film]) {
-				selected_items[count] = row.media_id
-				count=count+1;
-				}
-			}
+	
+		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
+		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()	
+		let data_devices = frm.fields_dict.data_devices.grid.get_selected_children()
+		if (cur_frm.is_dirty()===1) {
+			frm.save().then(value=> {print_selected_barcode(frm,film_items,tape_items,data_devices)},reason=>{console.log(reason,'it failed')});
+		}else{
+			print_selected_barcode(frm,film_items,tape_items,data_devices)
 		}
-		for (const tape in tape_items) {
-			for (const i in frm.doc.tape_items) {
-				let row = frm.doc.tape_items[i]
-				if (row.name==tape_items[tape]) {
-				selected_items[count] = row.media_id
-				count=count+1;
-				}
-			}
-		}		
-		for (const device in data_devices) {
-			for (const i in frm.doc.data_devices) {
-				let row = frm.doc.data_devices[i]
-				if (row.name==data_devices[device]) {
-				selected_items[count] = row.media_id;
-				count=count+1;
-				}
-			}
-		}
-		frappe.call({
-			method: 'media_management.api.get_label_pdf',
-			args: {
-				'selected_items': selected_items,
-			},
-			async:false,
-			callback: (r) => {
-				console.log(r)
-				printJS(r.message)
-			},
-			error: (r) => {
-				// on error
-			}
-		})
+
 	},
 	create_and_print_barcode: function (frm) {
-		
-		frm.set_df_property('no_of_films', 'read_only', 1)
-		frm.set_df_property('no_of_tapes', 'read_only', 1)
-		frm.set_df_property('no_of_data_device', 'read_only', 1)
-		frm.save()
-
-		setTimeout(function(){ 
-			frm.call({
-				doc: frm.doc,
-				method: 'create_and_print_barcode',
-				freeze: true,
-				callback: function (r) {
-					console.log(r)
-					if (r.message) {
-						frm.refresh()
-						frm.dirty()
-						// frm.save()
-						let selected_items = {};
-						console.log('selected_items',selected_items)
-						let count=0;
-						for (const i in frm.doc.film_items) {
-							let row = frm.doc.film_items[i]
-							selected_items[count] = row.media_id
-							count=count+1;
-						}	
-						for (const i in frm.doc.tape_items) {
-							let row = frm.doc.tape_items[i]
-							selected_items[count] = row.media_id
-							count=count+1;
-						}	
-						for (const i in frm.doc.data_devices) {
-							let row = frm.doc.data_devices[i]
-							selected_items[count] = row.media_id;
-							count=count+1;
-						}	
-						  frappe.call({
-							method: 'media_management.api.get_label_pdf',
-							args: {
-								'selected_items': selected_items,
-							},
-							async:false,
-							callback: (r) => {
-								printJS(r.message)
-							},
-							error: (r) => {
-								console.log(r)
-								// on error
-							}
-						})
-					}
-				}
-			})			
-		
-		}, 700);
+		if (cur_frm.is_dirty()===1) {
+			frm.set_df_property('no_of_films', 'read_only', 1)
+			frm.set_df_property('no_of_tapes', 'read_only', 1)
+			frm.set_df_property('no_of_data_device', 'read_only', 1)
+			frm.save().then(value=> {create_and_print_all_barcodes(frm)},reason=>{console.log(reason,'it failed create_and_print_barcode')});
+		}else{
+			create_and_print_all_barcodes(frm)
+		}
 
 	}
 });
 
-frappe.ui.form.on('Media Entry Item', {
+frappe.ui.form.on('Film Entry Item', {
 	film_items_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
 		frappe.db.insert({
@@ -145,7 +65,10 @@ frappe.ui.form.on('Media Entry Item', {
 		let row = locals[cdt][cdn];
 		frappe.db.delete_doc('Media NS', row.media_id)
 		frm.set_value('no_of_films', frm.doc.no_of_films - 1)
-	},
+	}
+});
+
+frappe.ui.form.on('Tape Entry Item', {
 	tape_items_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
 		frappe.db.insert({
@@ -186,3 +109,102 @@ frappe.ui.form.on('Data Device Entry Item', {
 		frm.set_value('no_of_data_device', frm.doc.no_of_data_device - 1)
 	}
 });
+
+function create_and_print_all_barcodes(frm){
+	frm.call({
+		doc: frm.doc,
+		method: 'create_and_print_barcode',
+		freeze: true,
+		callback: function (r) {
+			console.log(r)
+			if (r.message) {
+				frm.dirty()
+				// frm.save()
+				let selected_items = {};
+				console.log('selected_items',selected_items)
+				let count=0;
+				for (const i in frm.doc.film_items) {
+					let row = frm.doc.film_items[i]
+					selected_items[count] = row.media_id
+					count=count+1;
+				}	
+				for (const i in frm.doc.tape_items) {
+					let row = frm.doc.tape_items[i]
+					selected_items[count] = row.media_id
+					count=count+1;
+				}	
+				for (const i in frm.doc.data_devices) {
+					let row = frm.doc.data_devices[i]
+					selected_items[count] = row.media_id;
+					count=count+1;
+				}
+				if (Object.keys(selected_items).length === 0 && selected_items.constructor === Object) {
+					frappe.msgprint({
+						title: __('Error'),
+						indicator: 'red',
+						message: __('No media is found. Barcode cannot be printed')
+					});
+				}
+				else{	
+				  frappe.call({
+					method: 'media_management.api.get_label_pdf',
+					args: {
+						'selected_items': selected_items,
+					},
+					async:false,
+					freeze: true,
+					callback: (r) => {
+						printJS(r.message)
+						frm.save();
+					},
+					error: (r) => {
+						console.log(r)
+						// on error
+					}
+				})
+			}
+			}
+		}
+	})	
+}
+
+function print_selected_barcode(frm,film_items,tape_items,data_devices){
+	let selected_items = {};
+	let count=0;
+	for (const film in film_items) {
+		selected_items[count] = film_items[film].media_id
+		count=count+1;
+	}
+	for (const tape in tape_items) {
+		selected_items[count] = tape_items[tape].media_id
+		count=count+1;
+	}	
+	for (const device in data_devices) {
+		selected_items[count] = data_devices[device].media_id
+		count=count+1;
+	}
+	if (Object.keys(selected_items).length === 0 && selected_items.constructor === Object) {
+		frappe.msgprint({
+			title: __('Error'),
+			indicator: 'red',
+			message: __('No media is selected. Barcode cannot be printed')
+		});
+	}
+	else{
+	frappe.call({
+		method: 'media_management.api.get_label_pdf',
+		args: {
+			'selected_items': selected_items,
+		},
+		async:false,
+		freeze: true,
+		callback: (r) => {
+			printJS(r.message)
+		},
+		error: (r) => {
+			console.log(r,'error')
+			// on error
+		}
+	})
+}
+}

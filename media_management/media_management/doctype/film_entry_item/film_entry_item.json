@@ -1,0 +1,64 @@
+{
+ "creation": "2020-10-12 07:25:19.743300",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "media_id",
+  "external_id",
+  "media_owner",
+  "film_type",
+  "film_element"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "media_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Media ID",
+   "options": "Media NS",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "external_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "External ID"
+  },
+  {
+   "columns": 2,
+   "fieldname": "media_owner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Owner",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "film_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Film Type",
+   "options": "Film Type"
+  },
+  {
+   "fieldname": "film_element",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Film Element",
+   "options": "Film Element"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-10-12 07:39:34.720622",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Film Entry Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
