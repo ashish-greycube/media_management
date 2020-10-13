@@ -21,6 +21,7 @@
   },
   {
    "columns": 1,
+   "fetch_from": "media_id.external_id",
    "fieldname": "external_id",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -28,6 +29,7 @@
   },
   {
    "columns": 2,
+   "fetch_from": "media_id.media_owner",
    "fieldname": "media_owner",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -36,6 +38,7 @@
   },
   {
    "columns": 3,
+   "fetch_from": "media_id.tape_type",
    "fieldname": "tape_type",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -44,7 +47,7 @@
   }
  ],
  "istable": 1,
- "modified": "2020-10-12 07:39:32.599387",
+ "modified": "2020-10-13 05:49:37.310805",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Tape Entry Item",

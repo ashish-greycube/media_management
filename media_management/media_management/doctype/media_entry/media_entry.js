@@ -16,6 +16,27 @@ frappe.ui.form.on('Media Entry', {
 				}
 			}
 		})
+		frm.set_query('media_id', 'film_items', () => {
+			return {
+				filters: {
+					media_type: 'Film'
+				}
+			}
+		})	
+		frm.set_query('media_id', 'tape_items', () => {
+			return {
+				filters: {
+					media_type: 'Tape'
+				}
+			}
+		})
+		frm.set_query('media_id', 'data_devices', () => {
+			return {
+				filters: {
+					media_type: 'Data Device'
+				}
+			}
+		})					
 	},
 	refresh: function (frm) {
 		frm.toggle_display(['print_barcodes'], !(frm.is_new() === 1));
@@ -80,17 +101,20 @@ frappe.ui.form.on('Media Entry', {
 frappe.ui.form.on('Film Entry Item', {
 	film_items_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
-		frappe.db.insert({
-			doctype: 'Media NS',
-			media_type: 'Film',
-			customer: frm.doc.customer,
-			project: frm.doc.project
-		}).then(doc => {
-			row.media_id = doc.name
-			frm.refresh_field("film_items")
-			frm.set_value('no_of_films', frm.doc.no_of_films + 1)
-			frm.save()
-		})
+		if (frm.doc.is_new_media===1) {
+			frappe.db.insert({
+				doctype: 'Media NS',
+				media_type: 'Film',
+				customer: frm.doc.customer,
+				project: frm.doc.project
+			}).then(doc => {
+				row.media_id = doc.name
+				frm.refresh_field("film_items")
+				frm.set_value('no_of_films', frm.doc.no_of_films + 1)
+				frm.save()
+			})			
+		}
+
 	},
 	before_film_items_remove(frm, cdt, cdn) {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
@@ -112,6 +136,7 @@ frappe.ui.form.on('Film Entry Item', {
 frappe.ui.form.on('Tape Entry Item', {
 	tape_items_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
+		if (frm.doc.is_new_media===1) {		
 		frappe.db.insert({
 			doctype: 'Media NS',
 			media_type: 'Tape',
@@ -122,7 +147,7 @@ frappe.ui.form.on('Tape Entry Item', {
 			frm.refresh_field("tape_items")
 			frm.set_value('no_of_tapes', frm.doc.no_of_tapes + 1)
 			frm.save()
-		})
+		})}
 	},
 	before_tape_items_remove(frm, cdt, cdn) {
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
@@ -144,6 +169,7 @@ frappe.ui.form.on('Tape Entry Item', {
 frappe.ui.form.on('Data Device Entry Item', {
 	data_devices_add(frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
+		if (frm.doc.is_new_media===1) {
 		frappe.db.insert({
 			doctype: 'Media NS',
 			media_type: 'Data Device',
@@ -155,6 +181,7 @@ frappe.ui.form.on('Data Device Entry Item', {
 			frm.set_value('no_of_data_device', frm.doc.no_of_data_device + 1)
 			frm.save()
 		})
+	}
 	},
 	before_data_devices_remove(frm, cdt, cdn) {
 		let data_devices_items = frm.fields_dict.data_devices.grid.get_selected_children()
