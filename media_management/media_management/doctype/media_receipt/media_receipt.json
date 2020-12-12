@@ -1,0 +1,251 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2020-12-07 11:19:45.019308",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "transfer_date",
+  "transfer_method",
+  "column_break_5",
+  "sender",
+  "recipient",
+  "customer_project_section",
+  "customer",
+  "column_break_8",
+  "project",
+  "quantities_section",
+  "no_of_films",
+  "column_break_10",
+  "no_of_tapes",
+  "column_break_12",
+  "no_of_drives",
+  "column_break_14",
+  "create_all_media",
+  "films_sb",
+  "film_items",
+  "tapes_sb",
+  "tape_items",
+  "dd_sb",
+  "drive_items",
+  "notes_section",
+  "notes",
+  "naming_series",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "transfer_date",
+   "fieldtype": "Date",
+   "label": "Transfer Date",
+   "reqd": 1
+  },
+  {
+   "default": "In Person",
+   "fieldname": "transfer_method",
+   "fieldtype": "Link",
+   "label": "Transfer Method",
+   "options": "Transfer Method",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Link",
+   "label": "Sender",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fieldname": "recipient",
+   "fieldtype": "Link",
+   "label": "Recipient",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_project_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project",
+   "options": "Project",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quantities_section",
+   "fieldtype": "Section Break",
+   "label": "Quantities"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_films",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Films #",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_tapes",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Tapes #",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:(doc.customer && doc.project && doc.sender && doc.recipient && doc.docstatus==0 && (doc.no_of_films >0 || doc.no_of_tapes > 0 || doc.no_of_drives>0))",
+   "fieldname": "create_all_media",
+   "fieldtype": "Button",
+   "label": "Create"
+  },
+  {
+   "fieldname": "films_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tapes_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tape_items",
+   "fieldtype": "Table",
+   "label": "Tapes",
+   "options": "Tape Entry Item"
+  },
+  {
+   "fieldname": "dd_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Media Receipt",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "RC-.YY.-.MM.-.#",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Media Entry",
+   "options": "RC-.YY.-.MM.-.#",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Media Receipt",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_drives",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Drives #",
+   "reqd": 1
+  },
+  {
+   "fieldname": "drive_items",
+   "fieldtype": "Table",
+   "label": "Drives",
+   "options": "Drive Entry Item"
+  },
+  {
+   "fieldname": "film_items",
+   "fieldtype": "Table",
+   "label": "Films",
+   "options": "Film Entry Item"
+  }
+ ],
+ "hide_toolbar": 1,
+ "is_submittable": 1,
+ "modified": "2020-12-12 04:16:20.675154",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Media Receipt",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0,
+ "creation": "2020-12-10 11:49:32.242753",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2020-12-10 11:54:55.046063",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Films",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select name as \"ID:Link/Media:150\",\nmedia_type as Type,\nmedia_sub_type as `Sub Type`,\nmedia_owner as Owner,\nexternal_id as `Ext ID`,\nfilm_title as `Title`,\nfilm_element as `Film Element`,\nfilm_sound as `Film Sound`,\nfilm_colour as `Film Colour`,\nfilm_era as `Film Era`,\nfilm_approximate_length_feet as `Film Length`,\nis_checkerboard as `Is Checkerboard:Check:30`,\ncontent_description as Content,\nnotes as Notes\nfrom `tabMedia`\nwhere media_type='Film'\norder by modified desc",
+ "ref_doctype": "Media",
+ "report_name": "Films",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Item Manager"
+  },
+  {
+   "role": "All"
+  }
+ ]
+}

@@ -1,0 +1,40 @@
+{
+ "creation": "2020-12-03 06:19:31.330290",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_barcode"
+ ],
+ "fields": [
+  {
+   "description": "<h1 style=\"text-align: center;\">\n<i class=\"fa fa-barcode\">\n<h5 style=\"text-align: center;\">Scan</h5>\n</i>\n</h1>",
+   "fieldname": "scan_barcode",
+   "fieldtype": "Data",
+   "label": "Media ID"
+  }
+ ],
+ "hide_toolbar": 1,
+ "issingle": 1,
+ "modified": "2020-12-11 16:29:02.601764",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Lookup Media",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

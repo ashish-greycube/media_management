@@ -1,0 +1,70 @@
+{
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:drive_format",
+ "creation": "2020-12-06 04:49:38.629539",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "drive_format"
+ ],
+ "fields": [
+  {
+   "fieldname": "drive_format",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Drive Format",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "modified": "2020-12-06 04:49:38.629539",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Drive Format",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "drive_format",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "drive_format",
+ "track_changes": 1
+}

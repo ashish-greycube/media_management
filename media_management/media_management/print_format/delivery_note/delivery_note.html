@@ -1,0 +1,127 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header, render_field, print_value, fieldmeta,
+	get_width, get_align_class -%}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="margin-top margin-bottom">
+            <h1 style="text-align:left">Nulight Studios Ltd.</h1>
+            <table class="table table-borderless table-condensed">
+                <tr>
+                    <th>Shipping Address</th>
+                </tr>
+                <tr>
+                    <td style="border: none !important;">{{ doc.recipient }}</td>
+                </tr>
+                <tr>
+                    <td style="border: none !important;">{{ doc.contact_display or '' }} </td>
+                </tr>
+                <tr>
+                    <td style="border: none !important;">{{ doc.address_display  or ''}}</td>
+                </tr>
+                <tr >
+                    <td style="border: none !important;">{{ doc.contact_mobile or '' }} </td>
+                </tr>                
+            </table>
+        </div>        
+    </div>
+    <div class="col-sm-6">
+        <div class="margin-top margin-bottom">
+            <h1 style="text-align:right" ><strong>Delivery Note</strong></h1>
+            <table class="table table-borderless table-condensed">
+                <tr>
+                    <td style="text-align: right;border: none !important;">Job No. {{ doc.project }}</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;border: none !important;">Delivery No. {{doc.name}} </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;border: none !important;">Delivery Date. {{doc.transfer_date}} </td>
+                </tr>                
+            </table>
+        </div>        
+    </div>
+</div>
+
+{% if doc.film_items or doc.tape_items %}
+<div class="margin-top margin-bottom">
+    <h3><strong>Media</strong></h3>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Item #</th>
+            <th>Title</th>
+            <th>Format</th>
+        </tr>
+        {% for item in doc.film_items %}
+        <tr>
+            <td>{{ item.media_id }}</td>
+            <td>{{ item.external_id or ''}}   {{item.film_title or '' }} </td>
+            <td>{{ item.film_type or ''}}</td>
+        </tr>
+        {% endfor %}
+        {% for item in doc.tape_items %}
+        <tr>
+            <td>{{ item.media_id }}</td>
+            <td>{{ item.external_id or ''}}   {{item.tape_title or '' }} </td>
+            <td>{{ item.tape_type or ''}}</td>
+        </tr>
+        {% endfor %}        
+    </table>
+</div>
+{% endif %}
+
+{% if doc.drive_items %}
+<div class="margin-top margin-bottom">
+    <h3><strong>Drives</strong></h3>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Item #</th>
+            <th>Title</th>
+            <th>Cable</th>
+            <th>PSU</th>
+            <th>Box</th>
+        </tr>
+        {% for item in doc.drive_items %}
+        <tr>
+            <td>{{ item.media_id }}</td>
+            <td>{{ item.drive_capacity or ''}}   {{item.drive_brand or '' }} {{item.drive_type or ''}}</td>
+            <td>
+				{% if item.has_datacable %}
+					<div style='color: green'> <i class='fa fa-check'></i> </div>
+				{% else %}
+					<div></div>
+				{% endif %}                
+            </td>
+            <td>
+				{% if item.has_psu %}
+					<div style='color: green'> <i class='fa fa-check'></i> </div>
+				{% else %}
+					<div></div>
+				{% endif %}                    
+            </td>
+            <td>
+                {% if item.has_box  %}
+                <div style='color: green'> <i class='fa fa-check'></i> </div>
+            {% else %}
+                <div></div>
+            {% endif %}                  
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %} 
+
+    <table class="table table-borderless table-condensed">
+        <tr>
+            <td style="text-align: center;border: none !important;">Notice must be given to us of any damaged or missing media within 3 days of the date listed on this delivery note.</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;border: none !important;"><h5><strong>Thank you for your business!</strong></h5></td>
+        </tr>      
+        <tr>
+            <td style="text-align: center;border: none !important;">
+                <div>Nulight Studios Ltd.59 Cotham Hill, Bristol BS6 6JR</div>
+                <div> Tel: 0117 990 2100, Email: hello@nulightstudios.com Web: nulightstudios.com</div>
+               </td>
+        </tr>                   
+    </table>

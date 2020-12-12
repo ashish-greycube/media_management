@@ -1,0 +1,264 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2020-12-09 06:07:18.263062",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_project_section",
+  "customer",
+  "column_break_8",
+  "project",
+  "quantities_section",
+  "transfer_date",
+  "transfer_method",
+  "column_break_5",
+  "sender",
+  "recipient",
+  "films_sb",
+  "film_items",
+  "tapes_sb",
+  "tape_items",
+  "dd_sb",
+  "drive_items",
+  "notes_section",
+  "notes",
+  "section_break_19",
+  "naming_series",
+  "amended_from",
+  "company",
+  "contact_person",
+  "contact_display",
+  "contact_mobile",
+  "column_break_22",
+  "customer_address",
+  "address_display"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "transfer_date",
+   "fieldtype": "Date",
+   "label": "Transfer Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transfer_method",
+   "fieldtype": "Link",
+   "label": "Transfer Method",
+   "options": "Transfer Method",
+   "print_hide": 1,
+   "remember_last_selected_value": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Link",
+   "label": "Sender",
+   "options": "Contact",
+   "print_hide": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "recipient",
+   "fieldtype": "Link",
+   "label": "Recipient",
+   "options": "Contact",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_project_section",
+   "fieldtype": "Section Break",
+   "label": "Project Details"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.customer",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project",
+   "options": "Project",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quantities_section",
+   "fieldtype": "Section Break",
+   "label": "Return Details"
+  },
+  {
+   "fieldname": "films_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "film_items",
+   "fieldtype": "Table",
+   "label": "Films",
+   "options": "Film Return Item"
+  },
+  {
+   "fieldname": "tapes_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tape_items",
+   "fieldtype": "Table",
+   "label": "Tapes",
+   "options": "Tape Return Item"
+  },
+  {
+   "fieldname": "dd_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "drive_items",
+   "fieldtype": "Table",
+   "label": "Drives",
+   "options": "Drive Return Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text"
+  },
+  {
+   "default": "RT-.YY.-.MM.-.#",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Media Return",
+   "options": "RT-.YY.-.MM.-.#",
+   "print_hide": 1,
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Media Return",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Media Return",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "options": "Address",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "address_display",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Customer Address"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Company",
+   "options": "Company",
+   "print_hide": 1,
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "options": "Contact",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Customer Phone"
+  },
+  {
+   "fieldname": "contact_display",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Customer Name"
+  }
+ ],
+ "hide_toolbar": 1,
+ "is_submittable": 1,
+ "modified": "2020-12-11 05:40:18.585708",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Media Return",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

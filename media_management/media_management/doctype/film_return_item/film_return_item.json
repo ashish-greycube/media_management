@@ -1,5 +1,5 @@
 {
- "creation": "2020-10-12 07:25:19.743300",
+ "creation": "2020-12-09 12:00:04.046974",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -27,8 +27,9 @@
    "fieldname": "media_id",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Media ID",
+   "label": "Asset ID",
    "options": "Media",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -38,7 +39,8 @@
    "fieldname": "external_id",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "External ID"
+   "label": "External ID",
+   "read_only": 1
   },
   {
    "columns": 2,
@@ -48,7 +50,13 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Owner",
-   "options": "Contact"
+   "options": "Contact",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
   },
   {
    "columns": 1,
@@ -58,7 +66,18 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Type",
-   "options": "Media Sub Type"
+   "options": "Media Sub Type",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fetch_from": "media_id.film_title",
+   "fetch_if_empty": 1,
+   "fieldname": "film_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "read_only": 1
   },
   {
    "columns": 1,
@@ -68,20 +87,9 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Element",
-   "options": "Film Element"
-  },
-  {
-   "columns": 2,
-   "fetch_from": "media_id.film_title",
-   "fetch_if_empty": 1,
-   "fieldname": "film_title",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Title"
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
+   "options": "Film Element",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fieldname": "section_break_8",
@@ -93,7 +101,9 @@
    "fieldname": "film_sound",
    "fieldtype": "Link",
    "label": "Sound",
-   "options": "Film Sound"
+   "options": "Film Sound",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fetch_from": "media_id.film_colour",
@@ -101,7 +111,9 @@
    "fieldname": "film_colour",
    "fieldtype": "Link",
    "label": "Colour",
-   "options": "Film Colour"
+   "options": "Film Colour",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "default": "0",
@@ -109,7 +121,9 @@
    "fetch_if_empty": 1,
    "fieldname": "is_checkerboard",
    "fieldtype": "Check",
-   "label": "Is Checkerboard"
+   "label": "Is Checkerboard",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fieldname": "column_break_12",
@@ -121,14 +135,18 @@
    "fieldname": "film_era",
    "fieldtype": "Link",
    "label": "Era",
-   "options": "Film Era"
+   "options": "Film Era",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fetch_from": "media_id.film_approximate_length_feet",
    "fetch_if_empty": 1,
    "fieldname": "film_approximate_length_feet",
    "fieldtype": "Int",
-   "label": "Length (approx ft)"
+   "label": "Length (approx ft)",
+   "print_hide": 1,
+   "read_only": 1
   },
   {
    "fieldname": "section_break_15",
@@ -139,14 +157,16 @@
    "fetch_if_empty": 1,
    "fieldname": "film_content_description",
    "fieldtype": "Small Text",
-   "label": "Content"
+   "label": "Content",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2020-12-09 06:05:08.508768",
+ "modified": "2020-12-10 10:06:46.430634",
  "modified_by": "Administrator",
  "module": "Media Management",
- "name": "Film Entry Item",
+ "name": "Film Return Item",
  "owner": "Administrator",
  "permissions": [],
  "quick_entry": 1,

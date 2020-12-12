@@ -5,96 +5,221 @@ from frappe import _
 
 
 def get_data():
-    config = [{'label': _('Transactions'), 'items': [{
-        'type': 'doctype',
-        'name': 'Media Entry',
-        'label': 'Media Entry',
-        'description': 'Media Entry',
-        }, {
-        'type': 'doctype',
-        'name': 'Media Movement',
-        'label': 'Media Movement',
-        'description': 'Media Movement',
-        }]}, {'label': _('General'), 'items': [{
-        'type': 'doctype',
-        'name': 'Media NS',
-        'label': 'Media',
-        'description': 'Media NS',
-        }, {
-        'type': 'doctype',
-        'name': 'Media Type NS',
-        'label': 'Media Type',
-        'description': 'Media Type NS',
-        }, {
-        'type': 'doctype',
-        'name': 'Film Era',
-        'label': 'Film Era',
-        'description': 'Film Era',
-        },{
-        'type': 'doctype',
-        'name': 'Tape Era',
-        'label': 'Tape Era',
-        'description': 'Tape Era',
+    config = [
+{
+    'label': _('Transfers'),
+    'items': [{
+            'type': 'report',
+            'name': 'Media Transfers',
+            'label': 'Media Transfers',
+            "is_query_report": True,
+            'doctype': 'Media'
         },
         {
-        'type': 'doctype',
-        'name': 'Media Management Settings',
-        'label': 'Media Management Settings',
-        'description': 'Media Management Settings',
-        },{
-        'type': 'doctype',
-        'name': 'Media Naming Series',
-        'label': 'Media Naming Series',
-        'description': 'Media Naming Series',
-        }]}, {'label': _('Film'), 'items': [{
-        'type': 'doctype',
-        'name': 'Film Element',
-        'label': 'Film Element',
-        'description': 'Film Element',
-        }, {
-        'type': 'doctype',
-        'name': 'Film Sound',
-        'label': 'Film Sound',
-        'description': 'Film Sound',
-        }, {
-        'type': 'doctype',
-        'name': 'Film Colour',
-        'label': 'Film Colour',
-        'description': 'Film Colour',
-        }, {
-        'type': 'doctype',
-        'name': 'Film Type',
-        'label': 'Film Type',
-        'description': 'Film Type',
-        }]}, {'label': _('Tape'), 'items': [{
-        'type': 'doctype',
-        'name': 'Tape Type',
-        'label': 'Tape Type',
-        'description': 'Tape Type',
-        }, {'type': 'doctype', 'name': 'Tape Standard',
-            'label': 'Tape Standard'}]}, {'label': _('Data Device'),
-                'items': [{
-        'type': 'doctype',
-        'name': 'Data Device Format',
-        'label': 'Data Device Format',
-        'description': 'Data Device Format',
-        }, {
-        'type': 'doctype',
-        'name': 'Data Device Capacity',
-        'label': 'Data Device Capacity',
-        'description': 'Data Device Capacity',
-        }, {
-        'type': 'doctype',
-        'name': 'Data Device Type',
-        'label': 'Data Device Type',
-        'description': 'Data Device Type',
-        }]},{'label': _('Reports'), 'items': [{
-        'type': 'report',
-        'name': 'Trace Media',
-        'label': 'Trace Media',
-	"is_query_report": True,
-	'doctype':'Media Movement',
-        'description': 'Trace Media Items"',
-        }]}]
+            "type": "doctype",
+            "label": "New Media Receipt",
+            "name": "Media Receipt",
+            "route": "#Form/Media Receipt/New Media Receipt 1",
+        },
+        {
+            "type": "doctype",
+            "label": "New Media Return",
+            "name": "Media Return",
+            "route": "#Form/Media Return/New Media Return 1",
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media Receipt',
+            'label': 'Media Receipt List',
+            'description': 'Media Receipt',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media Return',
+            'label': 'Media Return List',
+            'description': 'Media Return',
+        }
+    ]
+}, 
+{
+    'label': _('Media'),
+    'items': [{
+            'type': 'report',
+            'name': 'Media',
+            'label': 'Media Report',
+            "is_query_report": True,
+            'doctype': 'Media'
+        },
+        {
+            'type': 'report',
+            'name': 'Films',
+            'label': 'Films Report',
+            "is_query_report": True,
+            'doctype': 'Media'
+        },
+        {
+            'type': 'report',
+            'name': 'Tapes',
+            'label': 'Tapes Report',
+            "is_query_report": True,
+            'doctype': 'Media'
+        },
+        {
+            'type': 'report',
+            'name': 'Drives',
+            'label': 'Drives Report',
+            "is_query_report": True,
+            'doctype': 'Media'
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media',
+            'label': 'Media List',
+            'description': 'Media',
+            "route": "#List/Media/List"
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media',
+            'label': 'Film List',
+            "route": "#List/Media/List?media_type=Film"
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media',
+            'label': 'Tape List',
+            "route": "#List/Media/List?media_type=Tape"
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media',
+            'label': 'Drive List',
+            "route": "#List/Media/List?media_type=Drive"
+        },
+    ]
+}, 
+{
+    'label': _('Settings'),
+    'items': [{
+            'type': 'doctype',
+            'name': 'Media Type',
+            'label': 'Media Types',
+            'description': 'Media Type',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media Sub Type',
+            'label': 'Media Sub Type',
+            'description': 'Media Sub Type',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media Label Numbering',
+            'label': 'Media Label Numbering',
+            'description': 'Media Label Numbering',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Transfer Method',
+            'label': 'Transfer Method',
+            'description': 'Transfer Method',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Media Management Settings',
+            'label': 'Media Management Settings',
+            'description': 'Media Management Settings',
+        }
+
+    ]
+}, 
+{
+    'label': _('Film'),
+    'items': [{
+            'type': 'doctype',
+            'name': 'Film Element',
+            'label': 'Film Element',
+            'description': 'Film Element',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Film Colour',
+            'label': 'Film Colour',
+            'description': 'Film Colour',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Film Sound',
+            'label': 'Film Sound',
+            'description': 'Film Sound',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Film Era',
+            'label': 'Film Era',
+            'description': 'Film Era',
+        }
+    ]
+}, 
+{
+    'label': _('Tape'),
+    'items': [{
+            'type': 'doctype',
+            'name': 'Tape Standard',
+            'label': 'Tape Standard'
+        },
+        {
+            'type': 'doctype',
+            'name': 'Tape Manufacturer',
+            'label': 'Tape Manufacturer'
+        },
+        {
+            'type': 'doctype',
+            'name': 'Tape Runtime',
+            'label': 'Tape Runtime'
+        }
+
+    ]
+}, 
+{
+    'label': _('Drive'),
+    'items': [{
+            'type': 'doctype',
+            'name': 'Drive Brand',
+            'label': 'Drive Brand',
+            'description': 'Drive Brand',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Drive Capacity',
+            'label': 'Drive Capacity',
+            'description': 'Drive Capacity',
+        },
+        {
+            'type': 'doctype',
+            'name': 'Drive Format',
+            'label': 'Drive Format',
+            'description': 'Drive Format',
+        }
+    ]
+}, 
+{
+    'label': _('Reports'),
+    'items': [{
+            'type': 'report',
+            'name': 'Current Media',
+            'label': 'Current Media',
+            "is_query_report": True,
+            'doctype': 'Media'
+        },
+        {
+            'type': 'doctype',
+            'name': 'Lookup Media',
+            'label': 'Lookup Media',
+            'description': 'Lookup Media',
+        }
+    ]
+}
+        ]
 
     return config
