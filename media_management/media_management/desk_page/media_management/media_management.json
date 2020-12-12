@@ -1,0 +1,59 @@
+{
+ "cards": [
+  {
+   "hidden": 0,
+   "label": "Transfers",
+   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Media Transfers\",\n            \"label\": \"Media Transfers\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"label\": \"New Media Receipt\",\n            \"name\": \"Media Receipt\",\n            \"route\": \"#Form/Media Receipt/New Media Receipt 1\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"label\": \"New Media Return\",\n            \"name\": \"Media Return\",\n            \"route\": \"#Form/Media Return/New Media Return 1\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Receipt\",\n            \"label\": \"Media Receipt List\",\n            \"description\": \"Media Receipt\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Return\",\n            \"label\": \"Media Return List\",\n            \"description\": \"Media Return\"\n        }\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Media",
+   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Media\",\n            \"label\": \"Media Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Films\",\n            \"label\": \"Films Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Tapes\",\n            \"label\": \"Tapes Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Drives\",\n            \"label\": \"Drives Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Media List\",\n            \"description\": \"Media\",\n            \"route\": \"#List/Media/List\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Film List\",\n            \"route\": \"#List/Media/List?media_type=Film\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Tape List\",\n            \"route\": \"#List/Media/List?media_type=Tape\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Drive List\",\n            \"route\": \"#List/Media/List?media_type=Drive\"\n        }\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Settings",
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Media Type\",\n            \"label\": \"Media Types\",\n            \"description\": \"Media Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Sub Type\",\n            \"label\": \"Media Sub Type\",\n            \"description\": \"Media Sub Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Label Numbering\",\n            \"label\": \"Media Label Numbering\",\n            \"description\": \"Media Label Numbering\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Transfer Method\",\n            \"label\": \"Transfer Method\",\n            \"description\": \"Transfer Method\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Management Settings\",\n            \"label\": \"Media Management Settings\",\n            \"description\": \"Media Management Settings\"\n        }\n\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Film",
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Film Element\",\n            \"label\": \"Film Element\",\n            \"description\": \"Film Element\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Colour\",\n            \"label\": \"Film Colour\",\n            \"description\": \"Film Colour\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Sound\",\n            \"label\": \"Film Sound\",\n            \"description\": \"Film Sound\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Era\",\n            \"label\": \"Film Era\",\n            \"description\": \"Film Era\"\n        }\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Tape",
+   "links": " [{\n            \"type\": \"doctype\",\n            \"name\": \"Tape Standard\",\n            \"label\": \"Tape Standard\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Tape Manufacturer\",\n            \"label\": \"Tape Manufacturer\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Tape Runtime\",\n            \"label\": \"Tape Runtime\"\n        }\n\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Drive",
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Drive Brand\",\n            \"label\": \"Drive Brand\",\n            \"description\": \"Drive Brand\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Capacity\",\n            \"label\": \"Drive Capacity\",\n            \"description\": \"Drive Capacity\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Format\",\n            \"label\": \"Drive Format\",\n            \"description\": \"Drive Format\"\n        }\n    ]"
+  },
+  {
+   "hidden": 0,
+   "label": "Reports",
+   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Current Media\",\n            \"label\": \"Current Media\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Lookup Media\",\n            \"label\": \"Lookup Media\",\n            \"description\": \"Lookup Media\"\n        }\n    ]"
+  }
+ ],
+ "category": "Modules",
+ "charts": [],
+ "creation": "2020-12-12 06:22:45.668835",
+ "developer_mode_only": 0,
+ "disable_user_customization": 0,
+ "docstatus": 0,
+ "doctype": "Desk Page",
+ "extends_another_page": 0,
+ "hide_custom": 0,
+ "idx": 0,
+ "is_standard": 1,
+ "label": "Media Management",
+ "modified": "2020-12-12 06:26:09.793242",
+ "modified_by": "Administrator",
+ "module": "Media Management",
+ "name": "Media Management",
+ "owner": "Administrator",
+ "pin_to_bottom": 0,
+ "pin_to_top": 1,
+ "shortcuts": []
+}
