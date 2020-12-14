@@ -31,7 +31,8 @@
   "notes_section",
   "notes",
   "naming_series",
-  "amended_from"
+  "amended_from",
+  "media_transfer_type"
  ],
  "fields": [
   {
@@ -206,11 +207,18 @@
    "fieldtype": "Table",
    "label": "Films",
    "options": "Film Entry Item"
+  },
+  {
+   "default": "Receipt",
+   "fieldname": "media_transfer_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2020-12-12 04:16:20.675154",
+ "modified": "2020-12-14 05:11:19.509467",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Receipt",

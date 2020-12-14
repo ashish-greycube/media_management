@@ -1,8 +1,8 @@
-select media.name as "Media:Link/Media:150",
+select media.name as "Media:Link/Media:110",
 media.media_type as "Type::100",
 media.media_sub_type as "Sub Type::150",
 media.media_owner as "Owner::200",
-media.external_id as "External ID::100"
+media.external_id as "External ID::90"
 from `tabMedia` media
 where media.name NOT IN
 ( select media_id from

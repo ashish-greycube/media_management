@@ -32,7 +32,8 @@
   "contact_mobile",
   "column_break_22",
   "customer_address",
-  "address_display"
+  "address_display",
+  "media_transfer_type"
  ],
  "fields": [
   {
@@ -147,6 +148,7 @@
    "default": "RT-.YY.-.MM.-.#",
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Media Return",
    "options": "RT-.YY.-.MM.-.#",
    "print_hide": 1,
@@ -219,11 +221,18 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Customer Name"
+  },
+  {
+   "default": "Return",
+   "fieldname": "media_transfer_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2020-12-11 05:40:18.585708",
+ "modified": "2020-12-14 05:10:21.947904",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Return",

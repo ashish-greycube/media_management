@@ -114,23 +114,16 @@ def get_data():
         },
         {
             "type": "doctype",
-            "name": "Media Label Numbering",
-            "label": "Media Label Numbering",
-            "description": "Media Label Numbering"
-        },
-        {
-            "type": "doctype",
             "name": "Transfer Method",
             "label": "Transfer Method",
             "description": "Transfer Method"
         },
         {
             "type": "doctype",
-            "name": "Media Management Settings",
-            "label": "Media Management Settings",
-            "description": "Media Management Settings"
+            "name": "Media Label Numbering",
+            "label": "Media Label Numbering",
+            "description": "Media Label Numbering"
         }
-
     ]
 }, 
 {

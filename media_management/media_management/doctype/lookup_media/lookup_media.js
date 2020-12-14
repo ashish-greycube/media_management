@@ -37,7 +37,7 @@ frappe.ui.form.on('Lookup Media', {
 				}
 				
 			});
-			return ;			
+			return false;			
 		}
 
 	}

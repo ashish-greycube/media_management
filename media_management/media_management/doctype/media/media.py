@@ -17,7 +17,7 @@ class Media(Document):
 
 	def load_film_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Receipt' as link_doctype,receipt.name as id,film.film_type as `type`,
+		(select 'Media Receipt' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`,film.film_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.sender,receipt.recipient,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -26,7 +26,7 @@ class Media(Document):
 		on receipt.name=film.parent
 		where film.media_id='{media_id}')
 		union all
-		(select 'Media Return' as link_doctype, media_return.name as id,film.film_type as `type`,
+		(select 'Media Return' as link_doctype, media_return.name as id,media_return.media_transfer_type as `media_transfer_type`,film.film_type as `type`,
 		media_return.transfer_date as `date`,media_return.transfer_method as method,
 		media_return.sender,media_return.recipient,media_return.customer,
 		media_return.project,media_return.creation as creation
@@ -39,7 +39,7 @@ class Media(Document):
 
 	def load_tape_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Receipt' as link_doctype,receipt.name as id,tape.tape_type as `type`,
+		(select 'Media Receipt' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`,tape.tape_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.sender,receipt.recipient,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -48,7 +48,7 @@ class Media(Document):
 		on receipt.name=tape.parent
 		where tape.media_id='{media_id}')
 		union all
-		(select 'Media Return' as link_doctype, media_return.name as id,tape.tape_type as `type`,
+		(select 'Media Return' as link_doctype, media_return.name as id,media_return.media_transfer_type as `media_transfer_type`,tape.tape_type as `type`,
 		media_return.transfer_date as `date`,media_return.transfer_method as method,
 		media_return.sender,media_return.recipient,media_return.customer,
 		media_return.project,media_return.creation as creation
@@ -61,7 +61,7 @@ class Media(Document):
 
 	def load_drive_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Receipt' as link_doctype,receipt.name as id,drive.drive_type as `type`,
+		(select 'Media Receipt' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`, drive.drive_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.sender,receipt.recipient,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -70,7 +70,7 @@ class Media(Document):
 		on receipt.name=drive.parent
 		where drive.media_id='{media_id}')
 		union all
-		(select 'Media Return' as link_doctype, media_return.name as id,drive.drive_type as `type`,
+		(select 'Media Return' as link_doctype, media_return.name as id,media_return.media_transfer_type as `media_transfer_type`,drive.drive_type as `type`,
 		media_return.transfer_date as `date`,media_return.transfer_method as method,
 		media_return.sender,media_return.recipient,media_return.customer,
 		media_return.project,media_return.creation as creation
@@ -87,7 +87,7 @@ class Media(Document):
 			self.append("transfer_history", {
 				"link_doctype":item.link_doctype,
 				"id":item.id,
-				"type": item.type,
+				"media_transfer_type": item.media_transfer_type,
 				"date":item.date,
 				"method":item.method,
 				"sender":item.sender,

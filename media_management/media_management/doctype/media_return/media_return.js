@@ -18,6 +18,11 @@ frappe.ui.form.on('Media Return', {
 	},
 	refresh:function(frm){
 		frappe.dynamic_link = {doc:cur_frm.doc, fieldname: 'customer', doctype: 'Customer'}
+		if (!frm.is_new()) {
+			frm.add_custom_button(__("Print Delivery Note"), function() {
+			frm.print_doc();
+			});				
+		}		
 	},
 	onload:function(frm){
 	
@@ -26,23 +31,19 @@ frappe.ui.form.on('Media Return', {
 	},
 	customer:function(frm){
 		erpnext.utils.get_party_details(frm);
+		frm.events.toggle_button(frm)
 	},
 	customer_address: function(frm) {
 		erpnext.utils.get_address_display(cur_frm, 'customer_address', 'address_display');
 	},	
 	
 	onload_post_render: function (frm) {
-		if (!frm.is_new()) {
-			frm.add_custom_button(__("Print Delivery Note"), function() {
-			frm.print_doc();
-			});				
-		}
-		
 		$(".grid-add-row").html('Add All')
-		$(".grid-remove-rows").html('Rmove')
+		$(".grid-remove-rows").html('Remove')
 		frm.events.toggle_button(frm)
 	},
 	toggle_button: function (frm) {
+		console.log(frm.doc.customer , frm.doc.project,frm.doc.customer && frm.doc.project)
 		if (frm.doc.customer && frm.doc.project) {
 			$(".grid-add-row").removeClass('hidden')
 		} else {

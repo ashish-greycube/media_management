@@ -113,7 +113,9 @@ frappe.ui.form.on('Media Receipt', {
 			frm.add_custom_button(
 				__('Print Lables'),
 				() => frm.events.print_barcodes(frm)
-			);			
+			);	
+			}
+		if (!frm.is_new() && frm.doc.docstatus==0) {		
 			frm.add_custom_button(
 				__('Save & Submit'),
 				() => frm.savesubmit()
@@ -304,6 +306,7 @@ frappe.ui.form.on('Drive Entry Item', {
 				row.has_datacable=values.has_datacable
 				row.has_psu=values.has_psu
 				row.has_box=values.has_box
+				frm.refresh_field('drive_items')
 				// frappe.model.set_value(cdt, cdn, 'has_datacable',values.has_datacable);
 			})			
 			frm.set_value('no_of_drives', frm.doc['drive_items'].filter(d => (d.media_id)).length)

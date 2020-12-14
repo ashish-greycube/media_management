@@ -5,7 +5,7 @@
  "field_order": [
   "link_doctype",
   "id",
-  "type",
+  "media_transfer_type",
   "date",
   "method",
   "column_break_5",
@@ -16,21 +16,12 @@
  ],
  "fields": [
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "id",
    "fieldtype": "Dynamic Link",
    "in_list_view": 1,
    "label": "ID",
    "options": "link_doctype",
-   "read_only": 1
-  },
-  {
-   "columns": 1,
-   "fieldname": "type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Type",
-   "options": "Media Sub Type",
    "read_only": 1
   },
   {
@@ -82,7 +73,6 @@
    "read_only": 1
   },
   {
-   "columns": 1,
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -95,10 +85,17 @@
    "fieldtype": "Link",
    "hidden": 1,
    "options": "DocType"
+  },
+  {
+   "columns": 1,
+   "fieldname": "media_transfer_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Type"
   }
  ],
  "istable": 1,
- "modified": "2020-12-10 05:11:58.235984",
+ "modified": "2020-12-14 05:20:09.724358",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Transfer History",
