@@ -1,6 +1,6 @@
 select media_return.name as "ID:Link/Media Return:120",
 'Return' as "Type:Data:60", 
-media_return.transfer_date as `Date`,
+media_return.transfer_date as `Date::100`,
 media_return.transfer_method as "Method:Link/Transfer Method:100",
 media_return.sender as "Sender:Link/Contact:180",
 media_return.recipient as "Recipient:Link/Contact:180",
@@ -20,7 +20,7 @@ group by media_return.name
 union
 select media_receipt.name as "ID:Link/Media Receipt:120",
 'Receipt' as "Type::60",
-media_receipt.transfer_date as `Date`,
+media_receipt.transfer_date as `Date::100`,
 media_receipt.transfer_method as "Method:Link/Transfer Method:100",
 media_receipt.sender as "Sender:Link/Contact:180",
 media_receipt.recipient as "Recipient:Link/Contact:180",
@@ -37,4 +37,4 @@ on media_receipt.name=tape_receipt.parent
 left outer join `tabDrive Entry Item` as drive_receipt
 on media_receipt.name=drive_receipt.parent
 group by media_receipt.name
-order by `Date` desc
+order by `Date::100` desc

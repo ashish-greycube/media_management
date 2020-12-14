@@ -43,12 +43,15 @@ frappe.ui.form.on('Media Return', {
 		frm.events.toggle_button(frm)
 	},
 	toggle_button: function (frm) {
-		console.log(frm.doc.customer , frm.doc.project,frm.doc.customer && frm.doc.project)
-		if (frm.doc.customer && frm.doc.project) {
-			$(".grid-add-row").removeClass('hidden')
-		} else {
-			$(".grid-add-row").addClass('hidden')
-		}
+		setTimeout(function (){
+			if (!frm.doc.customer || !frm.doc.project) {
+				$(".grid-add-row").addClass('hidden')
+		
+			} else {
+				$(".grid-add-row").removeClass('hidden')
+			}
+		} ,500)
+
 	},
 	project: function (frm) {
 		frm.events.toggle_button(frm)
