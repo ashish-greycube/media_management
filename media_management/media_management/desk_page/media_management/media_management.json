@@ -13,7 +13,7 @@
   {
    "hidden": 0,
    "label": "Settings",
-   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Media Type\",\n            \"label\": \"Media Types\",\n            \"description\": \"Media Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Sub Type\",\n            \"label\": \"Media Sub Type\",\n            \"description\": \"Media Sub Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Label Numbering\",\n            \"label\": \"Media Label Numbering\",\n            \"description\": \"Media Label Numbering\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Transfer Method\",\n            \"label\": \"Transfer Method\",\n            \"description\": \"Transfer Method\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Management Settings\",\n            \"label\": \"Media Management Settings\",\n            \"description\": \"Media Management Settings\"\n        }\n\n    ]"
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Media Type\",\n            \"label\": \"Media Types\",\n            \"description\": \"Media Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Sub Type\",\n            \"label\": \"Media Sub Type\",\n            \"description\": \"Media Sub Type\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Transfer Method\",\n            \"label\": \"Transfer Method\",\n            \"description\": \"Transfer Method\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Label Numbering\",\n            \"label\": \"Media Label Numbering\",\n            \"description\": \"Media Label Numbering\"\n        }\n    ]"
   },
   {
    "hidden": 0,
@@ -48,7 +48,7 @@
  "idx": 0,
  "is_standard": 1,
  "label": "Media Management",
- "modified": "2020-12-12 06:26:09.793242",
+ "modified": "2020-12-21 04:02:15.345145",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Management",
