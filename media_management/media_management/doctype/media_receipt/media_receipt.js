@@ -407,7 +407,10 @@ function create_all_media_function(frm) {
 		callback: function (r) {
 			console.log(r)
 			if (r.message) {
-				frm.events.check_and_add_blank_for_all_child_table(frm)
+				frm.save().then(() => {
+					frm.events.check_and_add_blank_for_all_child_table(frm)
+				});		
+				// frm.events.check_and_add_blank_for_all_child_table(frm)
 				// frm.dirty()
 				// frm.save()
 			}
