@@ -2,7 +2,7 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:drive_format",
- "creation": "2020-12-06 04:49:38.629539",
+ "creation": "2021-01-18 10:44:15.462256",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -14,15 +14,15 @@
    "fieldname": "drive_format",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Drive Format",
+   "label": "Drive Formatting",
    "reqd": 1,
    "unique": 1
   }
  ],
- "modified": "2020-12-06 04:49:38.629539",
+ "modified": "2021-01-18 10:44:15.462256",
  "modified_by": "Administrator",
  "module": "Media Management",
- "name": "Drive Format",
+ "name": "Drive Formatting",
  "owner": "Administrator",
  "permissions": [
   {

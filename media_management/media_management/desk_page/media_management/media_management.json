@@ -28,7 +28,7 @@
   {
    "hidden": 0,
    "label": "Drive",
-   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Drive Brand\",\n            \"label\": \"Drive Brand\",\n            \"description\": \"Drive Brand\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Capacity\",\n            \"label\": \"Drive Capacity\",\n            \"description\": \"Drive Capacity\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Format\",\n            \"label\": \"Drive Format\",\n            \"description\": \"Drive Format\"\n        }\n    ]"
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Drive Brand\",\n            \"label\": \"Drive Brand\",\n            \"description\": \"Drive Brand\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Capacity\",\n            \"label\": \"Drive Capacity\",\n            \"description\": \"Drive Capacity\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Drive Formatting\",\n            \"label\": \"Drive Formatting\",\n            \"description\": \"Drive Formatting\"\n        }\n    ]"
   },
   {
    "hidden": 0,

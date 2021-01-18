@@ -190,9 +190,9 @@ def get_data():
         },
         {
             "type": "doctype",
-            "name": "Drive Format",
-            "label": "Drive Format",
-            "description": "Drive Format"
+            "name": "Drive Formatting",
+            "label": "Drive Formatting",
+            "description": "Drive Formatting"
         }
     ]
 }, 

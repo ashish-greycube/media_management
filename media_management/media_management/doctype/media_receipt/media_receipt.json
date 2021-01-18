@@ -65,7 +65,7 @@
    "fieldname": "recipient",
    "fieldtype": "Link",
    "label": "Recipient",
-   "options": "Contact",
+   "options": "Employee",
    "reqd": 1
   },
   {
@@ -73,6 +73,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "columns": 1,
    "fieldname": "customer",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -86,9 +87,9 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fieldname": "project",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Project",
    "options": "Project",
@@ -100,6 +101,7 @@
    "label": "Quantities"
   },
   {
+   "columns": 1,
    "default": "0",
    "fieldname": "no_of_films",
    "fieldtype": "Int",
@@ -112,6 +114,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "default": "0",
    "fieldname": "no_of_tapes",
    "fieldtype": "Int",
@@ -189,6 +192,7 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "default": "0",
    "fieldname": "no_of_drives",
    "fieldtype": "Int",
@@ -218,7 +222,7 @@
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2020-12-14 05:11:19.509467",
+ "modified": "2021-01-18 10:34:42.228291",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Receipt",
