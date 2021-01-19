@@ -148,9 +148,9 @@ def get_data():
         },
         {
             "type": "doctype",
-            "name": "Film Era",
-            "label": "Film Era",
-            "description": "Film Era"
+            "name": "Film Year",
+            "label": "Film Year",
+            "description": "Film Year"
         }
     ]
 }, 

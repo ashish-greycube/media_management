@@ -18,7 +18,7 @@
   {
    "hidden": 0,
    "label": "Film",
-   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Film Element\",\n            \"label\": \"Film Element\",\n            \"description\": \"Film Element\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Colour\",\n            \"label\": \"Film Colour\",\n            \"description\": \"Film Colour\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Sound\",\n            \"label\": \"Film Sound\",\n            \"description\": \"Film Sound\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Era\",\n            \"label\": \"Film Era\",\n            \"description\": \"Film Era\"\n        }\n    ]"
+   "links": "[{\n            \"type\": \"doctype\",\n            \"name\": \"Film Element\",\n            \"label\": \"Film Element\",\n            \"description\": \"Film Element\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Colour\",\n            \"label\": \"Film Colour\",\n            \"description\": \"Film Colour\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Sound\",\n            \"label\": \"Film Sound\",\n            \"description\": \"Film Sound\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Film Year\",\n            \"label\": \"Film Year\",\n            \"description\": \"Film Year\"\n        }\n    ]"
   },
   {
    "hidden": 0,

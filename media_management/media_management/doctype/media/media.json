@@ -112,8 +112,8 @@
   {
    "fieldname": "film_era",
    "fieldtype": "Link",
-   "label": "Film Era",
-   "options": "Film Era"
+   "label": "Film Year",
+   "options": "Film Year"
   },
   {
    "fieldname": "fs_cb_1",
@@ -279,7 +279,7 @@
   }
  ],
  "hide_toolbar": 1,
- "modified": "2020-12-10 06:03:03.212279",
+ "modified": "2021-01-19 11:51:48.770159",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",
@@ -324,6 +324,7 @@
  "search_fields": "media_type,film_title,media_owner",
  "sort_field": "modified",
  "sort_order": "DESC",
+ "title_field": "media_type",
  "track_changes": 1,
  "track_views": 1
 }

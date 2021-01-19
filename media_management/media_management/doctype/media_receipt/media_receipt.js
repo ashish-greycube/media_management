@@ -104,6 +104,7 @@ frappe.ui.form.on('Media Receipt', {
 	// })}
 	},
 	refresh: function (frm) {
+		frm.fields_dict["create_all_media"].$wrapper.css('padding-top',"22px")		
 		debugger;
 		if (frm.get_docfield('no_of_films').read_only==1 ||frm.get_docfield('no_of_tapes').read_only==1 ||frm.get_docfield('no_of_drives').read_only==1  ) {
 			frm.set_df_property('create_all_media', 'hidden', 1)
