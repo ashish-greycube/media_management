@@ -76,7 +76,7 @@ def get_data():
             "name": "Media",
             "label": "Media List",
             "description": "Media",
-            "route": "#List/Media/List"
+            "route": '#List/Media/List?media_type=None'
         },
         {
             "type": "doctype",
