@@ -17,6 +17,8 @@ frappe.ui.form.on('Media Return', {
 		}
 	},
 	refresh:function(frm){
+		$(".grid-add-row").addClass('hidden')
+		frm.fields_dict["fetch_all"].$wrapper.css('padding-top',"16px")
 		if (frm.doc.docstatus==1) {
 			frm.set_df_property('employee', 'hidden', 1)
 		}		
@@ -34,16 +36,17 @@ frappe.ui.form.on('Media Return', {
 	},
 	customer:function(frm){
 		erpnext.utils.get_party_details(frm);
-		frm.events.toggle_button(frm)
+		// frm.events.toggle_button(frm)
 	},
 	customer_address: function(frm) {
 		erpnext.utils.get_address_display(cur_frm, 'customer_address', 'address_display');
 	},	
 	
 	onload_post_render: function (frm) {
-		$(".grid-add-row").html('Add All')
+		// $(".grid-add-row").html('Add All')
 		$(".grid-remove-rows").html('Remove')
-		frm.events.toggle_button(frm)
+
+		// frm.events.toggle_button(frm)
 	},
 	toggle_button: function (frm) {
 		setTimeout(function (){
@@ -57,10 +60,78 @@ frappe.ui.form.on('Media Return', {
 
 	},
 	project: function (frm) {
-		frm.events.toggle_button(frm)
+		// frm.events.toggle_button(frm)
 	},
 	contact_person: function(frm) {
 		erpnext.utils.get_contact_details(frm);
+	},
+	fetch_all: function(frm) {
+		if (frm.doc.all_films == 1 && frm.doc.customer && frm.doc.project) {
+			frappe.call({
+				method: "get_film_media",
+				doc: frm.doc,
+				callback: function (r) {
+					console.log(r)
+	
+					if (r.message!="None") {
+						frm.set_value("film_items", r.message);
+						refresh_field("film_items");
+						$(".grid-add-row").addClass('hidden')
+					}else{
+						frappe.show_alert({
+							message:__('No film media found for mentioned customer & project.'),
+							indicator:'red'
+						}, 5);
+						frm.set_value("film_items", '');
+						refresh_field("film_items");	
+						$(".grid-add-row").addClass('hidden')				
+					}
+				}
+			});			
+		} 
+		if (frm.doc.all_tapes == 1 && frm.doc.customer && frm.doc.project) {
+			frappe.call({
+				method: "get_tape_media",
+				doc: frm.doc,
+				callback: function (r) {
+					if (r.message!="None") {
+						frm.set_value("tape_items", r.message);
+						refresh_field("tape_items");
+						$(".grid-add-row").addClass('hidden')
+					}else{
+						frappe.show_alert({
+							message:__('No tape media found for mentioned customer & project.'),
+							indicator:'red'
+						}, 5);
+						frm.set_value("tape_items", '');
+						refresh_field("tape_items");
+						$(".grid-add-row").addClass('hidden')					
+					}					
+				}
+			});			
+		}
+		if (frm.doc.all_drives == 1 && frm.doc.customer && frm.doc.project) {
+			frappe.call({
+				method: "get_drive_media",
+				doc: frm.doc,
+				callback: function (r) {
+					if (r.message!="None") {
+						frm.set_value("drive_items", r.message);
+						refresh_field("drive_items");
+						$(".grid-add-row").addClass('hidden')
+					}else{
+						frappe.show_alert({
+							message:__('No drive media found for mentioned customer & project.'),
+							indicator:'red'
+						}, 5);
+						frm.set_value("drive_items", '');
+						refresh_field("drive_items");
+						$(".grid-add-row").addClass('hidden')	
+					}				
+				}
+			});		
+		}
+	
 	}
 });
 

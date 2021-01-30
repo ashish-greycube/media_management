@@ -17,6 +17,14 @@
   "customer",
   "column_break_8",
   "project",
+  "fecth_section",
+  "all_films",
+  "column_break_15",
+  "all_tapes",
+  "column_break_17",
+  "all_drives",
+  "column_break_19",
+  "fetch_all",
   "films_sb",
   "film_items",
   "tapes_sb",
@@ -234,11 +242,51 @@
    "fieldname": "employee_name",
    "fieldtype": "Data",
    "hidden": 1
+  },
+  {
+   "fieldname": "fecth_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "all_films",
+   "fieldtype": "Check",
+   "label": "Films"
+  },
+  {
+   "default": "0",
+   "fieldname": "all_tapes",
+   "fieldtype": "Check",
+   "label": "Tapes"
+  },
+  {
+   "default": "0",
+   "fieldname": "all_drives",
+   "fieldtype": "Check",
+   "label": "Drives"
+  },
+  {
+   "depends_on": "eval:(doc.customer && doc.project && (doc.all_films || doc.all_tapes || doc.all_drives))",
+   "fieldname": "fetch_all",
+   "fieldtype": "Button",
+   "label": "Fetch Media"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_19",
+   "fieldtype": "Column Break"
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2021-01-30 10:36:18.993375",
+ "modified": "2021-01-30 13:48:25.846338",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Return",
