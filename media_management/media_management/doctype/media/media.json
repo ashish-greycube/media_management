@@ -254,7 +254,7 @@
   {
    "fieldname": "drive_format",
    "fieldtype": "Link",
-   "label": "Drive Formatting",
+   "label": "Drive Format",
    "options": "Drive Format"
   },
   {
@@ -279,7 +279,7 @@
   }
  ],
  "hide_toolbar": 1,
- "modified": "2021-01-30 10:49:23.714793",
+ "modified": "2021-01-30 10:59:19.451469",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",
