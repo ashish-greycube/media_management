@@ -133,11 +133,6 @@
    "options": "Film Element"
   },
   {
-   "fieldname": "film_approximate_length_feet",
-   "fieldtype": "Int",
-   "label": "Film Length (approx ft)"
-  },
-  {
    "default": "0",
    "fieldname": "is_checkerboard",
    "fieldtype": "Check",
@@ -259,7 +254,7 @@
   {
    "fieldname": "drive_format",
    "fieldtype": "Link",
-   "label": "Drive Format",
+   "label": "Drive Formatting",
    "options": "Drive Format"
   },
   {
@@ -276,10 +271,15 @@
    "fieldname": "transfer_history",
    "fieldtype": "Table",
    "options": "Transfer History"
+  },
+  {
+   "fieldname": "film_approximate_length_feet",
+   "fieldtype": "Data",
+   "label": "Film Length (approx ft)"
   }
  ],
  "hide_toolbar": 1,
- "modified": "2021-01-19 11:51:48.770159",
+ "modified": "2021-01-30 10:49:23.714793",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",

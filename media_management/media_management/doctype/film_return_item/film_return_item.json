@@ -9,8 +9,8 @@
   "media_owner",
   "column_break_4",
   "film_type",
-  "film_title",
   "film_element",
+  "film_title",
   "section_break_8",
   "film_sound",
   "film_colour",
@@ -59,7 +59,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "columns": 1,
+   "columns": 2,
    "fetch_from": "media_id.media_sub_type",
    "fetch_if_empty": 1,
    "fieldname": "film_type",
@@ -70,7 +70,7 @@
    "read_only": 1
   },
   {
-   "columns": 2,
+   "columns": 3,
    "fetch_from": "media_id.film_title",
    "fetch_if_empty": 1,
    "fieldname": "film_title",
@@ -140,15 +140,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "media_id.film_approximate_length_feet",
-   "fetch_if_empty": 1,
-   "fieldname": "film_approximate_length_feet",
-   "fieldtype": "Int",
-   "label": "Length (approx ft)",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "section_break_15",
    "fieldtype": "Section Break"
   },
@@ -160,10 +151,19 @@
    "label": "Content",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "media_id.film_approximate_length_feet",
+   "fetch_if_empty": 1,
+   "fieldname": "film_approximate_length_feet",
+   "fieldtype": "Data",
+   "label": "Length (approx ft)",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2021-01-19 11:52:05.959438",
+ "modified": "2021-01-30 10:15:31.907322",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Return Item",

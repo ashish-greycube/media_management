@@ -9,14 +9,13 @@
   "media_owner",
   "dd_cb_1",
   "drive_type",
+  "drive_brand",
   "has_datacable",
   "has_psu",
   "has_box",
   "section_break_11",
   "drive_capacity",
-  "drive_format",
-  "column_break_12",
-  "drive_brand"
+  "drive_format"
  ],
  "fields": [
   {
@@ -119,14 +118,10 @@
    "fetch_if_empty": 1,
    "fieldname": "drive_format",
    "fieldtype": "Link",
-   "label": "Format",
+   "label": "Formatting",
    "options": "Drive Formatting",
    "print_hide": 1,
    "read_only": 1
-  },
-  {
-   "fieldname": "column_break_12",
-   "fieldtype": "Column Break"
   },
   {
    "columns": 1,
@@ -134,13 +129,14 @@
    "fetch_if_empty": 1,
    "fieldname": "drive_brand",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Brand",
    "options": "Drive Brand",
    "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2021-01-18 10:47:52.499790",
+ "modified": "2021-01-30 10:48:49.264886",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Drive Return Item",

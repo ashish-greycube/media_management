@@ -198,10 +198,11 @@ def get_data():
 }, 
 {
     "label": _("Reports"),
-    "items": [{
+    "items": [
+        {
             "type": "report",
-            "name": "Current Media",
-            "label": "Current Media",
+            "name": "Project Media",
+            "label": "Project Media",
             "is_query_report": "True",
             "doctype": "Media"
         },

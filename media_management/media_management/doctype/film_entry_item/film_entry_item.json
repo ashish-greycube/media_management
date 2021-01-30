@@ -9,8 +9,8 @@
   "media_owner",
   "column_break_4",
   "film_type",
-  "film_title",
   "film_element",
+  "film_title",
   "section_break_8",
   "film_sound",
   "film_colour",
@@ -51,7 +51,7 @@
    "options": "Contact"
   },
   {
-   "columns": 1,
+   "columns": 2,
    "fetch_from": "media_id.media_sub_type",
    "fetch_if_empty": 1,
    "fieldname": "film_type",
@@ -71,7 +71,7 @@
    "options": "Film Element"
   },
   {
-   "columns": 2,
+   "columns": 3,
    "fetch_from": "media_id.film_title",
    "fetch_if_empty": 1,
    "fieldname": "film_title",
@@ -124,13 +124,6 @@
    "options": "Film Year"
   },
   {
-   "fetch_from": "media_id.film_approximate_length_feet",
-   "fetch_if_empty": 1,
-   "fieldname": "film_approximate_length_feet",
-   "fieldtype": "Int",
-   "label": "Length (approx ft)"
-  },
-  {
    "fieldname": "section_break_15",
    "fieldtype": "Section Break"
   },
@@ -140,10 +133,17 @@
    "fieldname": "film_content_description",
    "fieldtype": "Small Text",
    "label": "Content"
+  },
+  {
+   "fetch_from": "media_id.film_approximate_length_feet",
+   "fetch_if_empty": 1,
+   "fieldname": "film_approximate_length_feet",
+   "fieldtype": "Data",
+   "label": "Length (approx ft)"
   }
  ],
  "istable": 1,
- "modified": "2021-01-19 11:52:18.885832",
+ "modified": "2021-01-30 10:07:26.941505",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Entry Item",
