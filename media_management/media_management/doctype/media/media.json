@@ -43,7 +43,8 @@
   "transfer_history",
   "internal_detail_section",
   "naming_series",
-  "media_abbreviation"
+  "media_abbreviation",
+  "title"
  ],
  "fields": [
   {
@@ -122,7 +123,6 @@
   {
    "fieldname": "film_title",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Title"
   },
@@ -157,7 +157,6 @@
   {
    "fieldname": "tape_title",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Title"
   },
@@ -276,10 +275,17 @@
    "fieldname": "film_approximate_length_feet",
    "fieldtype": "Data",
    "label": "Film Length (approx ft)"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title",
+   "print_hide": 1
   }
  ],
  "hide_toolbar": 1,
- "modified": "2021-01-30 10:59:19.451469",
+ "modified": "2021-02-08 05:57:27.300454",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",
@@ -324,7 +330,7 @@
  "search_fields": "media_type,film_title,media_owner",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "media_type",
+ "title_field": "title",
  "track_changes": 1,
  "track_views": 1
 }

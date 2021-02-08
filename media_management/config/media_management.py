@@ -75,26 +75,7 @@ def get_data():
             "type": "doctype",
             "name": "Media",
             "label": "Media List",
-            "description": "Media",
-            "route": '#List/Media/List?media_type=None'
-        },
-        {
-            "type": "doctype",
-            "name": "Media",
-            "label": "Film List",
-            "route": "#List/Media/List?media_type=Film"
-        },
-        {
-            "type": "doctype",
-            "name": "Media",
-            "label": "Tape List",
-            "route": "#List/Media/List?media_type=Tape"
-        },
-        {
-            "type": "doctype",
-            "name": "Media",
-            "label": "Drive List",
-            "route": "#List/Media/List?media_type=Drive"
+            "description": "Media"
         }
     ]
 }, 
