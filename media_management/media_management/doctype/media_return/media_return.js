@@ -19,9 +19,6 @@ frappe.ui.form.on('Media Return', {
 	refresh:function(frm){
 		$(".grid-add-row").addClass('hidden')
 		frm.fields_dict["fetch_all"].$wrapper.css('padding-top',"16px")
-		if (frm.doc.docstatus==1) {
-			frm.set_df_property('employee', 'hidden', 1)
-		}		
 		frappe.dynamic_link = {doc:cur_frm.doc, fieldname: 'customer', doctype: 'Customer'}
 		if (!frm.is_new()) {
 			frm.add_custom_button(__("Print Delivery Note"), function() {

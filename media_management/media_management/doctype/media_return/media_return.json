@@ -12,8 +12,6 @@
   "column_break_5",
   "sender",
   "recipient",
-  "employee",
-  "employee_name",
   "customer_project_section",
   "customer",
   "column_break_8",
@@ -232,19 +230,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "recipient.name",
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "options": "Employee",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "recipient.employee_name",
-   "fieldname": "employee_name",
-   "fieldtype": "Data",
-   "hidden": 1
-  },
-  {
    "fieldname": "fecth_section",
    "fieldtype": "Section Break"
   },
@@ -287,7 +272,7 @@
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2021-02-01 05:08:00.196456",
+ "modified": "2021-02-08 12:48:03.645596",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Return",
