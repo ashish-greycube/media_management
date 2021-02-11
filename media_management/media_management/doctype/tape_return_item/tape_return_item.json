@@ -62,7 +62,7 @@
    "fieldname": "tape_type",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Type",
+   "label": "Sub Type",
    "options": "Media Sub Type",
    "read_only": 1
   },
@@ -131,7 +131,7 @@
   }
  ],
  "istable": 1,
- "modified": "2021-01-29 06:55:23.752444",
+ "modified": "2021-02-11 13:44:44.451268",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Tape Return Item",

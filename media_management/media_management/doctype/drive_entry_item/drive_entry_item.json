@@ -48,7 +48,7 @@
    "fieldname": "has_datacable",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "Cable"
+   "label": "Data Cable"
   },
   {
    "columns": 1,
@@ -99,7 +99,7 @@
    "fieldname": "drive_type",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Type",
+   "label": "Sub Type",
    "options": "Media Sub Type"
   },
   {
@@ -123,7 +123,7 @@
   }
  ],
  "istable": 1,
- "modified": "2021-01-30 10:49:00.270474",
+ "modified": "2021-02-11 13:43:40.430782",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Drive Entry Item",

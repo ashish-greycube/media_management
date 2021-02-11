@@ -9,8 +9,8 @@
   "media_owner",
   "column_break_4",
   "film_type",
-  "film_title",
   "film_element",
+  "film_title",
   "section_break_8",
   "film_sound",
   "film_colour",
@@ -51,13 +51,13 @@
    "options": "Contact"
   },
   {
-   "columns": 1,
+   "columns": 2,
    "fetch_from": "media_id.media_sub_type",
    "fetch_if_empty": 1,
    "fieldname": "film_type",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Type",
+   "label": "Sub Type",
    "options": "Media Sub Type"
   },
   {
@@ -71,7 +71,7 @@
    "options": "Film Element"
   },
   {
-   "columns": 2,
+   "columns": 3,
    "fetch_from": "media_id.film_title",
    "fetch_if_empty": 1,
    "fieldname": "film_title",
@@ -143,7 +143,7 @@
   }
  ],
  "istable": 1,
- "modified": "2021-01-30 10:59:39.818482",
+ "modified": "2021-02-11 13:49:58.173278",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Entry Item",
