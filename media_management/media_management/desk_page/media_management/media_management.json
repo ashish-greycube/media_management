@@ -8,7 +8,7 @@
   {
    "hidden": 0,
    "label": "Media",
-   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Media\",\n            \"label\": \"Media Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Films\",\n            \"label\": \"Films Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Tapes\",\n            \"label\": \"Tapes Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Drives\",\n            \"label\": \"Drives Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Media List\",\n            \"description\": \"Media\",\n            \"route\": \"#List/Media/List\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Film List\",\n            \"route\": \"#List/Media/List?media_type=Film\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Tape List\",\n            \"route\": \"#List/Media/List?media_type=Tape\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Drive List\",\n            \"route\": \"#List/Media/List?media_type=Drive\"\n        }\n    ]"
+   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Media\",\n            \"label\": \"Media Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Films\",\n            \"label\": \"Films Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Tapes\",\n            \"label\": \"Tapes Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Drives\",\n            \"label\": \"Drives Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media\",\n            \"label\": \"Media List\",\n            \"description\": \"Media\",\n            \"route\": \"#List/Media/List\"\n        }\n    ]"
   },
   {
    "hidden": 0,
@@ -33,7 +33,7 @@
   {
    "hidden": 0,
    "label": "Reports",
-   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Current Media\",\n            \"label\": \"Current Media\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Lookup Media\",\n            \"label\": \"Lookup Media\",\n            \"description\": \"Lookup Media\"\n        }\n    ]"
+   "links": "[        \n    {\n            \"type\": \"report\",\n            \"name\": \"Project Media\",\n            \"label\": \"Project Media\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Lookup Media\",\n            \"label\": \"Lookup Media\",\n            \"description\": \"Lookup Media\"\n        }\n]"
   }
  ],
  "category": "Modules",
@@ -48,7 +48,7 @@
  "idx": 0,
  "is_standard": 1,
  "label": "Media Management",
- "modified": "2020-12-21 04:02:15.345145",
+ "modified": "2021-02-12 10:46:00.464735",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Management",
