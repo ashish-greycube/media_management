@@ -7,7 +7,6 @@ tape_title as `Title`,
 tape_standard as `Tape Standard`,
 tape_manufacturer as `Tape Manufacturer`,
 tape_run_time_mins as `Tape Runtime`,
-content_description as Content,
 notes as 'Notes::100'
 from `tabMedia`
 where media_type='Tape'

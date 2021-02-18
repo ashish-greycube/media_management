@@ -17,11 +17,11 @@
   "column_break_8",
   "project",
   "fecth_section",
-  "all_films",
+  "no_of_films",
   "column_break_15",
-  "all_tapes",
+  "no_of_tapes",
   "column_break_17",
-  "all_drives",
+  "no_of_drives",
   "column_break_19",
   "fetch_all",
   "films_sb",
@@ -234,25 +234,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "default": "0",
-   "fieldname": "all_films",
-   "fieldtype": "Check",
-   "label": "Films"
-  },
-  {
-   "default": "0",
-   "fieldname": "all_tapes",
-   "fieldtype": "Check",
-   "label": "Tapes"
-  },
-  {
-   "default": "0",
-   "fieldname": "all_drives",
-   "fieldtype": "Check",
-   "label": "Drives"
-  },
-  {
-   "depends_on": "eval:(doc.customer && doc.project && (doc.all_films || doc.all_tapes || doc.all_drives))",
+   "depends_on": "eval:(doc.customer && doc.project && (doc.no_of_films || doc.no_of_tapes || doc.no_of_drives))",
    "fieldname": "fetch_all",
    "fieldtype": "Button",
    "label": "Fetch Media"
@@ -268,11 +250,29 @@
   {
    "fieldname": "column_break_19",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_films",
+   "fieldtype": "Check",
+   "label": "Films"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_tapes",
+   "fieldtype": "Check",
+   "label": "Tapes"
+  },
+  {
+   "default": "0",
+   "fieldname": "no_of_drives",
+   "fieldtype": "Check",
+   "label": "Drives"
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2021-02-08 12:48:03.645596",
+ "modified": "2021-02-18 04:41:10.123935",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Return",

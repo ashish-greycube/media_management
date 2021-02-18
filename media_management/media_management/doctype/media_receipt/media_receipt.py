@@ -21,9 +21,8 @@ class MediaReceipt(Document):
 				"film_sound":item.film_sound,
 				"film_colour":item.film_colour,
 				"is_checkerboard":item.is_checkerboard,
-				"film_era":item.film_era,
-				"film_approximate_length_feet":item.film_approximate_length_feet,
-				"content_description":item.film_content_description
+				"film_year":item.film_year,
+				"film_length":item.film_length
 			})
 			doc.save(ignore_permissions = True)	
 
@@ -36,8 +35,7 @@ class MediaReceipt(Document):
 				"tape_title":item.tape_title,
 				"tape_standard":item.tape_standard,
 				"tape_manufacturer":item.tape_manufacturer,
-				"tape_run_time_mins":item.tape_run_time_mins,
-				"content_description":item.tape_content_description
+				"tape_run_time_mins":item.tape_run_time_mins
 			})
 			doc.save(ignore_permissions = True)	
 		

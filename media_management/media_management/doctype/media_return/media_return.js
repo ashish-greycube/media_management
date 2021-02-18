@@ -63,7 +63,7 @@ frappe.ui.form.on('Media Return', {
 		erpnext.utils.get_contact_details(frm);
 	},
 	fetch_all: function(frm) {
-		if (frm.doc.all_films == 1 && frm.doc.customer && frm.doc.project) {
+		if (frm.doc.no_of_films == 1 && frm.doc.customer && frm.doc.project) {
 			frappe.call({
 				method: "get_film_media",
 				doc: frm.doc,
@@ -86,7 +86,7 @@ frappe.ui.form.on('Media Return', {
 				}
 			});			
 		} 
-		if (frm.doc.all_tapes == 1 && frm.doc.customer && frm.doc.project) {
+		if (frm.doc.no_of_tapes == 1 && frm.doc.customer && frm.doc.project) {
 			frappe.call({
 				method: "get_tape_media",
 				doc: frm.doc,
@@ -107,7 +107,7 @@ frappe.ui.form.on('Media Return', {
 				}
 			});			
 		}
-		if (frm.doc.all_drives == 1 && frm.doc.customer && frm.doc.project) {
+		if (frm.doc.no_of_drives == 1 && frm.doc.customer && frm.doc.project) {
 			frappe.call({
 				method: "get_drive_media",
 				doc: frm.doc,

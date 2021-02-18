@@ -7,8 +7,8 @@ COALESCE(NULLIF(film_title,''), tape_title) as `Title`,
 film_element as `Film Element::100`,
 film_sound as `Film Sound::100`,
 film_colour as `Film Colour::100`,
-film_era as `Film Year::80`,
-film_approximate_length_feet as `Film Length::100`,
+film_year as `Film Year::80`,
+film_length as `Film Length::100`,
 is_checkerboard as `Is Checkerboard:Check:130`,
 tape_standard as `Tape Standard::120`,
 tape_manufacturer as `Tape Manufacturer::130`,
@@ -19,7 +19,6 @@ drive_format as `Drive Formatting::100`,
 has_datacable as `Cable:Check:60`,
 has_psu as `PSU:Check:60`,
 has_box as `Box:Check:60`,
-content_description as 'Content::100',
 notes as 'Notes::100'
 from `tabMedia`
 order by modified desc

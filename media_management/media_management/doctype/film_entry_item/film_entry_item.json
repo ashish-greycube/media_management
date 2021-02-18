@@ -16,10 +16,8 @@
   "film_colour",
   "is_checkerboard",
   "column_break_12",
-  "film_era",
-  "film_approximate_length_feet",
-  "section_break_15",
-  "film_content_description"
+  "film_year",
+  "film_length"
  ],
  "fields": [
   {
@@ -116,34 +114,23 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "media_id.film_era",
+   "fetch_from": "media_id.film_length",
    "fetch_if_empty": 1,
-   "fieldname": "film_era",
+   "fieldname": "film_length",
+   "fieldtype": "Data",
+   "label": "Length (approx ft)"
+  },
+  {
+   "fetch_from": "media_id.film_year",
+   "fetch_if_empty": 1,
+   "fieldname": "film_year",
    "fieldtype": "Link",
    "label": "Year",
    "options": "Film Year"
-  },
-  {
-   "fieldname": "section_break_15",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fetch_from": "media_id.content_description",
-   "fetch_if_empty": 1,
-   "fieldname": "film_content_description",
-   "fieldtype": "Small Text",
-   "label": "Content"
-  },
-  {
-   "fetch_from": "media_id.film_approximate_length_feet",
-   "fetch_if_empty": 1,
-   "fieldname": "film_approximate_length_feet",
-   "fieldtype": "Data",
-   "label": "Length (approx ft)"
   }
  ],
  "istable": 1,
- "modified": "2021-02-11 13:49:58.173278",
+ "modified": "2021-02-18 05:24:24.417264",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Entry Item",

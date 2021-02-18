@@ -11,8 +11,7 @@ class MediaReturn(Document):
 	def get_film_media(self):
 		film_list=frappe.db.sql("""select 
 media.name as media_id,media.external_id,media.media_owner,media.media_sub_type as film_type,media.film_title,
-media.film_element,media.film_sound,media.film_colour,media.is_checkerboard,
-media.film_era,media.content_description as film_content_description
+media.film_element,media.film_sound,media.film_colour,media.is_checkerboard
 from
 (select count(film.media_id) as ct, film.media_id
 from `tabFilm Entry Item` film
@@ -41,8 +40,7 @@ where received.ct-coalesce(returned.ct,0) > 0""".format(customer=self.customer,p
 		tape_list=frappe.db.sql("""select 
 media.name as media_id,media.external_id,media.media_owner,
 media.media_sub_type as tape_type,media.tape_title,media.tape_standard,
-media.tape_manufacturer,media.tape_run_time_mins,
-media.content_description as tape_content_description
+media.tape_manufacturer,media.tape_run_time_mins
 from
 (select count(tape.media_id) as ct, tape.media_id
 from `tabTape Entry Item` tape

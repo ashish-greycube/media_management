@@ -14,9 +14,7 @@
   "section_break_7",
   "tape_standard",
   "column_break_10",
-  "tape_run_time_mins",
-  "content_section",
-  "tape_content_description"
+  "tape_run_time_mins"
  ],
  "fields": [
   {
@@ -24,7 +22,7 @@
    "fieldname": "media_id",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Asset ID",
+   "label": "Media ID",
    "options": "Media",
    "read_only": 1,
    "reqd": 1
@@ -115,23 +113,10 @@
    "options": "Tape Runtime",
    "print_hide": 1,
    "read_only": 1
-  },
-  {
-   "fieldname": "content_section",
-   "fieldtype": "Section Break",
-   "label": "Content"
-  },
-  {
-   "fetch_from": "media_id.content_description",
-   "fetch_if_empty": 1,
-   "fieldname": "tape_content_description",
-   "fieldtype": "Small Text",
-   "print_hide": 1,
-   "read_only": 1
   }
  ],
  "istable": 1,
- "modified": "2021-02-11 13:44:44.451268",
+ "modified": "2021-02-18 05:43:17.766313",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Tape Return Item",

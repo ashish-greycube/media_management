@@ -14,12 +14,12 @@
    "fieldname": "era",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Era",
+   "label": "Year",
    "reqd": 1,
    "unique": 1
   }
  ],
- "modified": "2021-01-19 11:47:35.489022",
+ "modified": "2021-02-18 05:29:49.505292",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Year",
