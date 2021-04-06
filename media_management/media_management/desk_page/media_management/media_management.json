@@ -3,7 +3,7 @@
   {
    "hidden": 0,
    "label": "Transfers",
-   "links": "[{\n            \"type\": \"report\",\n            \"name\": \"Media Transfers\",\n            \"label\": \"Media Transfers\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"label\": \"New Media Receipt\",\n            \"name\": \"Media Receipt\",\n            \"route\": \"#Form/Media Receipt/New Media Receipt 1\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"label\": \"New Media Return\",\n            \"name\": \"Media Return\",\n            \"route\": \"#Form/Media Return/New Media Return 1\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Receipt\",\n            \"label\": \"Media Receipt List\",\n            \"description\": \"Media Receipt\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Return\",\n            \"label\": \"Media Return List\",\n            \"description\": \"Media Return\"\n        }\n    ]"
+   "links": "[\n\n        {\n            \"type\": \"doctype\",\n            \"label\": \"New Media Transfer\",\n            \"name\": \"Media Transfer\",\n            \"route\": \"#Form/Media Transfer/New Media Transfer 1\"\n        },\n        {\n            \"type\": \"doctype\",\n             \"name\": \"Media Transfer\",\n            \"label\": \"Media Receipt List\",\n            \"description\": \"Media Receipt\",\n            \"route\": \"#List/Media Transfer/List?media_transfer_type=Receipt\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Media Transfer\",\n            \"label\": \"Media Return List\",\n            \"description\": \"Media Return\",\n            \"route\": \"#List/Media Transfer/List?media_transfer_type=Return\"\n        }\n    ]"
   },
   {
    "hidden": 0,
@@ -33,7 +33,7 @@
   {
    "hidden": 0,
    "label": "Reports",
-   "links": "[        \n    {\n            \"type\": \"report\",\n            \"name\": \"Project Media\",\n            \"label\": \"Project Media\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Lookup Media\",\n            \"label\": \"Lookup Media\",\n            \"description\": \"Lookup Media\"\n        }\n]"
+   "links": "[\n        {\n            \"type\": \"report\",\n            \"name\": \"Project Media\",\n            \"label\": \"Project Media\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        },\n        {\n            \"type\": \"doctype\",\n            \"name\": \"Lookup Media\",\n            \"label\": \"Lookup Media\",\n            \"description\": \"Lookup Media\"\n        },\n        {\n            \"type\": \"report\",\n            \"name\": \"Media Transfers\",\n            \"label\": \"Old Media Transfers Report\",\n            \"is_query_report\": \"True\",\n            \"doctype\": \"Media\"\n        }        \n    ]"
   }
  ],
  "category": "Modules",
@@ -48,7 +48,7 @@
  "idx": 0,
  "is_standard": 1,
  "label": "Media Management",
- "modified": "2021-02-12 10:46:00.464735",
+ "modified": "2021-04-06 08:01:11.315691",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Management",

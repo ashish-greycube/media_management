@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "media_transfer_type",
+  "title",
   "receipt_return_details_section",
   "transfer_date",
   "transfer_method",
@@ -37,12 +38,19 @@
   "film_items",
   "tapes_sb",
   "tape_items",
-  "dd_sb",
+  "drives_sb",
   "drive_items",
   "notes_section",
   "notes",
   "naming_series",
-  "amended_from"
+  "amended_from",
+  "company",
+  "contact_person",
+  "contact_display",
+  "contact_mobile",
+  "column_break_42",
+  "customer_address",
+  "address_display"
  ],
  "fields": [
   {
@@ -79,8 +87,10 @@
    "reqd": 1
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
    "fieldname": "customer_project_section",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Project Details"
   },
   {
    "columns": 1,
@@ -100,6 +110,7 @@
    "columns": 1,
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Project",
    "options": "Project",
@@ -110,7 +121,6 @@
    "default": "0",
    "fieldname": "no_of_films",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Films",
    "reqd": 1
   },
@@ -123,7 +133,6 @@
    "default": "0",
    "fieldname": "no_of_tapes",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Tapes",
    "reqd": 1
   },
@@ -136,7 +145,6 @@
    "default": "0",
    "fieldname": "no_of_drives",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Drives",
    "reqd": 1
   },
@@ -151,6 +159,7 @@
    "label": "Create"
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
    "fieldname": "films_sb",
    "fieldtype": "Section Break"
   },
@@ -161,6 +170,7 @@
    "options": "Film Entry Item"
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
    "fieldname": "tapes_sb",
    "fieldtype": "Section Break"
   },
@@ -171,10 +181,6 @@
    "options": "Tape Entry Item"
   },
   {
-   "fieldname": "dd_sb",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "drive_items",
    "fieldtype": "Table",
    "label": "Drives",
@@ -182,6 +188,7 @@
   },
   {
    "collapsible": 1,
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
    "fieldname": "notes_section",
    "fieldtype": "Section Break",
    "label": "Notes"
@@ -191,21 +198,20 @@
    "fieldtype": "Small Text"
   },
   {
-   "default": "RC-.YY.-.MM.-.#",
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "Media Entry",
+   "label": "Media Receipt",
    "options": "RC-.YY.-.MM.-.#\nRT-.YY.-.MM.-.#",
    "read_only": 1,
    "reqd": 1
   },
   {
-   "default": "Receipt",
    "fieldname": "media_transfer_type",
    "fieldtype": "Select",
    "label": "Transfer Type",
-   "options": "Receipt\nReturn",
-   "reqd": 1
+   "options": "\nReceipt\nReturn",
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "amended_from",
@@ -217,16 +223,19 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
    "fieldname": "receipt_return_details_section",
    "fieldtype": "Section Break",
    "label": "Receipt Details"
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt'",
    "fieldname": "create_media_section",
    "fieldtype": "Section Break",
    "label": "Create Media"
   },
   {
+   "depends_on": "eval:doc.media_transfer_type==='Return'",
    "fieldname": "fetch_media_section",
    "fieldtype": "Section Break",
    "label": "Fetch Media"
@@ -262,15 +271,74 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:(doc.customer && doc.project && (doc.no_of_films || doc.no_of_tapes || doc.no_of_drives))",
+   "depends_on": "eval:(doc.media_transfer_type === 'Return' && doc.customer && doc.project && (doc.fetch_films || doc.fetch_tapes || doc.fetch_drives))",
    "fieldname": "fetch_all",
    "fieldtype": "Button",
    "label": "Fetch Media"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Company",
+   "options": "Company",
+   "print_hide": 1,
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "options": "Contact",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "contact_display",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "contact_mobile",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Customer Phone"
+  },
+  {
+   "fieldname": "column_break_42",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "options": "Address",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "address_display",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Customer Address"
+  },
+  {
+   "depends_on": "eval:doc.media_transfer_type==='Receipt' || doc.media_transfer_type==='Return'",
+   "fieldname": "drives_sb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title",
+   "no_copy": 1,
+   "print_hide": 1
   }
  ],
  "hide_toolbar": 1,
  "is_submittable": 1,
- "modified": "2021-04-01 07:50:32.569238",
+ "modified": "2021-04-06 07:24:45.832470",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Transfer",
@@ -307,5 +375,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+ "title_field": "title",
  "track_changes": 1
 }

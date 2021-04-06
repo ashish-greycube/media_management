@@ -8,36 +8,27 @@ def get_data():
     config = [
 {
     "label": _("Transfers"),
-    "items": [{
-            "type": "report",
-            "name": "Media Transfers",
-            "label": "Media Transfers",
-            "is_query_report": "True",
-            "doctype": "Media"
+    "items": [
+
+        {
+            "type": "doctype",
+            "label": "New Media Transfer",
+            "name": "Media Transfer",
+            "route": "#Form/Media Transfer/New Media Transfer 1"
         },
         {
             "type": "doctype",
-            "label": "New Media Receipt",
-            "name": "Media Receipt",
-            "route": "#Form/Media Receipt/New Media Receipt 1"
-        },
-        {
-            "type": "doctype",
-            "label": "New Media Return",
-            "name": "Media Return",
-            "route": "#Form/Media Return/New Media Return 1"
-        },
-        {
-            "type": "doctype",
-            "name": "Media Receipt",
+             "name": "Media Transfer",
             "label": "Media Receipt List",
-            "description": "Media Receipt"
+            "description": "Media Receipt",
+            "route": "#List/Media Transfer/List?media_transfer_type=Receipt"
         },
         {
             "type": "doctype",
-            "name": "Media Return",
+            "name": "Media Transfer",
             "label": "Media Return List",
-            "description": "Media Return"
+            "description": "Media Return",
+            "route": "#List/Media Transfer/List?media_transfer_type=Return"
         }
     ]
 }, 
@@ -192,7 +183,14 @@ def get_data():
             "name": "Lookup Media",
             "label": "Lookup Media",
             "description": "Lookup Media"
-        }
+        },
+        {
+            "type": "report",
+            "name": "Media Transfers",
+            "label": "Old Media Transfers Report",
+            "is_query_report": "True",
+            "doctype": "Media"
+        }        
     ]
 }
         ]
