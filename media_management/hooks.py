@@ -135,3 +135,11 @@ app_include_js = "/assets/media_management/js/print.min.js"
 #
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
+fixtures = [
+      {
+        "dt": "Workspace", 
+        "filters": [["name", "in", ["Media Management"]]]
+      },
+     
+
+]
