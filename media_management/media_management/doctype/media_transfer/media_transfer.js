@@ -87,7 +87,6 @@ frappe.ui.form.on('Media Transfer', {
 		}
 	},
 	setup: function (frm) {
-		console.log('inside setup',frappe.route_options)
 		frm.set_query('project', () => {
 			return {
 				filters: {
@@ -158,12 +157,6 @@ frappe.ui.form.on('Media Transfer', {
 		}
 	},
 	onload_post_render: function (frm) {
-		// console.log('inside onload_post_render',frappe.route_options)
-		// if(frappe.has_route_options())
-		// {
-		// 	let args=frappe.route_options
-		// 	frm.set_value('media_transfer_type',args.media_transfer_type)
-		// }		
 		if (frm.doc.media_transfer_type === 'Receipt') {
 			$(".grid-add-row").html('Add New')
 			if (frm.doc.docstatus == 0) {
@@ -258,7 +251,6 @@ frappe.ui.form.on('Media Transfer', {
 				method: "fetch_all_media",
 				doc: frm.doc,
 				callback: function (r) {
-					// console.log(r)
 					if (r.message){
 						if (frm.doc.fetch_films == 1 && frm.doc.customer && frm.doc.project) {
 							if (r.message[0]!="None") {
@@ -318,7 +310,7 @@ frappe.ui.form.on('Media Transfer', {
 		frm.events.check_and_add_blank_row(frm, 'drive_items', 'Drive Entry Item')		
 	},
 	check_and_add_blank_row: function (frm, child_table = undefined, child_table_name = undefined) {
-		// if (cur_frm.is_dirty() === 1) {
+		// if (cur_frm.is_dirty() === true) {
 		// 	frm.save().then(value => {
 			console.log('-----------------')
 		//case 1: for empty child, add a blank row
@@ -360,7 +352,7 @@ frappe.ui.form.on('Media Transfer', {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
 		let drive_items = frm.fields_dict.drive_items.grid.get_selected_children()
-		if (cur_frm.is_dirty() === 1) {
+		if (cur_frm.is_dirty() === true) {
 			frm.save().then(value => {
 				frm.events.check_and_add_blank_for_all_child_table(frm)
 				if (film_items.length === 0 && tape_items.length === 0 && drive_items.length === 0) {
@@ -382,7 +374,7 @@ frappe.ui.form.on('Media Transfer', {
 		}
 	},
 	create_all_media: function (frm) {
-		if (cur_frm.is_dirty() === 1) {
+		if (cur_frm.is_dirty() === true) {
 			frm.set_df_property('no_of_films', 'read_only', 1)
 			frm.set_df_property('no_of_tapes', 'read_only', 1)
 			frm.set_df_property('no_of_drives', 'read_only', 1)
@@ -474,7 +466,7 @@ frappe.ui.form.on('Film Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
 		if (film_items.length === 0) {
-			if (frm.is_dirty() === 1) {
+			if (frm.is_dirty() === true) {
 				frm.save().then(value => {
 					delete_selected_items_film(frm, get_film_items_to_remove())
 				}, reason => {
@@ -548,7 +540,7 @@ frappe.ui.form.on('Tape Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
 		if (tape_items.length === 0) {
-			if (frm.is_dirty() === 1) {
+			if (frm.is_dirty() === true) {
 				frm.save().then(value => {
 					delete_selected_items_tape(frm, get_tape_items_to_remove())
 				}, reason => {
@@ -635,7 +627,7 @@ frappe.ui.form.on('Drive Entry Item', {
 		let drive_items_items = frm.fields_dict.drive_items.grid.get_selected_children()
 		console.log('drive_items_items',drive_items_items)
 		if (drive_items_items.length === 0) {
-			if (frm.is_dirty() === 1) {
+			if (frm.is_dirty() === true) {
 				frm.save().then(value => {
 					delete_selected_items_drives(frm, get_drive_items_to_remove())
 				}, reason => {
@@ -702,14 +694,15 @@ function create_all_media_function(frm) {
 		method: 'create_all_media',
 		freeze: true,
 		callback: function (r) {
-			console.log(r)
 			if (r.message) {
+			if(frm.is_dirty()==true){
 				frm.save().then(() => {
 					frm.events.check_and_add_blank_for_all_child_table(frm)
-				});		
-				// frm.events.check_and_add_blank_for_all_child_table(frm)
-				// frm.dirty()
-				// frm.save()
+				});					
+			}
+			else{
+				frm.events.check_and_add_blank_for_all_child_table(frm)
+			}		
 			}
 		}
 	})
