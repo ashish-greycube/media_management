@@ -21,17 +21,17 @@
 
 {% macro render_barcode(barcode) %}
 {% if barcode %}
-<img style="width:100px;height:43px;object-fit: contain;"
-    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=5&IsTextDrawn=0&IsBorderDrawn=0"
-    alt="{{barcode}}"></img>
+    <img style="width: 100px;height:43px;object-fit: contain;"
+    src="{{frappe.get_url()}}/api/method/media_management.barcode.get_barcode?barcode_text={{barcode}}&code=code128&margin=2.5&height=9.1"
+    alt="{{barcode}}"></img>    
 {% endif %}
 {% endmacro %}
 
 {% macro render_small_barcode(barcode) %}
 {% if barcode %}
-<img style="width:100px;height:17px;object-fit: contain;"
-    src="http://www.barcodes4.me/barcode/c128a/{{barcode}}.png?margin=2&IsTextDrawn=0&IsBorderDrawn=0"
-    alt="{{barcode}}"></img>
+    <img style="width: 100px;height:17px;object-fit: contain;"
+    src="{{frappe.get_url()}}/api/method/media_management.barcode.get_barcode?barcode_text={{barcode}}&code=code128&margin=1&height=4.55"
+    alt="{{barcode}}"></img>     
 {% endif %}
 {% endmacro %}
 

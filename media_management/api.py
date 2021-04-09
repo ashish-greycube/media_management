@@ -23,6 +23,8 @@ def get_label_pdf(selected_items):
     template_path = "templates/media_barcode_print.html"
     barcode_items=frappe._dict(frappe.parse_json(selected_items))
     html = frappe.render_template(template_path, dict(barcode_items=barcode_items))
+    print('html'*100)
+    print(html)
     pdf = get_pdf(html, pdf_options)
     user=frappe.session.user
    
