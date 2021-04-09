@@ -7,10 +7,15 @@ Customization for Nulight Media Company
 sudo apt-get install -y fonts-liberation
 
 [2]Python barcode library to be installed
-activate env
+
+[2.1]activate env
+
 frappe-bench$ source env/bin/activate
 
+[2.2]
+
 $ pip install python-barcode (in env)
+
 $ pip install pillow (in env)
 
 #### License
