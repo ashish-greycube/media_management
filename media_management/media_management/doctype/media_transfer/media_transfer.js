@@ -15,7 +15,7 @@ frappe.ui.form.on('Media Transfer', {
 		$(".grid-remove-rows").html('Delete')
 		// original
 		frm.set_value('naming_series', 'RC-.YY.-.MM.-.#')
-		$('h6.form-section-heading.uppercase:contains("Return Details")').text('Receipt Details')
+		$('div.section-head:contains("Return Details")').text('Receipt Details')
 		$('label.control-label:contains("Media Return")').text('Media Receipt')
 		// onload
 		if (frm.doc.no_of_films != 0 || frm.doc.no_of_tapes != 0 || frm.doc.no_of_drives != 0 || frm.doc.docstatus != 0) {
@@ -56,7 +56,7 @@ frappe.ui.form.on('Media Transfer', {
 		df.read_only = 1;
 		var df = frappe.meta.get_docfield("Drive Entry Item","media_id", cur_frm.doc.name);
 		df.read_only = 1;				
-		$('h6.form-section-heading.uppercase:contains("Receipt Details")').text('Return Details')
+		$('div.section-head:contains("Receipt Details")').text('Return Details')
 		frm.set_value('naming_series', 'RT-.YY.-.MM.-.#')
 		$('label.control-label:contains("Media Receipt")').text('Media Return')
 		// onload
@@ -95,9 +95,17 @@ frappe.ui.form.on('Media Transfer', {
 			}
 		})
 		frm.set_query('media_id', 'film_items', () => {
+			let invalid_ids=[]
+			let film_items=frm.doc.film_items
+			for (var i in film_items){
+				if (film_items[i].media_id){
+					invalid_ids.push(film_items[i].media_id)
+				}
+			}
 			return {
 				filters: {
-					media_type: 'Film'
+					media_type: 'Film',
+					name: ['not in', invalid_ids]
 				}
 			}
 		})
@@ -109,9 +117,17 @@ frappe.ui.form.on('Media Transfer', {
 			}
 		})
 		frm.set_query('media_id', 'tape_items', () => {
+			let invalid_ids=[]
+			let tape_items=frm.doc.tape_items
+			for (var i in tape_items){
+				if (tape_items[i].media_id){
+					invalid_ids.push(tape_items[i].media_id)
+				}
+			}			
 			return {
 				filters: {
-					media_type: 'Tape'
+					media_type: 'Tape',
+					name: ['not in', invalid_ids]
 				}
 			}
 		})
@@ -123,9 +139,17 @@ frappe.ui.form.on('Media Transfer', {
 			}
 		})
 		frm.set_query('media_id', 'drive_items', () => {
+			let invalid_ids=[]
+			let drive_items=frm.doc.drive_items
+			for (var i in drive_items){
+				if (drive_items[i].media_id){
+					invalid_ids.push(drive_items[i].media_id)
+				}
+			}			
 			return {
 				filters: {
-					media_type: 'Drive'
+					media_type: 'Drive',
+					name: ['not in', invalid_ids]
 				}
 			}
 		})
@@ -238,6 +262,11 @@ frappe.ui.form.on('Media Transfer', {
 		}
 		if (frm.doc.media_transfer_type === 'Return') {
 		erpnext.utils.get_party_details(frm);
+		frm.events.clear_all_media_data(frm);
+		}
+		if(frm.doc.project){
+			frm.set_value('project', '')
+			frm.refresh_field('project')
 		}
 	},	
 	customer_address: function(frm) {
@@ -347,7 +376,27 @@ frappe.ui.form.on('Media Transfer', {
 					frm.set_value('customer', customer)
 				})
 		}
+		if (frm.doc.media_transfer_type === 'Return') {
+			frm.events.clear_all_media_data(frm);
+		}
+
 	},	
+	clear_all_media_data: function (frm) {
+		frm.clear_table('film_items')
+		frm.clear_table('tape_items')
+		frm.clear_table('drive_items')
+		frm.set_value('fetch_films',0)
+		frm.set_value('fetch_tapes',0)
+		frm.set_value('fetch_drives',0)
+
+		frm.refresh_field('film_items')
+		frm.refresh_field('tape_items')
+		frm.refresh_field('drive_items')
+		frm.refresh_field('fetch_films')
+		frm.refresh_field('fetch_tapes')
+		frm.refresh_field('fetch_drives')
+		frm.refresh_field('fetch_all')
+	},
 	print_barcodes: function (frm) {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
@@ -689,7 +738,7 @@ function print_all_barcodes(frm) {
 
 
 function create_all_media_function(frm) {
-	frm.call({
+	frappe.call({
 		doc: frm.doc,
 		method: 'create_all_media',
 		freeze: true,

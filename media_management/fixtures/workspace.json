@@ -12,7 +12,7 @@
   "extends_another_page": 0,
   "for_user": null,
   "hide_custom": 0,
-  "icon": "octicon octicon-device-camera-video",
+  "icon": "printer",
   "is_default": 0,
   "is_standard": 0,
   "label": "Media Management",

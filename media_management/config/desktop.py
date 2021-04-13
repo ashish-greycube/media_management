@@ -7,7 +7,7 @@ def get_data():
 		{
 			"module_name": "Media Management",
 			"color": "blue",
-			"icon": "octicon octicon-device-camera-video",
+			"icon": "dialpad",
 			"type": "module",
 			"label": _("Media Management")
 		}
