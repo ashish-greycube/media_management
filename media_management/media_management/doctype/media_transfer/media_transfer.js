@@ -453,13 +453,17 @@ frappe.ui.form.on('Film Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
-			frm.events.check_and_add_blank_row(frm, 'film_items', 'Film Entry Item')
 			frappe.db.get_value('Media', row.media_id, 'is_checkerboard')
 			.then(r => {
 				row.is_checkerboard=r.message.is_checkerboard
 			})			
 			
 			frm.set_value('no_of_films', frm.doc['film_items'].filter(d => (d.media_id)).length)
+			frm.save().then(() => {
+				setTimeout(() => {
+					frm.events.check_and_add_blank_for_all_child_table(frm)
+				}, 750)
+			});			
 		}
 	}
 	},
@@ -534,8 +538,12 @@ frappe.ui.form.on('Tape Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
-			frm.events.check_and_add_blank_row(frm, 'tape_items', 'Tape Entry Item')
 			frm.set_value('no_of_tapes', frm.doc['tape_items'].filter(d => (d.media_id)).length)
+			frm.save().then(() => {
+				setTimeout(() => {
+					frm.events.check_and_add_blank_for_all_child_table(frm)
+				}, 750)
+			});			
 		}
 	}
 	},
@@ -608,7 +616,6 @@ frappe.ui.form.on('Drive Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
-			frm.events.check_and_add_blank_row(frm, 'drive_items', 'Drive Entry Item')
 			frappe.db.get_value('Media', row.media_id, ['has_datacable', 'has_psu','has_box'])
 			.then(r => {
 				console.log('r',r)
@@ -620,6 +627,11 @@ frappe.ui.form.on('Drive Entry Item', {
 				// frappe.model.set_value(cdt, cdn, 'has_datacable',values.has_datacable);
 			})			
 			frm.set_value('no_of_drives', frm.doc['drive_items'].filter(d => (d.media_id)).length)
+			frm.save().then(() => {
+				setTimeout(() => {
+					frm.events.check_and_add_blank_for_all_child_table(frm)
+				}, 850)
+			});				
 		}
 	}
 	},
@@ -639,7 +651,6 @@ frappe.ui.form.on('Drive Entry Item', {
 
 			frm.save().then(() => {
 				frm.events.check_and_add_blank_for_all_child_table(frm)
-				// frm.events.check_and_add_blank_row(frm, 'drive_items', 'Drive Entry Item')
 			});
 		})
 	}
