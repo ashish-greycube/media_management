@@ -1,15 +1,13 @@
-select name as "ID:Link/Media:150",
-media_type as Type,
+select name as "Media ID:Link/Media:100",
 media_sub_type as `Sub Type`,
-media_owner as "Owner:Data:100",
-external_id as `Ext ID::60`,
-drive_brand as `Drive Brand`,
+media_owner as "Media Owner:Data:120",
+external_id as `External ID::100`,
+drive_brand as `Drive Brand::110`,
 drive_capacity as `Drive Capacity::120`,
-drive_format as `Drive Formatting`,
-has_datacable as `Cable:Check:60`,
-has_psu as `PSU:Check:60`,
-has_box as `Box:Check:60`,
-notes as 'Notes::100'
+drive_format as `Drive Format::110`,
+has_datacable as `Has Data Cable:Check:125`,
+has_psu as `Has PSU:Check:80`,
+has_box as `Has Box:Check:80`
 from `tabMedia`
 where media_type='Drive'
 order by modified desc
