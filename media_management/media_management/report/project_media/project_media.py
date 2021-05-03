@@ -21,45 +21,67 @@ def get_column():
         {"label": _("Customer"), 'width': 100, "fieldname": "Customer", 'fieldtype': 'Data'},
 		{"label":_("Project"), 'width': 80, "fieldname": "Project", 'fieldtype': 'Data'},
 		{"label": _("Media ID"), 'width': 80, "fieldname": "Media ID", 'fieldtype': 'Link','options':'Media'},
-        {"label": _("External ID"), 'width': 120, "fieldname": "Ext. ID", 'fieldtype': 'Data'},
+        {"label": _("External ID"), 'width': 120, "fieldname": "External ID", 'fieldtype': 'Data'},
 		{"label":_("Media Type"), 'width': 100, "fieldname": "Type", 'fieldtype': 'Data'},
 		{"label": _("SubType"), 'width': 80, "fieldname": "SubType", 'fieldtype': 'Data'},
 		{"label": _("Media Owner"), 'width': 120, "fieldname": "Owner", 'fieldtype': 'Data'},
-		{"label": _("Receipt ID"), 'width': 80, "fieldname": "Receipt ID", 'fieldtype': 'Link','options':'Media Receipt'},
- 		{"label": _("Receipt Date"), 'width': 120, "fieldname": "Receipt Date", 'fieldtype': 'Date'},
-		{"label":_("Return ID"), 'width': 80, "fieldname": "Return ID", 'fieldtype': 'Link','options':'Media Return'},
-		{"label":_("Return Date"), 'width': 120, "fieldname": "Return Date", 'fieldtype': 'Date'}
+		{"label": _("Receipt ID"), 'width': 110, "fieldname": "Receipt ID", 'fieldtype': 'Link','options':'Media Transfer'},
+ 		{"label": _("Receipt Date"), 'width': 105, "fieldname": "Receipt Date", 'fieldtype': 'Date'},
+		{"label":_("Return ID"), 'width': 110, "fieldname": "Return ID", 'fieldtype': 'Link','options':'Media Transfer'},
+		{"label":_("Return Date"), 'width': 105, "fieldname": "Return Date", 'fieldtype': 'Date'}
     ]
 
 def get_project_media(filters):
-	conditions = ''
-	print('filters'*100,filters)
-	if filters.current_media=='0':
-		conditions= 'where current_media in (0,1)'
-	elif filters.current_media=='1':
-		conditions='where current_media in (1)'
-	print('conditions'*100,conditions)
-	project_media= frappe.db.sql("""select * from (
-	select
-distinct mr.customer `Customer`, mr.project `Project`,
-m.name `Media ID`, m.external_id `Ext. ID`, m.media_type `Type`, m.media_sub_type `SubType`, m.media_owner `Owner`,
-mr.name `Receipt ID`, mr.transfer_date `Receipt Date`,mret.name `Return ID`, mret.transfer_date `Return Date`,
+
+	conditions = ""
+	if filters.current_media=='1':
+		conditions=' and a.tr_name is not null and  b.tr_name is null'
+
+	project_media= frappe.db.sql("""with fn as
+(
+	select tr.creation, tr.customer, tr.project,
+	m.name media_id, m.external_id, m.media_type, m.media_sub_type, m.media_owner,
+	tr.media_transfer_type, tr.tr_name, tr.transfer_date,m.creation as media_creation,
+	ROW_NUMBER() over (PARTITION by tr.media_id, tr.media_transfer_type ORDER BY tr.creation) rn
+	from `tabMedia` m
+	left outer join 
+	(
+		select mt.name tr_name, mt.customer, mt.transfer_date, mt.media_transfer_type, mt.project,
+		coalesce(fei.media_id,tei.media_id,dei.media_id) media_id,
+		mt.creation
+		from `tabMedia Transfer` mt
+		left outer join `tabFilm Entry Item` fei on fei.parent = mt.name
+		left outer join `tabTape Entry Item` tei on tei.parent = mt.name
+		left outer join `tabDrive Entry Item` dei on dei.parent = mt.name
+	) tr on tr.media_id = m.name
+-- 	where m.name = 'F200406'
+) 
+select
+a.customer `Customer`,
+a.project `Project`,
+a.media_id `Media ID` ,
+a.external_id `External ID`,   
+a.media_type `Type`, 
+a.media_sub_type `SubType`, 
+a.media_owner `Owner`,
+a.tr_name `Receipt ID`, a.transfer_date `Receipt Date`,
+b.tr_name `Return ID`, b.transfer_date `Return Date`,
 case 
-when mr.name is not null and  mret.name is null then 1
-else 0 end `current_media` 
-from `tabMedia` m
-left outer join `tabFilm Entry Item` fei on fei.media_id = m.name
-left outer join `tabTape Entry Item` tei on tei.media_id = m.name
-left outer join `tabDrive Entry Item` dei on dei.media_id = m.name
-left outer join `tabMedia Transfer` mr on mr.name = coalesce(fei.parent, tei.parent, dei.parent)
-left outer join `tabFilm Return Item` frei on frei.media_id = m.name
-left outer join `tabTape Return Item` trei on trei.media_id = m.name
-left outer join `tabDrive Return Item` drei on drei.media_id = m.name
-left outer join `tabMedia Transfer` mret on mret.name = coalesce(frei.parent, trei.parent, drei.parent) 
-and mret.customer =  mr.customer 
-and mret.project = mr.project
-and mr.media_transfer_type='Receipt'
-and mret.media_transfer_type='Return'
-order by m.creation desc,mr.transfer_date desc,mret.transfer_date IS NULL desc,mret.transfer_date desc, m.media_type) a
-%s"""%conditions)
+when a.tr_name is not null and  b.tr_name is null then 1
+else 0 end `current_media`
+from fn a
+left outer join fn b on b.media_id = a.media_id and b.rn = a.rn and b.media_transfer_type = 'Return'
+left outer join
+(
+	select coalesce(fei.media_id, tei.media_id, dei.media_id) media_id,
+	sum(if(mt.media_transfer_type='Receipt',1,0)) net_count
+	from `tabMedia Transfer` mt 
+	left outer join `tabFilm Entry Item` fei on fei.parent = mt.name
+	left outer join `tabTape Entry Item` tei on tei.parent = mt.name
+	left outer join `tabDrive Entry Item` dei on dei.parent = mt.name
+	group by coalesce(fei.media_id, tei.media_id, dei.media_id)
+) cur on cur.media_id = a.media_id 
+where  (a.media_transfer_type is null or a.media_transfer_type = 'Receipt' ) %s
+order by a.media_creation DESC,a.creation DESC, a.media_type
+""" % (conditions,))
 	return project_media	
