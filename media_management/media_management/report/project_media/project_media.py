@@ -18,13 +18,13 @@ def execute(filters=None):
 def get_column():
 
     return [
-        {"label": _("Customer"), 'width': 80, "fieldname": "Customer", 'fieldtype': 'Data'},
+        {"label": _("Customer"), 'width': 100, "fieldname": "Customer", 'fieldtype': 'Data'},
 		{"label":_("Project"), 'width': 80, "fieldname": "Project", 'fieldtype': 'Data'},
 		{"label": _("Media ID"), 'width': 80, "fieldname": "Media ID", 'fieldtype': 'Link','options':'Media'},
-        {"label": _("Ext. ID"), 'width': 120, "fieldname": "Ext. ID", 'fieldtype': 'Data'},
-		{"label":_("Type"), 'width': 80, "fieldname": "Type", 'fieldtype': 'Data'},
+        {"label": _("External ID"), 'width': 120, "fieldname": "Ext. ID", 'fieldtype': 'Data'},
+		{"label":_("Media Type"), 'width': 100, "fieldname": "Type", 'fieldtype': 'Data'},
 		{"label": _("SubType"), 'width': 80, "fieldname": "SubType", 'fieldtype': 'Data'},
-		{"label": _("Owner"), 'width': 100, "fieldname": "Owner", 'fieldtype': 'Data'},
+		{"label": _("Media Owner"), 'width': 120, "fieldname": "Owner", 'fieldtype': 'Data'},
 		{"label": _("Receipt ID"), 'width': 80, "fieldname": "Receipt ID", 'fieldtype': 'Link','options':'Media Receipt'},
  		{"label": _("Receipt Date"), 'width': 120, "fieldname": "Receipt Date", 'fieldtype': 'Date'},
 		{"label":_("Return ID"), 'width': 80, "fieldname": "Return ID", 'fieldtype': 'Link','options':'Media Return'},
@@ -51,13 +51,15 @@ from `tabMedia` m
 left outer join `tabFilm Entry Item` fei on fei.media_id = m.name
 left outer join `tabTape Entry Item` tei on tei.media_id = m.name
 left outer join `tabDrive Entry Item` dei on dei.media_id = m.name
-left outer join `tabMedia Receipt` mr on mr.name = coalesce(fei.parent, tei.parent, dei.parent)
+left outer join `tabMedia Transfer` mr on mr.name = coalesce(fei.parent, tei.parent, dei.parent)
 left outer join `tabFilm Return Item` frei on frei.media_id = m.name
 left outer join `tabTape Return Item` trei on trei.media_id = m.name
 left outer join `tabDrive Return Item` drei on drei.media_id = m.name
-left outer join `tabMedia Return` mret on mret.name = coalesce(frei.parent, trei.parent, drei.parent) 
+left outer join `tabMedia Transfer` mret on mret.name = coalesce(frei.parent, trei.parent, drei.parent) 
 and mret.customer =  mr.customer 
 and mret.project = mr.project
+and mr.media_transfer_type='Receipt'
+and mret.media_transfer_type='Return'
 order by m.creation desc,mr.transfer_date desc,mret.transfer_date IS NULL desc,mret.transfer_date desc, m.media_type) a
 %s"""%conditions)
 	return project_media	
