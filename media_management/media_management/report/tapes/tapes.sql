@@ -5,7 +5,7 @@ external_id as `External ID::100`,
 tape_title as `Tape Title`,
 tape_standard as `Tape Standard`,
 tape_manufacturer as `Tape Manufacturer`,
-tape_run_time_mins as `Tape Runtime (mins)`
+tape_runtime_mins as `Tape Runtime (mins)`
 from `tabMedia`
 where media_type='Tape'
 order by modified desc

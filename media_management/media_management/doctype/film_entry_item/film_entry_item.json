@@ -1,4 +1,5 @@
 {
+ "actions": [],
  "creation": "2020-10-12 07:25:19.743300",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -17,7 +18,7 @@
   "is_checkerboard",
   "column_break_12",
   "film_year",
-  "film_length"
+  "film_length_ft"
  ],
  "fields": [
   {
@@ -114,23 +115,24 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "media_id.film_length",
-   "fetch_if_empty": 1,
-   "fieldname": "film_length",
-   "fieldtype": "Data",
-   "label": "Length (approx ft)"
-  },
-  {
    "fetch_from": "media_id.film_year",
    "fetch_if_empty": 1,
    "fieldname": "film_year",
    "fieldtype": "Link",
    "label": "Year",
    "options": "Film Year"
+  },
+  {
+   "fetch_from": "media_id.film_length_ft",
+   "fetch_if_empty": 1,
+   "fieldname": "film_length_ft",
+   "fieldtype": "Data",
+   "label": "Length (approx ft)"
   }
  ],
  "istable": 1,
- "modified": "2021-02-18 05:24:24.417264",
+ "links": [],
+ "modified": "2021-05-04 05:19:19.634119",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Film Entry Item",

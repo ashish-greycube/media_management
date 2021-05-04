@@ -5,7 +5,7 @@ external_id as `External ID::100`,
 drive_brand as `Drive Brand::110`,
 drive_capacity as `Drive Capacity::120`,
 drive_format as `Drive Formatting::130`,
-has_datacable as `Has Data Cable:Check:125`,
+has_data_cable as `Has Data Cable:Check:125`,
 has_psu as `Has PSU:Check:80`,
 has_box as `Has Box:Check:80`
 from `tabMedia`

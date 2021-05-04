@@ -1,4 +1,5 @@
 {
+ "actions": [],
  "allow_import": 1,
  "autoname": "field:media_type",
  "creation": "2020-12-04 06:00:18.908370",
@@ -22,11 +23,15 @@
    "description": "It is used as prefix in naming series of media",
    "fieldname": "abbreviation",
    "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Abbreviation",
    "reqd": 1
   }
  ],
- "modified": "2020-12-05 11:39:11.200814",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-05-04 10:50:33.791331",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Type",

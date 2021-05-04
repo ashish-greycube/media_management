@@ -8,16 +8,18 @@ from frappe.model.document import Document
 from frappe.utils import getdate, nowdate
 
 class MediaTransfer(Document):
+	@frappe.whitelist()
 	def fetch_all_media(self):
 		film_list=self.get_film_media()
 		tape_list=self.get_tape_media()
 		drive_list=self.get_drive_media()
 		return film_list,tape_list,drive_list
-		
+
+	@frappe.whitelist()	
 	def get_film_media(self):
 		film_list=frappe.db.sql("""select 
 media.name as media_id,media.external_id,media.media_owner,media.media_sub_type as film_type,media.film_title,
-media.film_element,media.film_sound,media.film_colour,media.is_checkerboard
+media.film_element,media.film_sound,media.film_colour,media.is_checkerboard,media.film_length_ft
 from
 (select count(film.media_id) as ct, film.media_id
 from `tabFilm Entry Item` film
@@ -44,11 +46,12 @@ on received.media_id=returned.media_id
 where received.ct-coalesce(returned.ct,0) > 0""".format(customer=self.customer,project=self.project), as_dict=1)	
 		return film_list if len(film_list) else 'None'
 
+	@frappe.whitelist()
 	def get_tape_media(self):
 		tape_list=frappe.db.sql("""select 
 media.name as media_id,media.external_id,media.media_owner,
 media.media_sub_type as tape_type,media.tape_title,media.tape_standard,
-media.tape_manufacturer,media.tape_run_time_mins
+media.tape_manufacturer,media.tape_runtime_mins
 from
 (select count(tape.media_id) as ct, tape.media_id
 from `tabTape Entry Item` tape
@@ -75,10 +78,11 @@ on received.media_id=returned.media_id
 where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,project=self.project), as_dict=1)	
 		return tape_list if len(tape_list) else 'None'		
 
+	@frappe.whitelist()
 	def get_drive_media(self):
 		drive_list=frappe.db.sql("""select 
 media.name as media_id,media.external_id,media.media_owner,
-media.media_sub_type as drive_type,media.has_datacable,media.has_psu,
+media.media_sub_type as drive_type,media.has_data_cable,media.has_psu,
 media.has_box,media.drive_capacity,media.drive_format,
 media.drive_brand
 from
@@ -121,7 +125,7 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 					"film_colour":item.film_colour,
 					"is_checkerboard":item.is_checkerboard,
 					"film_year":item.film_year,
-					"film_length":item.film_length
+					"film_length_ft":item.film_length_ft
 				})
 				doc.save(ignore_permissions = True)	
 
@@ -134,7 +138,7 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 					"tape_title":item.tape_title,
 					"tape_standard":item.tape_standard,
 					"tape_manufacturer":item.tape_manufacturer,
-					"tape_run_time_mins":item.tape_run_time_mins
+					"tape_runtime_mins":item.tape_runtime_mins
 				})
 				doc.save(ignore_permissions = True)	
 			
@@ -146,14 +150,14 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 					"media_sub_type":item.drive_type,
 					"drive_capacity":item.drive_capacity,
 					"drive_brand":item.drive_brand,
-					"has_datacable":item.has_datacable,
+					"has_data_cable":item.has_data_cable,
 					"has_psu":item.has_psu,
 					"has_box":item.has_box,
 					"drive_format":item.drive_format
 				})
 				doc.save(ignore_permissions = True)	
 
-
+	@frappe.whitelist()
 	def create_all_media(self):
 		if hasattr(self, 'film_items') and (len(self.film_items) < self.no_of_films):
 			for file in range(self.no_of_films):
@@ -181,13 +185,13 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 		doc.save()
 		return doc.name	
 
-	def validate(self):
-		if not self.title:
-			self.title = self.get_title()
+	# def validate(self):
+	# 	if not self.title:
+	# 		self.title = self.get_title()
 
 
-	def get_title(self):
-		return self.media_transfer_type + ':' + self.name	
+	# def get_title(self):
+	# 	return self.media_transfer_type + ':' + self.name	
 
 @frappe.whitelist()
 def delete_Media_NS(media_id):

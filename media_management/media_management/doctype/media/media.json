@@ -21,19 +21,19 @@
   "fs_cb_1",
   "film_title",
   "film_year",
-  "film_length",
+  "film_length_ft",
   "tape_section_section",
   "tape_standard",
   "tape_manufacturer",
   "tape_cb_1",
   "tape_title",
-  "tape_run_time_mins",
+  "tape_runtime_mins",
   "drive_section_section",
   "drive_brand",
   "drive_capacity",
   "drive_format",
   "dd_cb_1",
-  "has_datacable",
+  "has_data_cable",
   "has_psu",
   "has_box",
   "section_break_35",
@@ -42,8 +42,7 @@
   "transfer_history",
   "internal_detail_section",
   "naming_series",
-  "media_abbreviation",
-  "title"
+  "media_abbreviation"
  ],
  "fields": [
   {
@@ -60,6 +59,7 @@
   {
    "fieldname": "external_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "External ID"
   },
@@ -86,7 +86,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "Media ID",
+   "label": "Naming Series",
    "options": "{media_abbreviation}.#",
    "reqd": 1
   },
@@ -115,8 +115,7 @@
   {
    "fieldname": "film_title",
    "fieldtype": "Data",
-   "in_standard_filter": 1,
-   "label": "Title"
+   "label": "Film Title"
   },
   {
    "fieldname": "film_element",
@@ -149,8 +148,7 @@
   {
    "fieldname": "tape_title",
    "fieldtype": "Data",
-   "in_standard_filter": 1,
-   "label": "Title"
+   "label": "Tape Title"
   },
   {
    "fieldname": "tape_manufacturer",
@@ -159,21 +157,9 @@
    "options": "Tape Manufacturer"
   },
   {
-   "fieldname": "tape_run_time_mins",
-   "fieldtype": "Link",
-   "label": "Tape Runtime (mins)",
-   "options": "Tape Runtime"
-  },
-  {
    "fieldname": "dd_cb_1",
    "fieldtype": "Column Break",
    "label": "  "
-  },
-  {
-   "default": "0",
-   "fieldname": "has_datacable",
-   "fieldtype": "Check",
-   "label": "Has DataCable"
   },
   {
    "default": "0",
@@ -185,7 +171,7 @@
    "default": "0",
    "fieldname": "has_box",
    "fieldtype": "Check",
-   "label": "Has BOX"
+   "label": "Has Box"
   },
   {
    "fieldname": "notes",
@@ -195,6 +181,7 @@
    "fieldname": "media_sub_type",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Sub Type",
    "options": "Media Sub Type"
   },
@@ -253,27 +240,32 @@
    "options": "Transfer History"
   },
   {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Title",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "film_length",
-   "fieldtype": "Data",
-   "label": "Film Length (approx ft)"
-  },
-  {
    "fieldname": "film_year",
    "fieldtype": "Link",
    "label": "Film Year",
    "options": "Film Year"
+  },
+  {
+   "fieldname": "film_length_ft",
+   "fieldtype": "Data",
+   "label": "Film Length (ft)"
+  },
+  {
+   "fieldname": "tape_runtime_mins",
+   "fieldtype": "Link",
+   "label": "Tape Runtime (mins)",
+   "options": "Tape Runtime"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_data_cable",
+   "fieldtype": "Check",
+   "label": "Has Data Cable"
   }
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2021-04-21 06:09:30.677087",
+ "modified": "2021-05-04 11:11:04.754234",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",
@@ -315,10 +307,9 @@
    "share": 1
   }
  ],
- "search_fields": "media_type,film_title,media_owner",
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "title",
  "track_changes": 1,
  "track_views": 1
 }

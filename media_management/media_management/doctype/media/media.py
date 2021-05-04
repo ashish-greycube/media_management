@@ -8,8 +8,8 @@ from frappe.model.document import Document
 
 class Media(Document):
 
-	def validate(self):
-		self.title=self.media_type+': '+self.name
+	# def validate(self):
+	# 	self.title=self.media_type+': '+self.name
 
 	def onload(self):
 		if self.name and self.media_type=='Film':

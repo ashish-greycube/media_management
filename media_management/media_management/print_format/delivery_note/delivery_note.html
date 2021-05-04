@@ -85,7 +85,7 @@
             <td>{{ item.media_id }}</td>
             <td>{{ item.drive_capacity or ''}}   {{item.drive_brand or '' }} {{item.drive_type or ''}}</td>
             <td>
-				{% if item.has_datacable %}
+				{% if item.has_data_cable %}
 					<div style='color: green'> <i class='fa fa-check'></i> </div>
 				{% else %}
 					<div></div>

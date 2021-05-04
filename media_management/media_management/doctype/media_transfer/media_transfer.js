@@ -217,6 +217,11 @@ frappe.ui.form.on('Media Transfer', {
 					() => frm.savesubmit()
 				);
 			}
+			if (frm.doc.docstatus == 1) {
+				frm.add_custom_button(__("Create Media Receipt"), function () {
+					frm.trigger("make_media_receipt");
+				});
+			}			
 		}
 		if (frm.doc.media_transfer_type === 'Return') {
 			var df = frappe.meta.get_docfield("Film Entry Item","media_id", cur_frm.doc.name);
@@ -616,15 +621,15 @@ frappe.ui.form.on('Drive Entry Item', {
 		if (frm.doc.media_transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
-			frappe.db.get_value('Media', row.media_id, ['has_datacable', 'has_psu','has_box'])
+			frappe.db.get_value('Media', row.media_id, ['has_data_cable', 'has_psu','has_box'])
 			.then(r => {
 				console.log('r',r)
 				let values = r.message;
-				row.has_datacable=values.has_datacable
+				row.has_data_cable=values.has_data_cable
 				row.has_psu=values.has_psu
 				row.has_box=values.has_box
 				frm.refresh_field('drive_items')
-				// frappe.model.set_value(cdt, cdn, 'has_datacable',values.has_datacable);
+				// frappe.model.set_value(cdt, cdn, 'has_data_cable',values.has_data_cable);
 			})			
 			frm.set_value('no_of_drives', frm.doc['drive_items'].filter(d => (d.media_id)).length)
 			frm.save().then(() => {
