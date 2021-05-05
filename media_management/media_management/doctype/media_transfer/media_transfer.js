@@ -218,9 +218,9 @@ frappe.ui.form.on('Media Transfer', {
 				);
 			}
 			if (frm.doc.docstatus == 1) {
-				frm.add_custom_button(__("Create Media Receipt"), function () {
-					frm.trigger("make_media_receipt");
-				});
+				// frm.add_custom_button(__("Create Media Receipt"), function () {
+				// 	frm.trigger("make_media_receipt");
+				// });
 			}			
 		}
 		if (frm.doc.media_transfer_type === 'Return') {
@@ -450,7 +450,10 @@ frappe.ui.form.on('Media Transfer', {
 				cur_frm.meta.default_print_format = null;
 				cur_frm.meta._default_print_format = null;
 		}
-	}					
+	},
+	// make_media_receipt: function(frm) {
+
+	// }					
 });
 
 frappe.ui.form.on('Film Entry Item', {
