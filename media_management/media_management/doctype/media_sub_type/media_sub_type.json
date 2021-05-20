@@ -8,8 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "media_type",
-  "sub_type"
+  "sub_type",
+  "media_type"
  ],
  "fields": [
   {
@@ -36,7 +36,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-05-04 10:47:28.474327",
+ "modified": "2021-05-20 09:58:42.342144",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Sub Type",

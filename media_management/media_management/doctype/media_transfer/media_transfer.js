@@ -79,10 +79,10 @@ frappe.ui.form.on('Media Transfer', {
 			});
 		}
 	},
-	media_transfer_type: function (frm) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+	transfer_type: function (frm) {
+		if (frm.doc.transfer_type === 'Receipt') {
 			frm.events.receipt(frm)
-		} else if (frm.doc.media_transfer_type === 'Return') {
+		} else if (frm.doc.transfer_type === 'Return') {
 			frm.events.return(frm)
 		}
 	},
@@ -168,33 +168,33 @@ frappe.ui.form.on('Media Transfer', {
 	},
 	onload: function (frm) {
 
-		if (frm.doc.media_transfer_type === 'Receipt' &&
+		if (frm.doc.transfer_type === 'Receipt' &&
 			(frm.doc.no_of_films != 0 || frm.doc.no_of_tapes != 0 || frm.doc.no_of_drives != 0 || frm.doc.docstatus != 0)) {
 			frm.set_df_property('no_of_films', 'read_only', 1)
 			frm.set_df_property('no_of_tapes', 'read_only', 1)
 			frm.set_df_property('no_of_drives', 'read_only', 1)
 			frm.set_df_property('create_all_media', 'hidden', 1)
 		}
-		if (frm.doc.media_transfer_type === 'Return') {
+		if (frm.doc.transfer_type === 'Return') {
 			cur_frm.set_query('customer_address', erpnext.queries.address_query);
 			cur_frm.set_query('contact_person', erpnext.queries.contact_query);
 		}
 	},
 	onload_post_render: function (frm) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 			$(".grid-add-row").html('Add New')
 			if (frm.doc.docstatus == 0) {
 				frm.events.check_and_add_blank_for_all_child_table(frm)
 			}
 		}
-		if (frm.doc.media_transfer_type === 'Return') {
+		if (frm.doc.transfer_type === 'Return') {
 			$(".grid-remove-rows").html('Remove')
 		}
 
 	},
 	refresh: function (frm) {
 		frm.events.set_default_print_format()
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 			var df = frappe.meta.get_docfield("Film Entry Item","media_id", cur_frm.doc.name);
 			df.read_only = 0;
 			var df = frappe.meta.get_docfield("Tape Entry Item","media_id", cur_frm.doc.name);
@@ -218,12 +218,14 @@ frappe.ui.form.on('Media Transfer', {
 				);
 			}
 			if (frm.doc.docstatus == 1) {
-				// frm.add_custom_button(__("Create Media Receipt"), function () {
-				// 	frm.trigger("make_media_receipt");
-				// });
-			}			
+				frm.add_custom_button(__("Create Media Receipt"), function () {
+					frm.trigger("make_media_receipt");
+				});
+			}
+			$('div.section-head:contains("Return Details")').text('Receipt Details')
+			$('label.control-label:contains("Media Return")').text('Media Receipt')						
 		}
-		if (frm.doc.media_transfer_type === 'Return') {
+		if (frm.doc.transfer_type === 'Return') {
 			var df = frappe.meta.get_docfield("Film Entry Item","media_id", cur_frm.doc.name);
 			df.read_only = 1;
 			var df = frappe.meta.get_docfield("Tape Entry Item","media_id", cur_frm.doc.name);
@@ -242,10 +244,11 @@ frappe.ui.form.on('Media Transfer', {
 					frm.print_doc();
 				});
 			}
+			$('div.section-head:contains("Receipt Details")').text('Return Details')
+			$('label.control-label:contains("Media Receipt")').text('Media Return')			
 		}
 	},
 	customer:function(frm){
-		if (frm.doc.media_transfer_type === 'Receipt') {
 			if (frm.doc.customer && frm.doc.project) {
 				frappe.db.get_list('Project', {
 					fields: ['name'],
@@ -264,14 +267,9 @@ frappe.ui.form.on('Media Transfer', {
 					}
 				})
 			}			
-		}
-		if (frm.doc.media_transfer_type === 'Return') {
+		if (frm.doc.transfer_type === 'Return') {
 		erpnext.utils.get_party_details(frm);
 		frm.events.clear_all_media_data(frm);
-		}
-		if(frm.doc.project){
-			frm.set_value('project', '')
-			frm.refresh_field('project')
 		}
 	},	
 	customer_address: function(frm) {
@@ -374,14 +372,14 @@ frappe.ui.form.on('Media Transfer', {
 	// })}
 	},
 	project: function (frm) {
-		if (frm.doc.project && !frm.doc.customer && frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.project && !frm.doc.customer) {
 			frappe.db.get_value('Project', frm.doc.project, 'customer')
 				.then(r => {
 					let customer = r.message.customer
 					frm.set_value('customer', customer)
 				})
 		}
-		if (frm.doc.media_transfer_type === 'Return') {
+		if (frm.doc.transfer_type === 'Return') {
 			frm.events.clear_all_media_data(frm);
 		}
 
@@ -443,7 +441,7 @@ frappe.ui.form.on('Media Transfer', {
 
 	},
 	set_default_print_format: function() {
-		if(cur_frm.doc.media_transfer_type=='Return') {
+		if(cur_frm.doc.transfer_type=='Return') {
 				cur_frm.meta._default_print_format = 'Delivery Note';
 				cur_frm.meta.default_print_format = 'Delivery Note';
 		}else {
@@ -451,14 +449,21 @@ frappe.ui.form.on('Media Transfer', {
 				cur_frm.meta._default_print_format = null;
 		}
 	},
-	// make_media_receipt: function(frm) {
-
-	// }					
+	make_media_receipt: function(frm) {
+		frappe.call({
+			method: "make_transfer_return",
+			doc: frm.doc,
+            freeze: true,
+            callback: function (r) {
+				console.log(r)
+            }
+        });		
+	}					
 });
 
 frappe.ui.form.on('Film Entry Item', {
 	media_id: (frm, cdt, cdn) => {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
 			frappe.db.get_value('Media', row.media_id, 'is_checkerboard')
@@ -476,7 +481,7 @@ frappe.ui.form.on('Film Entry Item', {
 	}
 	},
 	film_items_add(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		console.log(row, 'rows')
 		frappe.db.insert({
@@ -494,7 +499,7 @@ frappe.ui.form.on('Film Entry Item', {
 			});
 		})
 	}
-	if (frm.doc.media_transfer_type === 'Return') {
+	if (frm.doc.transfer_type === 'Return') {
 		let row = locals[cdt][cdn];
 		frappe.call({
 			method: "get_film_media",
@@ -518,13 +523,13 @@ frappe.ui.form.on('Film Entry Item', {
 	}
 	},
 	before_film_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
 		set_film_items_to_remove(film_items)
 		}
 	},
 	film_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let film_items = frm.fields_dict.film_items.grid.get_selected_children()
 		if (film_items.length === 0) {
 			if (frm.is_dirty() === true) {
@@ -543,7 +548,7 @@ frappe.ui.form.on('Film Entry Item', {
 
 frappe.ui.form.on('Tape Entry Item', {
 	media_id: (frm, cdt, cdn) => {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
 			frm.set_value('no_of_tapes', frm.doc['tape_items'].filter(d => (d.media_id)).length)
@@ -556,7 +561,7 @@ frappe.ui.form.on('Tape Entry Item', {
 	}
 	},
 	tape_items_add(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		frappe.db.insert({
 			doctype: 'Media',
@@ -574,7 +579,7 @@ frappe.ui.form.on('Tape Entry Item', {
 			});
 		})
 	}
-	if (frm.doc.media_transfer_type === 'Return') {
+	if (frm.doc.transfer_type === 'Return') {
 		let row = locals[cdt][cdn];
 		frappe.call({
 			method: "get_tape_media",
@@ -596,13 +601,13 @@ frappe.ui.form.on('Tape Entry Item', {
 	}
 	},
 	before_tape_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
 		set_tape_items_to_remove(tape_items)
 		}
 	},
 	tape_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let tape_items = frm.fields_dict.tape_items.grid.get_selected_children()
 		if (tape_items.length === 0) {
 			if (frm.is_dirty() === true) {
@@ -621,7 +626,7 @@ frappe.ui.form.on('Tape Entry Item', {
 
 frappe.ui.form.on('Drive Entry Item', {
 	media_id: (frm, cdt, cdn) => {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		if (row.media_id) {
 			frappe.db.get_value('Media', row.media_id, ['has_data_cable', 'has_psu','has_box'])
@@ -644,7 +649,7 @@ frappe.ui.form.on('Drive Entry Item', {
 	}
 	},
 	drive_items_add(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let row = locals[cdt][cdn];
 		frappe.db.insert({
 			doctype: 'Media',
@@ -662,7 +667,7 @@ frappe.ui.form.on('Drive Entry Item', {
 			});
 		})
 	}
-	if (frm.doc.media_transfer_type === 'Return') {
+	if (frm.doc.transfer_type === 'Return') {
 		let row = locals[cdt][cdn];
 		frappe.call({
 			method: "get_drive_media",
@@ -685,13 +690,13 @@ frappe.ui.form.on('Drive Entry Item', {
 	
 	},
 	before_drive_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let drive_items_items = frm.fields_dict.drive_items.grid.get_selected_children()
 		set_data_device_items_to_remove(drive_items_items)
 		}
 	},
 	drive_items_remove(frm, cdt, cdn) {
-		if (frm.doc.media_transfer_type === 'Receipt') {
+		if (frm.doc.transfer_type === 'Receipt') {
 		let drive_items_items = frm.fields_dict.drive_items.grid.get_selected_children()
 		console.log('drive_items_items',drive_items_items)
 		if (drive_items_items.length === 0) {

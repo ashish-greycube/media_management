@@ -237,7 +237,8 @@
   {
    "fieldname": "transfer_history",
    "fieldtype": "Table",
-   "options": "Transfer History"
+   "options": "Transfer History",
+   "read_only": 1
   },
   {
    "fieldname": "film_year",
@@ -265,7 +266,7 @@
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2021-05-04 11:11:04.754234",
+ "modified": "2021-05-19 07:56:10.086694",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",

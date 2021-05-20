@@ -21,41 +21,41 @@ class Media(Document):
 
 	def load_film_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`,film.film_type as `type`,
+		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`,film.film_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
-		receipt.sender,receipt.recipient,receipt.customer,
+		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
 		from  `tabFilm Entry Item` film
 		inner join `tabMedia Transfer` receipt
 		on receipt.name=film.parent
 		where film.media_id='{media_id}')
-        order by `date` desc, creation desc""".format(media_id=self.name), as_dict=1)
+        order by `date` asc, creation asc""".format(media_id=self.name), as_dict=1)
 		return self.fill_up_transfer_history(media_list) if len(media_list) else 0
 
 	def load_tape_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`,tape.tape_type as `type`,
+		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`,tape.tape_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
-		receipt.sender,receipt.recipient,receipt.customer,
+		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
 		from  `tabTape Entry Item` tape
 		inner join `tabMedia Transfer` receipt
 		on receipt.name=tape.parent
 		where tape.media_id='{media_id}')
-        order by `date` desc, creation desc""".format(media_id=self.name), as_dict=1)
+        order by `date` asc, creation asc""".format(media_id=self.name), as_dict=1)
 		return self.fill_up_transfer_history(media_list) if len(media_list) else 0
 
 	def load_drive_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.media_transfer_type as `media_transfer_type`, drive.drive_type as `type`,
+		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`, drive.drive_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
-		receipt.sender,receipt.recipient,receipt.customer,
+		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
 		from  `tabDrive Entry Item` drive
 		inner join `tabMedia Transfer` receipt
 		on receipt.name=drive.parent
 		where drive.media_id='{media_id}')
-        order by `date` desc, creation desc""".format(media_id=self.name), as_dict=1)
+        order by `date` asc, creation asc""".format(media_id=self.name), as_dict=1)
 		return self.fill_up_transfer_history(media_list) if len(media_list) else 0
 
 	def fill_up_transfer_history(self,media_list):
@@ -64,11 +64,11 @@ class Media(Document):
 			self.append("transfer_history", {
 				"link_doctype":item.link_doctype,
 				"id":item.id,
-				"media_transfer_type": item.media_transfer_type,
+				"transfer_type": item.transfer_type,
 				"date":item.date,
 				"method":item.method,
-				"sender":item.sender,
-				"recipient":item.recipient,
+				"external_contact":item.external_contact,
+				"internal_contact":item.internal_contact,
 				"customer":item.customer,
 				"project":item.project
 			})

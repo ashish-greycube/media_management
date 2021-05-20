@@ -5,6 +5,7 @@ frappe.ui.form.on('Media', {
 	onload_post_render: function (frm) {
 		$(".grid-buttons").hide();
 		$(".grid-row-check").remove();
+		$("div.edit-grid-row").text('Open')
 	},
 	setup: function (frm) {
 		frm.set_query("media_sub_type", function () {

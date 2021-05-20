@@ -5,7 +5,8 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
-from frappe.utils import getdate, nowdate
+from frappe.utils import get_link_to_form,today
+from frappe import _
 
 class MediaTransfer(Document):
 	@frappe.whitelist()
@@ -27,7 +28,7 @@ inner join `tabMedia Transfer` receipt
 on receipt.name=film.parent
 and receipt.customer='{customer}'
 and receipt.project='{project}'
-and receipt.media_transfer_type='Receipt'
+and receipt.transfer_type='Receipt'
 and receipt.docstatus=1
 group by film.media_id) as received
 inner join `tabMedia` media
@@ -39,7 +40,7 @@ inner join `tabMedia Transfer` media_return
 on media_return.name=film_return.parent
 and media_return.customer='{customer}'
 and media_return.project='{project}'
-and media_return.media_transfer_type='Return'
+and media_return.transfer_type='Return'
 and media_return.docstatus=1
 group by film_return.media_id) as returned
 on received.media_id=returned.media_id
@@ -59,7 +60,7 @@ inner join `tabMedia Transfer` receipt
 on receipt.name=tape.parent
 and receipt.customer='{customer}'
 and receipt.project='{project}'
-and receipt.media_transfer_type='Receipt'
+and receipt.transfer_type='Receipt'
 and receipt.docstatus=1
 group by tape.media_id) as received
 inner join `tabMedia` media
@@ -71,7 +72,7 @@ inner join `tabMedia Transfer` media_return
 on media_return.name=tape_return.parent
 and media_return.customer='{customer}'
 and media_return.project='{project}'
-and media_return.media_transfer_type='Return'
+and media_return.transfer_type='Return'
 and media_return.docstatus=1
 group by tape_return.media_id) as returned
 on received.media_id=returned.media_id
@@ -92,7 +93,7 @@ inner join `tabMedia Transfer` receipt
 on receipt.name=drive.parent
 and receipt.customer='{customer}'
 and receipt.project='{project}'
-and receipt.media_transfer_type='Receipt'
+and receipt.transfer_type='Receipt'
 and receipt.docstatus=1
 group by drive.media_id) as received
 inner join `tabMedia` media
@@ -104,7 +105,7 @@ inner join `tabMedia Transfer` media_return
 on media_return.name=drive_return.parent
 and media_return.customer='{customer}'
 and media_return.project='{project}'
-and media_return.media_transfer_type='Return'
+and media_return.transfer_type='Return'
 and media_return.docstatus=1
 group by drive_return.media_id) as returned
 on received.media_id=returned.media_id
@@ -112,7 +113,7 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 		return drive_list if len(drive_list) else 'None'
 
 	def on_submit(self):
-		if self.media_transfer_type=='Receipt':
+		if self.transfer_type=='Receipt':
 			for item in self.get('film_items'):
 				doc = frappe.get_doc('Media', item.media_id)
 				doc.update({
@@ -191,8 +192,104 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 
 
 	# def get_title(self):
-	# 	return self.media_transfer_type + ':' + self.name	
+	# 	return self.transfer_type + ':' + self.name	
+	@frappe.whitelist()
+	def make_transfer_return(self):
+
+		film_list,tape_list,drive_list=[],[],[]
+		if self.film_items:
+			film_list=self.get_film_media()
+		if self.tape_items:
+			tape_list=self.get_tape_media()
+		if self.drive_items:
+			drive_list=self.get_drive_media()
+		
+		return_created_list=[['Media ID','Media Type','Sub Type','Owner','External ID']]
+
+		for film_receipt in self.film_items:
+			found_film=False
+			if film_list!='None':
+				for film_return in film_list:
+					if film_receipt.media_id==film_return.media_id:
+						found_film=True
+						break
+			if found_film==False:					
+					return_created_list.append([
+						frappe.bold(get_link_to_form('Media',film_receipt.media_id)), 
+						'Film',
+						film_receipt.film_type or '',
+						film_receipt.media_owner or '', 
+						film_receipt.external_id or ''
+					])
+
+		for tape_receipt in self.tape_items:
+			found_tape=False
+			if tape_list!='None':
+				for tape_return in tape_list:
+					if tape_receipt.media_id==tape_return.media_id:
+						found_tape=True
+						break
+			if found_tape==False:					
+					return_created_list.append([
+						frappe.bold(get_link_to_form('Media',tape_receipt.media_id)), 
+						'Tape',
+						tape_receipt.tape_type or '',
+						tape_receipt.media_owner or '', 
+						tape_receipt.external_id or ''
+					])
+
+		for drive_receipt in self.drive_items:
+			found_drive=False
+			if drive_list!='None':
+				for drive_return in drive_list:
+					if drive_receipt.media_id==drive_return.media_id:
+						found_drive=True
+						break
+			if found_drive==False:					
+					return_created_list.append([
+						frappe.bold(get_link_to_form('Media',drive_receipt.media_id)), 
+						'Drive',
+						drive_receipt.drive_type or '',
+						drive_receipt.media_owner or '', 
+						drive_receipt.external_id or ''
+					])
+
+
+		media_transfer_name=''
+		if 	(len(film_list)>0 and film_list!='None') or (len(tape_list)>0 and tape_list!='None') or (len(drive_list)>0 and drive_list!='None') :
+			media_transfer = frappe.new_doc('Media Transfer')
+			media_transfer.transfer_type='Return'
+			media_transfer.naming_series='RT-.YY.-.MM.-.#'
+			media_transfer.transfer_date=today()
+			media_transfer.transfer_method=self.transfer_method
+			media_transfer.external_contact=self.external_contact
+			media_transfer.internal_contact=self.internal_contact
+			media_transfer.customer=self.customer
+			media_transfer.project=self.project
+			if len(film_list)>0 and film_list!='None':
+				for film in film_list:
+						media_transfer.append('film_items',film)
+			if len(tape_list)>0 and tape_list!='None':
+				for tape in tape_list:
+						print('2244'*100,tape)
+						media_transfer.append('tape_items',tape)				
+			if len(drive_list)>0 and drive_list!='None':
+				for drive in drive_list:
+						media_transfer.append('drive_items',drive)				
+			media_transfer.insert()
+			media_transfer_name=media_transfer.name
+		
+		if len(return_created_list)>1:
+			frappe.msgprint(msg=return_created_list,title='The following media items have already been returned.',as_table=True)			
+		if media_transfer_name:
+			frappe.msgprint(msg=("Media Transfer record : {0} of type return is created.").format(frappe.bold(get_link_to_form("Media Transfer", media_transfer.name))))
+		else:
+			frappe.msgprint(msg=("No new media transfer record of type return is created."))				
+			
 
 @frappe.whitelist()
 def delete_Media_NS(media_id):
-	frappe.delete_doc('Media', media_id)				
+	frappe.delete_doc('Media', media_id)	
+
+
+					
