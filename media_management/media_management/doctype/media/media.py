@@ -7,6 +7,12 @@ import frappe
 from frappe.model.document import Document
 
 class Media(Document):
+	def autoname(self):
+		from frappe.model.naming import set_name_by_naming_series
+		if self.media_type:
+			media_abbreviation = frappe.db.get_value('Media Type', self.media_type, 'abbreviation')
+			self.naming_series = '{0}.#'.format(media_abbreviation)
+			set_name_by_naming_series(self)	
 
 	# def validate(self):
 	# 	self.title=self.media_type+': '+self.name

@@ -218,8 +218,8 @@ frappe.ui.form.on('Media Transfer', {
 				);
 			}
 			if (frm.doc.docstatus == 1) {
-				frm.add_custom_button(__("Create Media Receipt"), function () {
-					frm.trigger("make_media_receipt");
+				frm.add_custom_button(__("Create Media Return"), function () {
+					frm.trigger("make_media_return");
 				});
 			}
 			$('div.section-head:contains("Return Details")').text('Receipt Details')
@@ -449,7 +449,7 @@ frappe.ui.form.on('Media Transfer', {
 				cur_frm.meta._default_print_format = null;
 		}
 	},
-	make_media_receipt: function(frm) {
+	make_media_return: function(frm) {
 		frappe.call({
 			method: "make_transfer_return",
 			doc: frm.doc,

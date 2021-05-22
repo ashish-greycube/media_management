@@ -175,7 +175,8 @@
   },
   {
    "fieldname": "notes",
-   "fieldtype": "Text Editor"
+   "fieldtype": "Text Editor",
+   "label": "Notes"
   },
   {
    "fieldname": "media_sub_type",
@@ -266,7 +267,7 @@
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2021-05-21 13:39:00.254383",
+ "modified": "2021-05-22 12:01:12.422217",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",

@@ -9,6 +9,14 @@ from frappe.utils import get_link_to_form,today
 from frappe import _
 
 class MediaTransfer(Document):
+	def autoname(self):
+		from frappe.model.naming import set_name_by_naming_series
+		if self.transfer_type == 'Receipt':
+			self.naming_series = 'RC-.YY.-.MM.-.#'
+		elif self.transfer_type == 'Return':
+			self.naming_series = 'RT-.YY.-.MM.-.#'
+		set_name_by_naming_series(self)
+
 	@frappe.whitelist()
 	def fetch_all_media(self):
 		film_list=self.get_film_media()

@@ -182,7 +182,8 @@
   },
   {
    "fieldname": "notes",
-   "fieldtype": "Small Text"
+   "fieldtype": "Small Text",
+   "label": "Notes"
   },
   {
    "fieldname": "naming_series",
@@ -268,6 +269,7 @@
    "fieldname": "contact_person",
    "fieldtype": "Link",
    "hidden": 1,
+   "label": "Contact ID",
    "options": "Contact",
    "print_hide": 1
   },
@@ -291,6 +293,7 @@
    "fieldname": "customer_address",
    "fieldtype": "Link",
    "hidden": 1,
+   "label": "Address ID",
    "options": "Address",
    "print_hide": 1
   },
@@ -343,7 +346,7 @@
  "hide_toolbar": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-05-19 08:54:20.264551",
+ "modified": "2021-05-22 11:58:07.602101",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Transfer",
