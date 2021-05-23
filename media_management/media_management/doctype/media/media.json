@@ -80,15 +80,13 @@
    "fetch_from": "media_type.abbreviation",
    "fieldname": "media_abbreviation",
    "fieldtype": "Data",
-   "label": "Media Abbreviation",
-   "reqd": 1
+   "label": "Media Abbreviation"
   },
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Naming Series",
-   "options": "{media_abbreviation}.#",
-   "reqd": 1
+   "options": "{media_abbreviation}.#"
   },
   {
    "depends_on": "eval:doc.media_type==\"Film\"",
@@ -267,7 +265,7 @@
  ],
  "hide_toolbar": 1,
  "links": [],
- "modified": "2021-05-22 12:01:12.422217",
+ "modified": "2021-05-23 12:42:04.489633",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media",

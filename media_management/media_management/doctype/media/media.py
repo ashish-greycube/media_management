@@ -11,6 +11,7 @@ class Media(Document):
 		from frappe.model.naming import set_name_by_naming_series
 		if self.media_type:
 			media_abbreviation = frappe.db.get_value('Media Type', self.media_type, 'abbreviation')
+			self.media_abbreviation=media_abbreviation
 			self.naming_series = '{0}.#'.format(media_abbreviation)
 			set_name_by_naming_series(self)	
 
@@ -27,7 +28,7 @@ class Media(Document):
 
 	def load_film_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`,film.film_type as `type`,
+		(select receipt.name as id,receipt.transfer_type as `transfer_type`,film.film_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -40,7 +41,7 @@ class Media(Document):
 
 	def load_tape_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`,tape.tape_type as `type`,
+		(select receipt.name as id,receipt.transfer_type as `transfer_type`,tape.tape_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -53,7 +54,7 @@ class Media(Document):
 
 	def load_drive_history(self):
 		media_list=frappe.db.sql("""
-		(select 'Media Transfer' as link_doctype,receipt.name as id,receipt.transfer_type as `transfer_type`, drive.drive_type as `type`,
+		(select receipt.name as id,receipt.transfer_type as `transfer_type`, drive.drive_type as `type`,
 		receipt.transfer_date as `date`,receipt.transfer_method as method,
 		receipt.external_contact,receipt.internal_contact,receipt.customer,
 		receipt.project,receipt.creation as creation
@@ -68,7 +69,6 @@ class Media(Document):
 		self.transfer_history=[]
 		for item in media_list:
 			self.append("transfer_history", {
-				"link_doctype":item.link_doctype,
 				"id":item.id,
 				"transfer_type": item.transfer_type,
 				"date":item.date,
