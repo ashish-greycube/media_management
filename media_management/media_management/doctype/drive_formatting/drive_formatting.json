@@ -1,4 +1,5 @@
 {
+ "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:drive_format",
@@ -14,12 +15,13 @@
    "fieldname": "drive_format",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Drive Formatting",
+   "label": "Drive Format",
    "reqd": 1,
    "unique": 1
   }
  ],
- "modified": "2021-01-18 10:44:15.462256",
+ "links": [],
+ "modified": "2021-05-25 05:59:53.937718",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Drive Formatting",

@@ -12,7 +12,7 @@
   "extends_another_page": 0,
   "for_user": null,
   "hide_custom": 0,
-  "icon": "active",
+  "icon": "image",
   "is_default": 0,
   "is_standard": 0,
   "label": "Media Management",
@@ -397,7 +397,7 @@
     "hidden": 0,
     "icon": null,
     "is_query_report": 0,
-    "label": "Drive Formatting",
+    "label": "Drive Format",
     "link_to": "Drive Formatting",
     "link_type": "DocType",
     "onboard": 0,
@@ -453,7 +453,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2021-05-04 12:59:59.143970",
+  "modified": "2021-05-25 06:00:52.646124",
   "module": "Media Management",
   "name": "Media Management",
   "onboarding": null,
