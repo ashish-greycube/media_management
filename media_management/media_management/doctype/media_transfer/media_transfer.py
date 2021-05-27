@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import get_link_to_form,today
 from frappe import _
+from erpnext.accounts.party import get_party_details
 
 class MediaTransfer(Document):
 	def autoname(self):
@@ -16,6 +17,13 @@ class MediaTransfer(Document):
 		elif self.transfer_type == 'Return':
 			self.naming_series = 'RT-.YY.-.MM.-.#'
 		set_name_by_naming_series(self)
+
+	def onload(self):
+		if self.customer and self.transfer_type=='Return':
+			customer_details=get_party_details(party=self.customer,party_type='Customer')
+			self.contact_display=customer_details.get('contact_display')
+			self.contact_mobile=customer_details.get('contact_mobile')
+			self.address_display=customer_details.get('address_display')
 
 	@frappe.whitelist()
 	def fetch_all_media(self):
@@ -285,6 +293,7 @@ where received.ct-coalesce(returned.ct,0) > 0 """.format(customer=self.customer,
 				for drive in drive_list:
 						media_transfer.append('drive_items',drive)				
 			media_transfer.insert()
+			media_transfer.run_method("onload")
 			media_transfer_name=media_transfer.name
 		
 		if len(return_created_list)>1:

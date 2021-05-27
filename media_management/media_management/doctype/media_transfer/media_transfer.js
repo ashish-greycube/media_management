@@ -59,9 +59,6 @@ frappe.ui.form.on('Media Transfer', {
 		$('div.section-head:contains("Receipt Details")').text('Return Details')
 		frm.set_value('naming_series', 'RT-.YY.-.MM.-.#')
 		$('label.control-label:contains("Media Receipt")').text('Media Return')
-		// onload
-		cur_frm.set_query('customer_address', erpnext.queries.address_query);
-		cur_frm.set_query('contact_person', erpnext.queries.contact_query);
 		// onload_post_render
 		$(".grid-remove-rows").html('Remove')
 		// refresh
@@ -160,11 +157,6 @@ frappe.ui.form.on('Media Transfer', {
 				}
 			}
 		})
-		const default_company = frappe.defaults.get_default('company');
-		if (!frm.doc.company) {
-			frm.set_value('company', default_company)
-
-		}
 	},
 	onload: function (frm) {
 
@@ -174,10 +166,6 @@ frappe.ui.form.on('Media Transfer', {
 			frm.set_df_property('no_of_tapes', 'read_only', 1)
 			frm.set_df_property('no_of_drives', 'read_only', 1)
 			frm.set_df_property('create_all_media', 'hidden', 1)
-		}
-		if (frm.doc.transfer_type === 'Return') {
-			cur_frm.set_query('customer_address', erpnext.queries.address_query);
-			cur_frm.set_query('contact_person', erpnext.queries.contact_query);
 		}
 	},
 	onload_post_render: function (frm) {
@@ -268,16 +256,9 @@ frappe.ui.form.on('Media Transfer', {
 				})
 			}			
 		if (frm.doc.transfer_type === 'Return') {
-		erpnext.utils.get_party_details(frm);
 		frm.events.clear_all_media_data(frm);
 		}
 	},	
-	customer_address: function(frm) {
-		erpnext.utils.get_address_display(cur_frm, 'customer_address', 'address_display');
-	},	
-	contact_person: function(frm) {
-		erpnext.utils.get_contact_details(frm);
-	},
 	fetch_all: function(frm) {
 			frappe.call({
 				method: "fetch_all_media",

@@ -45,12 +45,9 @@
   "notes",
   "naming_series",
   "amended_from",
-  "company",
-  "contact_person",
   "contact_display",
   "contact_mobile",
   "column_break_42",
-  "customer_address",
   "address_display"
  ],
  "fields": [
@@ -257,45 +254,20 @@
    "label": "Fetch Media"
   },
   {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Company",
-   "options": "Company",
-   "print_hide": 1,
-   "remember_last_selected_value": 1
-  },
-  {
-   "fieldname": "contact_person",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Contact ID",
-   "options": "Contact",
-   "print_hide": 1
-  },
-  {
    "fieldname": "contact_display",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Customer Name"
+   "label": "Customer Contact"
   },
   {
    "fieldname": "contact_mobile",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Customer Phone"
+   "label": "Customer Mobile"
   },
   {
    "fieldname": "column_break_42",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "customer_address",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Address ID",
-   "options": "Address",
-   "print_hide": 1
   },
   {
    "fieldname": "address_display",
@@ -332,7 +304,7 @@
    "fieldname": "external_contact",
    "fieldtype": "Link",
    "label": "External Contact",
-   "options": "Customer",
+   "options": "Contact",
    "reqd": 1
   },
   {
@@ -346,7 +318,7 @@
  "hide_toolbar": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-05-22 11:58:07.602101",
+ "modified": "2021-05-27 13:32:13.754179",
  "modified_by": "Administrator",
  "module": "Media Management",
  "name": "Media Transfer",
